@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- =====================================
+         Res Partner Bank Inherit: Search View
+         ===================================== -->
+    <record id="view_res_partner_bank_inherit_search" model="ir.ui.view">
+        <field name="name">res.partner.bank.inherit.search</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_filter"/>
+        <field name="arch" type="xml">
+            <!-- Adding the 'Is Trust Account' field to the search view -->
+            <field name="acc_number" position="after">
+                <field name="is_trust"/>
+            </field>
+
+            <!-- Adding filter options for 'Is Trust Account' -->
+            <filter string="Trust Accounts" domain="[('is_trust', '=', True)]"/>
+            <filter string="Non-Trust Accounts" domain="[('is_trust', '=', False)]"/>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Res Partner Bank Inherit: Tree (List) View
+         ===================================== -->
+    <record id="view_res_partner_bank_inherit_tree" model="ir.ui.view">
+        <field name="name">res.partner.bank.inherit.tree</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_tree"/>
+        <field name="arch" type="xml">
+            <!-- Adding the 'Is Trust Account' field to the tree view -->
+            <field name="bank_id" position="after">
+                <field name="is_trust"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Res Partner Bank Inherit: Form View
+         ===================================== -->
+    <record id="view_res_partner_bank_inherit_form" model="ir.ui.view">
+        <field name="name">res.partner.bank.inherit.form</field>
+        <field name="model">res.partner.bank</field>
+        <field name="inherit_id" ref="base.view_partner_bank_form"/>
+        <field name="arch" type="xml">
+            <!-- Adding the 'Is Trust Account' field to the form view -->
+            <xpath expr="//sheet//group" position="inside">
+                <group string="Trust Information">
+                    <field name="is_trust"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Res Partner Bank Inherit: Kanban View
+         ===================================== -->
+    <record id="view_res_partner_bank_inherit_kanban" model="ir.ui.view">
+        <field name="name">res.partner.bank.inherit.kanban</field>
+        <field name="model">res.partner.bank</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="is_trust"/>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <header>
+                                <!-- Displaying the Trust Status using a badge -->
+                                <span t-if="record.is_trust.raw_value" class="badge badge-success">Trust Account</span>
+                                <span t-if="not record.is_trust.raw_value" class="badge badge-secondary">Non-Trust Account</span>
+                            </header>
+                            <div class="o_kanban_details">
+                                <strong><field name="acc_number"/></strong>
+                                <p>
+                                    <strong>Bank:</strong> <field name="bank_id"/>
+                                </p>
+                                <p>
+                                    <strong>Holder:</strong> <field name="partner_id"/>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Res Partner Bank Inherit: Actions
+         ===================================== -->
+
+    <!-- Res Partner Bank Inherit Action -->
+    <record id="action_res_partner_bank_inherit" model="ir.actions.act_window">
+        <field name="name">Bank Accounts</field>
+        <field name="res_model">res.partner.bank</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_ids" eval="[
+            (ref('view_res_partner_bank_inherit_kanban'), 'kanban'),
+            (ref('view_res_partner_bank_inherit_tree'), 'tree'),
+            (ref('view_res_partner_bank_inherit_form'), 'form')
+        ]"/>
+        <field name="search_view_id" ref="view_res_partner_bank_inherit_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage your bank accounts, including trust accounts.
+            </p>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Res Partner Bank Inherit: Menu Items
+         ===================================== -->
+
+    <!-- Parent Menu for Bank Accounts (if needed) -->
+    <menuitem id="menu_res_partner_bank_inherit_root" name="Bank Accounts"
+              parent="base.menu_partner_bank"  <!-- Adjust parent as necessary -->
+              sequence="10"/>
+
+    <!-- Bank Accounts Menu -->
+    <menuitem id="menu_res_partner_bank_inherit" name="Bank Accounts"
+              parent="menu_res_partner_bank_inherit_root"
+              action="action_res_partner_bank_inherit"
+              sequence="10"/>
+</odoo>

@@ -1,0 +1,1049 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- =====================================
+         Sales Agents and Referrals: Search View
+         ===================================== -->
+    <record id="view_sales_agents_and_referrals_search" model="ir.ui.view">
+        <field name="name">sales.agents.and.referrals.search</field>
+        <field name="model">sales.agents.and.referrals</field>
+        <field name="arch" type="xml">
+            <search string="Search Sales Agents and Referrals">
+                <field name="partner_id"/>
+                <field name="deal_id"/>
+                <field name="listing_id"/>
+                <field name="payment_type"/>
+                <field name="is_uploaded"/>
+                <field name="is_approved"/>
+                <filter string="Uploaded" domain="[('is_uploaded', '=', True)]"/>
+                <filter string="Not Uploaded" domain="[('is_uploaded', '=', False)]"/>
+                <filter string="Approved" domain="[('is_approved', '=', True)]"/>
+                <filter string="Not Approved" domain="[('is_approved', '=', False)]"/>
+                <filter string="Sales Agent Commission" domain="[('payment_type', '=', 'sales_agent')]"/>
+                <filter string="Other Broker" domain="[('payment_type', '=', 'other_broker')]"/>
+                <filter string="Non-Licensee" domain="[('payment_type', '=', 'non_licensee')]"/>
+                <group expand="1" string="Grouping">
+                    <group string="Payment Type">
+                        <filter string="Sales Agent Commission" domain="[('payment_type', '=', 'sales_agent')]"/>
+                        <filter string="Other Broker" domain="[('payment_type', '=', 'other_broker')]"/>
+                        <filter string="Non-Licensee" domain="[('payment_type', '=', 'non_licensee')]"/>
+                    </group>
+                    <group string="Approval Status">
+                        <filter string="Approved" domain="[('is_approved', '=', True)]"/>
+                        <filter string="Rejected" domain="[('document_review', '=', 'rejected')]"/>
+                        <filter string="Awaiting Approval" domain="[('document_review', '=', 'awaiting')]"/>
+                        <filter string="Re-submitted" domain="[('document_review', '=', 're_submitted')]"/>
+                    </group>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agents and Referrals: Tree (List) View
+         ===================================== -->
+    <record id="view_sales_agents_and_referrals_tree" model="ir.ui.view">
+        <field name="name">sales.agents.and.referrals.tree</field>
+        <field name="model">sales.agents.and.referrals</field>
+        <field name="arch" type="xml">
+            <tree string="Sales Agents and Referrals">
+                <field name="partner_id"/>
+                <field name="payment_type"/>
+                <field name="deal_id"/>
+                <field name="listing_id"/>
+                <field name="base_commission"/>
+                <field name="percentage_of_end"/>
+                <field name="gross_amount"/>
+                <field name="total_split_fees"/>
+                <field name="total_net_amount"/>
+                <field name="tax"/>
+                <field name="total_tax"/>
+                <field name="payable_amount"/>
+                <field name="payable_type"/>
+                <field name="is_uploaded"/>
+                <field name="is_approved"/>
+                <field name="document_review"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agents and Referrals: Form View
+         ===================================== -->
+    <record id="view_sales_agents_and_referrals_form" model="ir.ui.view">
+        <field name="name">sales.agents.and.referrals.form</field>
+        <field name="model">sales.agents.and.referrals</field>
+        <field name="arch" type="xml">
+            <form string="Sales Agents and Referrals">
+                <header>
+                    <!-- Status Bar for Document Review -->
+                    <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                    <!-- Buttons for Actions -->
+                    <button name="action_view_commission_plan_lines" type="object" string="View Commission Plans" class="oe_highlight"/>
+                    <button name="action_send_email" type="object" string="Send Email" class="oe_link"/>
+                    <button name="action_print_document" type="object" string="Print Document" class="oe_link"/>
+                </header>
+                <sheet>
+                    <group>
+                        <!-- Partner and Company Information -->
+                        <group string="Partner Information" col="2">
+                            <field name="partner_id" options="{'no_create': True}"/>
+                            <field name="company_id" readonly="1"/>
+                            <field name="currency_id" readonly="1"/>
+                        </group>
+                        <!-- Deal and Listing Relationships -->
+                        <group string="Deal and Listing" col="2">
+                            <field name="deal_id"/>
+                            <field name="listing_id"/>
+                            <field name="end_id"/>
+                        </group>
+                        <!-- Payment Type and Related Fields -->
+                        <group string="Payment Details" col="3">
+                            <field name="payment_type"/>
+                            <field name="sales_agent_id"/>
+                            <field name="other_broker_id"/>
+                            <field name="other_broker_agent_id"/>
+                            <field name="buyers_sellers_id"/>
+                            <field name="for_sale_or_lease"/>
+                            <field name="referral_letter_on_file"/>
+                        </group>
+                    </group>
+                    <group>
+                        <!-- Contact Information Fields -->
+                        <group string="Contact Information" col="4">
+                            <field name="street" readonly="1"/>
+                            <field name="street2" readonly="1"/>
+                            <field name="city" readonly="1"/>
+                            <field name="state_id" readonly="1"/>
+                            <field name="zip" readonly="1"/>
+                            <field name="country_id" readonly="1"/>
+                            <field name="phone" readonly="1"/>
+                            <field name="email" readonly="1"/>
+                            <field name="website" readonly="1"/>
+                            <field name="vat" readonly="1"/>
+                            <field name="sales_agent_note" readonly="1"/>
+                        </group>
+                        <!-- Commission and Fees -->
+                        <group string="Commission and Fees" col="2">
+                            <field name="base_commission"/>
+                            <field name="buyer_side_commission"/>
+                            <field name="seller_side_commission"/>
+                            <field name="percentage_of_end"/>
+                            <field name="plus_flat_fee"/>
+                            <field name="less_flat_fee"/>
+                            <field name="commission_plan_less_flat"/>
+                            <field name="double_end_side"/>
+                        </group>
+                        <!-- Financial Computations -->
+                        <group string="Financials" col="2">
+                            <field name="gross_amount" readonly="1"/>
+                            <field name="total_split_fees" readonly="1"/>
+                            <field name="total_net_amount" readonly="1"/>
+                            <field name="tax" readonly="1"/>
+                            <field name="total_tax" readonly="1"/>
+                            <field name="payable_amount" readonly="1"/>
+                            <field name="payable_type" readonly="1"/>
+                        </group>
+                    </group>
+                    <group>
+                        <!-- Advance Fields (Visible Only for Sales Agents) -->
+                        <group string="Advance Details" attrs="{'invisible': [('payment_type', '!=', 'sales_agent')]}">
+                            <field name="amount_advanced"/>
+                            <field name="advance_amt_repaid"/>
+                            <field name="advance_amt_outstanding" readonly="1"/>
+                            <field name="available_for_advance" readonly="1"/>
+                            <field name="amount_requested"/>
+                            <field name="advance_approved"/>
+                        </group>
+                        <!-- Mentorship -->
+                        <group string="Mentorship" col="1">
+                            <field name="mentorship_line_ids"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <!-- Commission Plan Lines -->
+                        <page string="Commission Plans">
+                            <field name="commission_plan_line_ids">
+                                <tree string="Commission Plan Lines">
+                                    <field name="commission_plan_id"/>
+                                    <field name="commission_amount"/>
+                                    <field name="flat_fee"/>
+                                </tree>
+                                <form string="Commission Plan Line">
+                                    <group>
+                                        <field name="commission_plan_id"/>
+                                        <field name="commission_amount"/>
+                                        <field name="flat_fee"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <!-- Document Lines (Assuming Integration with Document Management) -->
+                        <page string="Documents">
+                            <field name="document_line_ids" context="{'default_deal_id': deal_id, 'default_listing_id': listing_id}" mode="tree,form,kanban">
+                                <tree string="Document Lines">
+                                    <field name="document_type_id"/>
+                                    <field name="is_uploaded"/>
+                                    <field name="is_approved"/>
+                                    <field name="document_review"/>
+                                </tree>
+                                <form string="Document Line">
+                                    <group>
+                                        <field name="document_type_id"/>
+                                        <field name="attachment_ids" widget="many2many_binary"/>
+                                        <field name="document_review"/>
+                                    </group>
+                                </form>
+                                <kanban>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_card">
+                                                <header>
+                                                    <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                                </header>
+                                                <div class="o_kanban_details">
+                                                    <strong><field name="document_type_id"/></strong>
+                                                    <p>
+                                                        <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                                    </p>
+                                                    <p>
+                                                        <strong>Approved:</strong> <field name="is_approved"/>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agents and Referrals: Kanban View
+         ===================================== -->
+    <record id="view_sales_agents_and_referrals_kanban" model="ir.ui.view">
+        <field name="name">sales.agents.and.referrals.kanban</field>
+        <field name="model">sales.agents.and.referrals</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <header>
+                                <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                            </header>
+                            <div class="o_kanban_details">
+                                <strong><field name="partner_id"/></strong>
+                                <p>
+                                    <strong>Payment Type:</strong> <field name="payment_type"/>
+                                </p>
+                                <p>
+                                    <strong>Commission:</strong> <field name="base_commission"/>
+                                </p>
+                                <p>
+                                    <strong>% of End:</strong> <field name="percentage_of_end"/>%
+                                </p>
+                                <p>
+                                    <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                </p>
+                                <p>
+                                    <strong>Approved:</strong> <field name="is_approved"/>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agents and Referrals: Actions
+         ===================================== -->
+
+    <!-- Sales Agents and Referrals Action -->
+    <record id="action_sales_agents_and_referrals" model="ir.actions.act_window">
+        <field name="name">Sales Agents and Referrals</field>
+        <field name="res_model">sales.agents.and.referrals</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_ids" eval="[
+            (ref('view_sales_agents_and_referrals_kanban'), 'kanban'),
+            (ref('view_sales_agents_and_referrals_tree'), 'tree'),
+            (ref('view_sales_agents_and_referrals_form'), 'form')
+        ]"/>
+        <field name="search_view_id" ref="view_sales_agents_and_referrals_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create and manage sales agents and referrals, track commissions, and monitor document statuses.
+            </p>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agents and Referrals: Menu Items
+         ===================================== -->
+
+    <!-- Parent Menu for Sales Agents and Referrals -->
+    <menuitem id="menu_sales_agents_and_referrals_root" name="Sales Agents and Referrals"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="60"/>
+
+    <!-- Sales Agents and Referrals Menu -->
+    <menuitem id="menu_sales_agents_and_referrals" name="Sales Agents and Referrals"
+              parent="menu_sales_agents_and_referrals_root"
+              action="action_sales_agents_and_referrals"
+              sequence="10"/>
+
+    <!-- =====================================
+         Integration Enhancements for Deal and Listing Records
+         ===================================== -->
+
+    <!-- =====================================
+         Deal Records: Form View Enhancement for Sales Agents and Referrals
+         ===================================== -->
+    <record id="view_deal_records_form_inherit_sales_agents_and_referrals" model="ir.ui.view">
+        <field name="name">deal.records.form.inherit.sales.agents.and.referrals</field>
+        <field name="model">deal.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_deal_records_form"/> <!-- Replace with actual module and view -->
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Sales Agents and Referrals">
+                        <field name="sales_agents_and_referrals_ids" context="{'default_deal_id': active_id}" mode="tree,form,kanban">
+                            <tree string="Sales Agents and Referrals">
+                                <field name="partner_id"/>
+                                <field name="payment_type"/>
+                                <field name="base_commission"/>
+                                <field name="percentage_of_end"/>
+                                <field name="gross_amount"/>
+                                <field name="total_split_fees"/>
+                                <field name="total_net_amount"/>
+                                <field name="is_uploaded"/>
+                                <field name="is_approved"/>
+                                <field name="document_review"/>
+                            </tree>
+                            <form string="Sales Agent and Referral">
+                                <group>
+                                    <field name="partner_id"/>
+                                    <field name="payment_type"/>
+                                    <field name="deal_id"/>
+                                    <field name="listing_id"/>
+                                    <field name="end_id"/>
+                                </group>
+                                <group>
+                                    <field name="sales_agent_id"/>
+                                    <field name="other_broker_id"/>
+                                    <field name="other_broker_agent_id"/>
+                                    <field name="buyers_sellers_id"/>
+                                    <field name="for_sale_or_lease"/>
+                                    <field name="referral_letter_on_file"/>
+                                </group>
+                                <group>
+                                    <field name="base_commission"/>
+                                    <field name="percentage_of_end"/>
+                                    <field name="plus_flat_fee"/>
+                                    <field name="less_flat_fee"/>
+                                </group>
+                                <group>
+                                    <field name="gross_amount" readonly="1"/>
+                                    <field name="total_split_fees" readonly="1"/>
+                                    <field name="total_net_amount" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="tax" readonly="1"/>
+                                    <field name="total_tax" readonly="1"/>
+                                    <field name="payable_amount" readonly="1"/>
+                                    <field name="payable_type" readonly="1"/>
+                                </group>
+                                <notebook>
+                                    <page string="Commission Plans">
+                                        <field name="commission_plan_line_ids">
+                                            <tree string="Commission Plan Lines">
+                                                <field name="commission_plan_id"/>
+                                                <field name="commission_amount"/>
+                                                <field name="flat_fee"/>
+                                            </tree>
+                                            <form string="Commission Plan Line">
+                                                <group>
+                                                    <field name="commission_plan_id"/>
+                                                    <field name="commission_amount"/>
+                                                    <field name="flat_fee"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                                    </page>
+                                    <page string="Documents">
+                                        <field name="document_line_ids" context="{'default_deal_id': deal_id, 'default_listing_id': listing_id}" mode="tree,form,kanban">
+                                            <tree string="Document Lines">
+                                                <field name="document_type_id"/>
+                                                <field name="is_uploaded"/>
+                                                <field name="is_approved"/>
+                                                <field name="document_review"/>
+                                            </tree>
+                                            <form string="Document Line">
+                                                <group>
+                                                    <field name="document_type_id"/>
+                                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                                    <field name="document_review"/>
+                                                </group>
+                                            </form>
+                                            <kanban>
+                                                <templates>
+                                                    <t t-name="kanban-box">
+                                                        <div class="oe_kanban_card">
+                                                            <header>
+                                                                <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                                            </header>
+                                                            <div class="o_kanban_details">
+                                                                <strong><field name="document_type_id"/></strong>
+                                                                <p>
+                                                                    <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                                                </p>
+                                                                <p>
+                                                                    <strong>Approved:</strong> <field name="is_approved"/>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </t>
+                                                </templates>
+                                            </kanban>
+                                        </field>
+                                    </page>
+                                </notebook>
+                            </form>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Listing Records: Form View Enhancement for Sales Agents and Referrals
+         ===================================== -->
+    <record id="view_listing_records_form_inherit_sales_agents_and_referrals" model="ir.ui.view">
+        <field name="name">listing.records.form.inherit.sales.agents.and.referrals</field>
+        <field name="model">listing.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_listing_records_form"/> <!-- Replace with actual module and view -->
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Sales Agents and Referrals">
+                        <field name="sales_agents_and_referrals_ids" context="{'default_listing_id': active_id}" mode="tree,form,kanban">
+                            <tree string="Sales Agents and Referrals">
+                                <field name="partner_id"/>
+                                <field name="payment_type"/>
+                                <field name="base_commission"/>
+                                <field name="percentage_of_end"/>
+                                <field name="gross_amount"/>
+                                <field name="total_split_fees"/>
+                                <field name="total_net_amount"/>
+                                <field name="is_uploaded"/>
+                                <field name="is_approved"/>
+                                <field name="document_review"/>
+                            </tree>
+                            <form string="Sales Agent and Referral">
+                                <group>
+                                    <field name="partner_id"/>
+                                    <field name="payment_type"/>
+                                    <field name="deal_id"/>
+                                    <field name="listing_id"/>
+                                    <field name="end_id"/>
+                                </group>
+                                <group>
+                                    <field name="sales_agent_id"/>
+                                    <field name="other_broker_id"/>
+                                    <field name="other_broker_agent_id"/>
+                                    <field name="buyers_sellers_id"/>
+                                    <field name="for_sale_or_lease"/>
+                                    <field name="referral_letter_on_file"/>
+                                </group>
+                                <group>
+                                    <field name="base_commission"/>
+                                    <field name="percentage_of_end"/>
+                                    <field name="plus_flat_fee"/>
+                                    <field name="less_flat_fee"/>
+                                </group>
+                                <group>
+                                    <field name="gross_amount" readonly="1"/>
+                                    <field name="total_split_fees" readonly="1"/>
+                                    <field name="total_net_amount" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="tax" readonly="1"/>
+                                    <field name="total_tax" readonly="1"/>
+                                    <field name="payable_amount" readonly="1"/>
+                                    <field name="payable_type" readonly="1"/>
+                                </group>
+                                <notebook>
+                                    <page string="Commission Plans">
+                                        <field name="commission_plan_line_ids">
+                                            <tree string="Commission Plan Lines">
+                                                <field name="commission_plan_id"/>
+                                                <field name="commission_amount"/>
+                                                <field name="flat_fee"/>
+                                            </tree>
+                                            <form string="Commission Plan Line">
+                                                <group>
+                                                    <field name="commission_plan_id"/>
+                                                    <field name="commission_amount"/>
+                                                    <field name="flat_fee"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                                    </page>
+                                    <page string="Documents">
+                                        <field name="document_line_ids" context="{'default_deal_id': deal_id, 'default_listing_id': listing_id}" mode="tree,form,kanban">
+                                            <tree string="Document Lines">
+                                                <field name="document_type_id"/>
+                                                <field name="is_uploaded"/>
+                                                <field name="is_approved"/>
+                                                <field name="document_review"/>
+                                            </tree>
+                                            <form string="Document Line">
+                                                <group>
+                                                    <field name="document_type_id"/>
+                                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                                    <field name="document_review"/>
+                                                </group>
+                                            </form>
+                                            <kanban>
+                                                <templates>
+                                                    <t t-name="kanban-box">
+                                                        <div class="oe_kanban_card">
+                                                            <header>
+                                                                <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                                            </header>
+                                                            <div class="o_kanban_details">
+                                                                <strong><field name="document_type_id"/></strong>
+                                                                <p>
+                                                                    <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                                                </p>
+                                                                <p>
+                                                                    <strong>Approved:</strong> <field name="is_approved"/>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </t>
+                                                </templates>
+                                            </kanban>
+                                        </field>
+                                    </page>
+                                </notebook>
+                            </form>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agents and Referrals: Kanban View
+         ===================================== -->
+    <record id="view_sales_agents_and_referrals_kanban" model="ir.ui.view">
+        <field name="name">sales.agents.and.referrals.kanban</field>
+        <field name="model">sales.agents.and.referrals</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <header>
+                                <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                            </header>
+                            <div class="o_kanban_details">
+                                <strong><field name="partner_id"/></strong>
+                                <p>
+                                    <strong>Payment Type:</strong> <field name="payment_type"/>
+                                </p>
+                                <p>
+                                    <strong>Commission:</strong> <field name="base_commission"/>
+                                </p>
+                                <p>
+                                    <strong>% of End:</strong> <field name="percentage_of_end"/>%
+                                </p>
+                                <p>
+                                    <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                </p>
+                                <p>
+                                    <strong>Approved:</strong> <field name="is_approved"/>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agents and Referrals: Actions
+         ===================================== -->
+
+    <!-- Sales Agents and Referrals Action -->
+    <record id="action_sales_agents_and_referrals" model="ir.actions.act_window">
+        <field name="name">Sales Agents and Referrals</field>
+        <field name="res_model">sales.agents.and.referrals</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_ids" eval="[
+            (ref('view_sales_agents_and_referrals_kanban'), 'kanban'),
+            (ref('view_sales_agents_and_referrals_tree'), 'tree'),
+            (ref('view_sales_agents_and_referrals_form'), 'form')
+        ]"/>
+        <field name="search_view_id" ref="view_sales_agents_and_referrals_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create and manage sales agents and referrals, track commissions, and monitor document statuses.
+            </p>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agents and Referrals: Menu Items
+         ===================================== -->
+
+    <!-- Parent Menu for Sales Agents and Referrals -->
+    <menuitem id="menu_sales_agents_and_referrals_root" name="Sales Agents and Referrals"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="60"/>
+
+    <!-- Sales Agents and Referrals Menu -->
+    <menuitem id="menu_sales_agents_and_referrals" name="Sales Agents and Referrals"
+              parent="menu_sales_agents_and_referrals_root"
+              action="action_sales_agents_and_referrals"
+              sequence="10"/>
+
+    <!-- =====================================
+         Integration Enhancements for Deal and Listing Records
+         ===================================== -->
+
+    <!-- =====================================
+         Deal Records: Form View Enhancement for Sales Agents and Referrals
+         ===================================== -->
+    <record id="view_deal_records_form_inherit_sales_agents_and_referrals" model="ir.ui.view">
+        <field name="name">deal.records.form.inherit.sales.agents.and.referrals</field>
+        <field name="model">deal.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_deal_records_form"/> <!-- Replace with actual module and view -->
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Sales Agents and Referrals">
+                        <field name="sales_agents_and_referrals_ids" context="{'default_deal_id': active_id}" mode="tree,form,kanban">
+                            <tree string="Sales Agents and Referrals">
+                                <field name="partner_id"/>
+                                <field name="payment_type"/>
+                                <field name="base_commission"/>
+                                <field name="percentage_of_end"/>
+                                <field name="gross_amount"/>
+                                <field name="total_split_fees"/>
+                                <field name="total_net_amount"/>
+                                <field name="is_uploaded"/>
+                                <field name="is_approved"/>
+                                <field name="document_review"/>
+                            </tree>
+                            <form string="Sales Agent and Referral">
+                                <group>
+                                    <field name="partner_id"/>
+                                    <field name="payment_type"/>
+                                    <field name="deal_id"/>
+                                    <field name="listing_id"/>
+                                    <field name="end_id"/>
+                                </group>
+                                <group>
+                                    <field name="sales_agent_id"/>
+                                    <field name="other_broker_id"/>
+                                    <field name="other_broker_agent_id"/>
+                                    <field name="buyers_sellers_id"/>
+                                    <field name="for_sale_or_lease"/>
+                                    <field name="referral_letter_on_file"/>
+                                </group>
+                                <group>
+                                    <field name="base_commission"/>
+                                    <field name="percentage_of_end"/>
+                                    <field name="plus_flat_fee"/>
+                                    <field name="less_flat_fee"/>
+                                </group>
+                                <group>
+                                    <field name="gross_amount" readonly="1"/>
+                                    <field name="total_split_fees" readonly="1"/>
+                                    <field name="total_net_amount" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="tax" readonly="1"/>
+                                    <field name="total_tax" readonly="1"/>
+                                    <field name="payable_amount" readonly="1"/>
+                                    <field name="payable_type" readonly="1"/>
+                                </group>
+                                <notebook>
+                                    <page string="Commission Plans">
+                                        <field name="commission_plan_line_ids">
+                                            <tree string="Commission Plan Lines">
+                                                <field name="commission_plan_id"/>
+                                                <field name="commission_amount"/>
+                                                <field name="flat_fee"/>
+                                            </tree>
+                                            <form string="Commission Plan Line">
+                                                <group>
+                                                    <field name="commission_plan_id"/>
+                                                    <field name="commission_amount"/>
+                                                    <field name="flat_fee"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                                    </page>
+                                    <page string="Documents">
+                                        <field name="document_line_ids" context="{'default_deal_id': deal_id, 'default_listing_id': listing_id}" mode="tree,form,kanban">
+                                            <tree string="Document Lines">
+                                                <field name="document_type_id"/>
+                                                <field name="is_uploaded"/>
+                                                <field name="is_approved"/>
+                                                <field name="document_review"/>
+                                            </tree>
+                                            <form string="Document Line">
+                                                <group>
+                                                    <field name="document_type_id"/>
+                                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                                    <field name="document_review"/>
+                                                </group>
+                                            </form>
+                                            <kanban>
+                                                <templates>
+                                                    <t t-name="kanban-box">
+                                                        <div class="oe_kanban_card">
+                                                            <header>
+                                                                <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                                            </header>
+                                                            <div class="o_kanban_details">
+                                                                <strong><field name="document_type_id"/></strong>
+                                                                <p>
+                                                                    <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                                                </p>
+                                                                <p>
+                                                                    <strong>Approved:</strong> <field name="is_approved"/>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </t>
+                                                </templates>
+                                            </kanban>
+                                        </field>
+                                    </page>
+                                </notebook>
+                            </form>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Listing Records: Form View Enhancement for Sales Agents and Referrals
+         ===================================== -->
+    <record id="view_listing_records_form_inherit_sales_agents_and_referrals" model="ir.ui.view">
+        <field name="name">listing.records.form.inherit.sales.agents.and.referrals</field>
+        <field name="model">listing.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_listing_records_form"/> <!-- Replace with actual module and view -->
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Sales Agents and Referrals">
+                        <field name="sales_agents_and_referrals_ids" context="{'default_listing_id': active_id}" mode="tree,form,kanban">
+                            <tree string="Sales Agents and Referrals">
+                                <field name="partner_id"/>
+                                <field name="payment_type"/>
+                                <field name="base_commission"/>
+                                <field name="percentage_of_end"/>
+                                <field name="gross_amount"/>
+                                <field name="total_split_fees"/>
+                                <field name="total_net_amount"/>
+                                <field name="is_uploaded"/>
+                                <field name="is_approved"/>
+                                <field name="document_review"/>
+                            </tree>
+                            <form string="Sales Agent and Referral">
+                                <group>
+                                    <field name="partner_id"/>
+                                    <field name="payment_type"/>
+                                    <field name="deal_id"/>
+                                    <field name="listing_id"/>
+                                    <field name="end_id"/>
+                                </group>
+                                <group>
+                                    <field name="sales_agent_id"/>
+                                    <field name="other_broker_id"/>
+                                    <field name="other_broker_agent_id"/>
+                                    <field name="buyers_sellers_id"/>
+                                    <field name="for_sale_or_lease"/>
+                                    <field name="referral_letter_on_file"/>
+                                </group>
+                                <group>
+                                    <field name="base_commission"/>
+                                    <field name="percentage_of_end"/>
+                                    <field name="plus_flat_fee"/>
+                                    <field name="less_flat_fee"/>
+                                </group>
+                                <group>
+                                    <field name="gross_amount" readonly="1"/>
+                                    <field name="total_split_fees" readonly="1"/>
+                                    <field name="total_net_amount" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="tax" readonly="1"/>
+                                    <field name="total_tax" readonly="1"/>
+                                    <field name="payable_amount" readonly="1"/>
+                                    <field name="payable_type" readonly="1"/>
+                                </group>
+                                <notebook>
+                                    <page string="Commission Plans">
+                                        <field name="commission_plan_line_ids">
+                                            <tree string="Commission Plan Lines">
+                                                <field name="commission_plan_id"/>
+                                                <field name="commission_amount"/>
+                                                <field name="flat_fee"/>
+                                            </tree>
+                                            <form string="Commission Plan Line">
+                                                <group>
+                                                    <field name="commission_plan_id"/>
+                                                    <field name="commission_amount"/>
+                                                    <field name="flat_fee"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                                    </page>
+                                    <page string="Documents">
+                                        <field name="document_line_ids" context="{'default_deal_id': deal_id, 'default_listing_id': listing_id}" mode="tree,form,kanban">
+                                            <tree string="Document Lines">
+                                                <field name="document_type_id"/>
+                                                <field name="is_uploaded"/>
+                                                <field name="is_approved"/>
+                                                <field name="document_review"/>
+                                            </tree>
+                                            <form string="Document Line">
+                                                <group>
+                                                    <field name="document_type_id"/>
+                                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                                    <field name="document_review"/>
+                                                </group>
+                                            </form>
+                                            <kanban>
+                                                <templates>
+                                                    <t t-name="kanban-box">
+                                                        <div class="oe_kanban_card">
+                                                            <header>
+                                                                <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                                            </header>
+                                                            <div class="o_kanban_details">
+                                                                <strong><field name="document_type_id"/></strong>
+                                                                <p>
+                                                                    <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                                                </p>
+                                                                <p>
+                                                                    <strong>Approved:</strong> <field name="is_approved"/>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </t>
+                                                </templates>
+                                            </kanban>
+                                        </field>
+                                    </page>
+                                </notebook>
+                            </form>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agents and Referrals: Form View Inheritance for Buttons
+         ===================================== -->
+    <record id="view_sales_agents_and_referrals_form_buttons" model="ir.ui.view">
+        <field name="name">sales.agents.and.referrals.form.buttons</field>
+        <field name="model">sales.agents.and.referrals</field>
+        <field name="inherit_id" ref="view_sales_agents_and_referrals_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <!-- Additional Buttons can be added here if necessary -->
+            </xpath>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agents and Referrals: Kanban View Enhancement
+         ===================================== -->
+    <!-- Optional: Enhance the Kanban view with color coding or additional indicators -->
+    <!-- Example: Color coding based on approval status -->
+    <record id="view_sales_agents_and_referrals_kanban_enhanced" model="ir.ui.view">
+        <field name="name">sales.agents.and.referrals.kanban.enhanced</field>
+        <field name="model">sales.agents.and.referrals</field>
+        <field name="inherit_id" ref="view_sales_agents_and_referrals_kanban"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@class='oe_kanban_card']" position="attributes">
+                <attribute name="class">oe_kanban_card o_kanban_color_custom</attribute>
+            </xpath>
+            <!-- Define CSS for custom color coding in XML or via assets -->
+        </field>
+    </record>
+
+    <!-- =====================================
+         Integration Enhancements for Deal and Listing Records
+         ===================================== -->
+
+    <!-- =====================================
+         Deal Records: Form View Enhancement for Sales Agents and Referrals
+         ===================================== -->
+    <record id="view_deal_records_form_inherit_sales_agents_and_referrals" model="ir.ui.view">
+        <field name="name">deal.records.form.inherit.sales.agents.and.referrals</field>
+        <field name="model">deal.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_deal_records_form"/> <!-- Replace with actual module and view -->
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Sales Agents and Referrals">
+                        <field name="sales_agents_and_referrals_ids" context="{'default_deal_id': active_id}" mode="tree,form,kanban">
+                            <tree string="Sales Agents and Referrals">
+                                <field name="partner_id"/>
+                                <field name="payment_type"/>
+                                <field name="base_commission"/>
+                                <field name="percentage_of_end"/>
+                                <field name="gross_amount"/>
+                                <field name="total_split_fees"/>
+                                <field name="total_net_amount"/>
+                                <field name="is_uploaded"/>
+                                <field name="is_approved"/>
+                                <field name="document_review"/>
+                            </tree>
+                            <form string="Sales Agent and Referral">
+                                <group>
+                                    <field name="partner_id"/>
+                                    <field name="payment_type"/>
+                                    <field name="deal_id"/>
+                                    <field name="listing_id"/>
+                                    <field name="end_id"/>
+                                </group>
+                                <group>
+                                    <field name="sales_agent_id"/>
+                                    <field name="other_broker_id"/>
+                                    <field name="other_broker_agent_id"/>
+                                    <field name="buyers_sellers_id"/>
+                                    <field name="for_sale_or_lease"/>
+                                    <field name="referral_letter_on_file"/>
+                                </group>
+                                <group>
+                                    <field name="base_commission"/>
+                                    <field name="percentage_of_end"/>
+                                    <field name="plus_flat_fee"/>
+                                    <field name="less_flat_fee"/>
+                                </group>
+                                <group>
+                                    <field name="gross_amount" readonly="1"/>
+                                    <field name="total_split_fees" readonly="1"/>
+                                    <field name="total_net_amount" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="tax" readonly="1"/>
+                                    <field name="total_tax" readonly="1"/>
+                                    <field name="payable_amount" readonly="1"/>
+                                    <field name="payable_type" readonly="1"/>
+                                </group>
+                                <notebook>
+                                    <page string="Commission Plans">
+                                        <field name="commission_plan_line_ids">
+                                            <tree string="Commission Plan Lines">
+                                                <field name="commission_plan_id"/>
+                                                <field name="commission_amount"/>
+                                                <field name="flat_fee"/>
+                                            </tree>
+                                            <form string="Commission Plan Line">
+                                                <group>
+                                                    <field name="commission_plan_id"/>
+                                                    <field name="commission_amount"/>
+                                                    <field name="flat_fee"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                                    </page>
+                                    <page string="Documents">
+                                        <field name="document_line_ids" context="{'default_deal_id': deal_id, 'default_listing_id': listing_id}" mode="tree,form,kanban">
+                                            <tree string="Document Lines">
+                                                <field name="document_type_id"/>
+                                                <field name="is_uploaded"/>
+                                                <field name="is_approved"/>
+                                                <field name="document_review"/>
+                                            </tree>
+                                            <form string="Document Line">
+                                                <group>
+                                                    <field name="document_type_id"/>
+                                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                                    <field name="document_review"/>
+                                                </group>
+                                            </form>
+                                            <kanban>
+                                                <templates>
+                                                    <t t-name="kanban-box">
+                                                        <div class="oe_kanban_card">
+                                                            <header>
+                                                                <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                                            </header>
+                                                            <div class="o_kanban_details">
+                                                                <strong><field name="document_type_id"/></strong>
+                                                                <p>
+                                                                    <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                                                </p>
+                                                                <p>
+                                                                    <strong>Approved:</strong> <field name="is_approved"/>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </t>
+                                                </templates>
+                                            </kanban>
+                                        </field>
+                                    </page>
+                                </notebook>
+                            </form>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+
+
+    <!-- =====================================
+         Sales Agents and Referrals: Menu Items for Integration
+         ===================================== -->
+    <!-- Optional: Add smart buttons or links in deal.records and listing.records if necessary -->
+    <!-- Example: Adding a smart button to view Sales Agents and Referrals in Deal Records -->
+    <record id="view_deal_records_form_inherit_smart_buttons" model="ir.ui.view">
+        <field name="name">deal.records.form.inherit.smart.buttons</field>
+        <field name="model">deal.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_deal_records_form"/> <!-- Replace with actual module and view -->
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_view_sales_agents_and_referrals" type="object" string="View Sales Agents" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Example: Adding a smart button to view Sales Agents and Referrals in Listing Records -->
+    <record id="view_listing_records_form_inherit_smart_buttons" model="ir.ui.view">
+        <field name="name">listing.records.form.inherit.smart.buttons</field>
+        <field name="model">listing.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_listing_records_form"/> <!-- Replace with actual module and view -->
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="action_view_sales_agents_and_referrals" type="object" string="View Sales Agents" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

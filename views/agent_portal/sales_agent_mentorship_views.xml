@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- =====================================
+         Sales Agent Mentorship: Search View
+         ===================================== -->
+    <record id="view_sales_agent_mentorship_search" model="ir.ui.view">
+        <field name="name">sales.agent.mentorship.search</field>
+        <field name="model">sales.agent.mentorship</field>
+        <field name="arch" type="xml">
+            <search string="Search Sales Agent Mentorships">
+                <field name="mentor_id"/>
+                <field name="mentee_id"/>
+                <field name="mentorship_percentage"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="active"/>
+                <filter string="Active" domain="[('active', '=', True)]"/>
+                <filter string="Inactive" domain="[('active', '=', False)]"/>
+                <filter string="Graduated Commission Based" domain="[('levels_based_on', '=', 'graduated_commission')]"/>
+                <filter string="Straight Commission Based" domain="[('levels_based_on', '=', 'straight_commission')]"/>
+                <group expand="1" string="Grouping">
+                    <group string="Status">
+                        <filter string="Active" domain="[('active', '=', True)]"/>
+                        <filter string="Inactive" domain="[('active', '=', False)]"/>
+                    </group>
+                    <group string="Mentorship Percentage">
+                        <filter string="Above 50%" domain="[('mentorship_percentage', '>', 50)]"/>
+                        <filter string="50% or Below" domain="[('mentorship_percentage', '<=', 50)]"/>
+                    </group>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agent Mentorship: Tree (List) View
+         ===================================== -->
+    <record id="view_sales_agent_mentorship_tree" model="ir.ui.view">
+        <field name="name">sales.agent.mentorship.tree</field>
+        <field name="model">sales.agent.mentorship</field>
+        <field name="arch" type="xml">
+            <tree string="Sales Agent Mentorships">
+                <field name="mentor_id"/>
+                <field name="mentee_id"/>
+                <field name="mentorship_percentage"/>
+                <field name="start_date"/>
+                <field name="end_date"/>
+                <field name="annual_cap"/>
+                <field name="lifetime_cap"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agent Mentorship: Form View
+         ===================================== -->
+    <record id="view_sales_agent_mentorship_form" model="ir.ui.view">
+        <field name="name">sales.agent.mentorship.form</field>
+        <field name="model">sales.agent.mentorship</field>
+        <field name="arch" type="xml">
+            <form string="Sales Agent Mentorship">
+                <header>
+                    <!-- Optional: Add state-based buttons if the model has states -->
+                    <!-- Example:
+                    <button name="action_activate" type="object" string="Activate" states="draft" class="btn-primary"/>
+                    <button name="action_archive" type="object" string="Archive" states="active" class="btn-secondary"/>
+                    -->
+                    <!-- Status Bar -->
+                    <field name="active" widget="statusbar" statusbar_visible="active,inactive"/>
+                </header>
+                <sheet>
+                    <group>
+                        <!-- Basic Information -->
+                        <group string="Basic Information" col="2">
+                            <field name="mentor_id"/>
+                            <field name="mentee_id"/>
+                            <field name="mentorship_percentage"/>
+                            <field name="levels_based_on"/>
+                        </group>
+                        
+                        <!-- Dates and Caps -->
+                        <group string="Dates and Caps" col="2">
+                            <field name="start_date"/>
+                            <field name="end_date"/>
+                            <field name="annual_cap"/>
+                            <field name="lifetime_cap"/>
+                        </group>
+                    </group>
+                    
+                    <!-- Deal Classes and Currency -->
+                    <group>
+                        <group string="Deal Classes" col="2">
+                            <field name="deal_class_ids" widget="many2many_tags"/>
+                        </group>
+                        <group string="Currency" col="2">
+                            <field name="currency_id" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <!-- Mentor Commission -->
+                    <group>
+                        <field name="mentor_commission_id"/>
+                    </group>
+                    
+                    <!-- Mentorship Lines -->
+                    <notebook>
+                        <page string="Mentorship Lines">
+                            <field name="mentorship_line_ids">
+                                <tree editable="bottom">
+                                    <field name="deal_id"/>
+                                    <field name="mentor_share"/>
+                                    <field name="company_share"/>
+                                </tree>
+                                <form string="Mentorship Line">
+                                    <group>
+                                        <field name="deal_id"/>
+                                        <field name="mentor_share" readonly="1"/>
+                                        <field name="company_share" readonly="1"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agent Mentorship: Kanban View
+         ===================================== -->
+    <record id="view_sales_agent_mentorship_kanban" model="ir.ui.view">
+        <field name="name">sales.agent.mentorship.kanban</field>
+        <field name="model">sales.agent.mentorship</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="active">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <header>
+                                <field name="active" widget="statusbar" statusbar_visible="active,inactive"/>
+                            </header>
+                            <div class="o_kanban_details">
+                                <strong><field name="mentor_id"/></strong>
+                                <strong><field name="mentee_id"/></strong>
+                                <p>
+                                    <strong>Percentage:</strong> <field name="mentorship_percentage"/>%
+                                </p>
+                                <p>
+                                    <strong>Start Date:</strong> <field name="start_date"/>
+                                </p>
+                                <p>
+                                    <strong>End Date:</strong> <field name="end_date"/>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agent Mentorship Line: Search View
+         ===================================== -->
+    <record id="view_sales_agent_mentorship_line_search" model="ir.ui.view">
+        <field name="name">sales.agent.mentorship.line.search</field>
+        <field name="model">sales.agent.mentorship.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Mentorship Lines">
+                <field name="mentorship_id"/>
+                <field name="deal_id"/>
+                <field name="mentor_share"/>
+                <field name="company_share"/>
+                <filter string="High Mentor Share" domain="[('mentor_share', '>', 1000)]"/>
+                <filter string="Low Company Share" domain="[('company_share', '<', 500)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agent Mentorship Line: Tree (List) View
+         ===================================== -->
+    <record id="view_sales_agent_mentorship_line_tree" model="ir.ui.view">
+        <field name="name">sales.agent.mentorship.line.tree</field>
+        <field name="model">sales.agent.mentorship.line</field>
+        <field name="arch" type="xml">
+            <tree string="Sales Agent Mentorship Lines">
+                <field name="mentorship_id"/>
+                <field name="deal_id"/>
+                <field name="mentor_share"/>
+                <field name="company_share"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agent Mentorship Line: Form View
+         ===================================== -->
+    <record id="view_sales_agent_mentorship_line_form" model="ir.ui.view">
+        <field name="name">sales.agent.mentorship.line.form</field>
+        <field name="model">sales.agent.mentorship.line</field>
+        <field name="arch" type="xml">
+            <form string="Sales Agent Mentorship Line">
+                <sheet>
+                    <group>
+                        <field name="mentorship_id"/>
+                        <field name="deal_id"/>
+                        <field name="mentor_share" readonly="1"/>
+                        <field name="company_share" readonly="1"/>
+                        <field name="currency_id" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agent Mentorship Line: Kanban View
+         ===================================== -->
+    <record id="view_sales_agent_mentorship_line_kanban" model="ir.ui.view">
+        <field name="name">sales.agent.mentorship.line.kanban</field>
+        <field name="model">sales.agent.mentorship.line</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="deal_id"/></strong>
+                            <p>
+                                <strong>Mentor Share:</strong> <field name="mentor_share" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            </p>
+                            <p>
+                                <strong>Company Share:</strong> <field name="company_share" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+                            </p>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Sales Agent Mentorship Wizard: Form View
+         ===================================== -->
+    <record id="view_sales_agent_mentorship_wizard_form" model="ir.ui.view">
+        <field name="name">sales.agent.mentorship.wizard.form</field>
+        <field name="model">sales.agent.mentorship.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Apply Mentorship">
+                <group>
+                    <field name="mentorship_id"/>
+                    <field name="deal_id"/>
+                    <field name="end_id"/>
+                </group>
+                <footer>
+                    <button string="Apply" type="object" name="apply_mentorship_to_deal" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Actions
+         ===================================== -->
+
+    <!-- Sales Agent Mentorship Action -->
+    <record id="action_sales_agent_mentorship" model="ir.actions.act_window">
+        <field name="name">Sales Agent Mentorships</field>
+        <field name="res_model">sales.agent.mentorship</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_ids" eval="[
+            (ref('view_sales_agent_mentorship_kanban'), 'kanban'),
+            (ref('view_sales_agent_mentorship_tree'), 'tree'),
+            (ref('view_sales_agent_mentorship_form'), 'form')
+        ]"/>
+        <field name="search_view_id" ref="view_sales_agent_mentorship_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new sales agent mentorship to manage mentor-mentee relationships and track commission shares.
+            </p>
+        </field>
+    </record>
+
+    <!-- Sales Agent Mentorship Line Action -->
+    <record id="action_sales_agent_mentorship_line" model="ir.actions.act_window">
+        <field name="name">Sales Agent Mentorship Lines</field>
+        <field name="res_model">sales.agent.mentorship.line</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_ids" eval="[
+            (ref('view_sales_agent_mentorship_line_kanban'), 'kanban'),
+            (ref('view_sales_agent_mentorship_line_tree'), 'tree'),
+            (ref('view_sales_agent_mentorship_line_form'), 'form')
+        ]"/>
+        <field name="search_view_id" ref="view_sales_agent_mentorship_line_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage mentorship lines to track mentor and company shares per deal.
+            </p>
+        </field>
+    </record>
+
+    <!-- Sales Agent Mentorship Wizard Action -->
+    <record id="action_sales_agent_mentorship_wizard" model="ir.actions.act_window">
+        <field name="name">Apply Mentorship</field>
+        <field name="res_model">sales.agent.mentorship.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_sales_agent_mentorship_wizard_form"/>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- =====================================
+         Menu Items
+         ===================================== -->
+
+    <!-- Parent Menu for Mentorship Management -->
+    <menuitem id="menu_sales_agent_mentorship_root" name="Mentorship Management"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="30"/>
+
+    <!-- Sales Agent Mentorship Menu -->
+    <menuitem id="menu_sales_agent_mentorship" name="Sales Agent Mentorships"
+              parent="menu_sales_agent_mentorship_root"
+              action="action_sales_agent_mentorship"
+              sequence="10"/>
+
+    <!-- Sales Agent Mentorship Line Menu -->
+    <menuitem id="menu_sales_agent_mentorship_line" name="Mentorship Lines"
+              parent="menu_sales_agent_mentorship_root"
+              action="action_sales_agent_mentorship_line"
+              sequence="20"/>
+
+    <!-- =====================================
+         Wizards: Buttons or Actions Integration
+         ===================================== -->
+
+    <!-- Example: Add a button in the Sales Agent Mentorship form to open the wizard -->
+    <record id="view_sales_agent_mentorship_form_buttons" model="ir.ui.view">
+        <field name="name">sales.agent.mentorship.form.buttons</field>
+        <field name="model">sales.agent.mentorship</field>
+        <field name="inherit_id" ref="view_sales_agent_mentorship_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(action_sales_agent_mentorship_wizard)d" type="action" string="Apply Mentorship" class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

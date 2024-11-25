@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View for Brokerage Preferences -->
+    <record id="view_brokerage_preferences_form" model="ir.ui.view">
+        <field name="name">brokerage.preferences.form</field>
+        <field name="model">brokerage.preferences</field>
+        <field name="arch" type="xml">
+            <form string="Brokerage Preferences">
+                <sheet>
+                    <!-- Basic Information -->
+                    <group string="Basic Information">
+                        <field name="name"/>
+                    </group>
+
+                    <!-- Advance Settings -->
+                    <group string="Advance Settings">
+                        <field name="advance_maximum_percentage"/>
+                    </group>
+
+                    <!-- Payment Source Selections -->
+                    <group string="Payment Source Selections" col="2">
+                        <field name="seller_broker_is_paid_by"/>
+                        <field name="buyer_broker_is_paid_by"/>
+                        <field name="who_holds_the_deposit"/>
+                        <field name="seller_broker_pays_trust_excess_to"/>
+                        <field name="buyer_broker_pays_trust_excess_to"/>
+                    </group>
+
+                    <!-- Taxes -->
+                    <group string="Taxes">
+                        <field name="tax_ids" widget="many2many_tags"/>
+                        <field name="total_tax" readonly="1"/>
+                    </group>
+
+                    <!-- Conveyancing Options -->
+                    <group string="Conveyancing Options" col="3">
+                        <group string="Seller Broker Conveys To">
+                            <field name="seller_broker_conveys_to_seller_lawyer"/>
+                            <field name="seller_broker_conveys_to_buyer_lawyer"/>
+                            <field name="seller_broker_conveys_to_buyer_broker"/>
+                            <field name="seller_end_or_double_end"/>
+                        </group>
+                        <group string="Buyer Broker Conveys To">
+                            <field name="buyer_broker_conveys_to_seller_lawyer"/>
+                            <field name="buyer_broker_conveys_to_buyer_lawyer"/>
+                            <field name="buyer_broker_conveys_to_seller_broker"/>
+                        </group>
+                        <group string="Conveyancing Notes">
+                            <field name="conveyancing_ap_notes"/>
+                            <field name="conveyancing_ar_notes"/>
+                            <field name="conveyancing_department_phone"/>
+                            <field name="conveyancing_email"/>
+                        </group>
+                    </group>
+
+                    <!-- Address Fields -->
+                    <group string="Address Fields">
+                        <field name="show_street_direction_prefix"/>
+                        <field name="show_street_direction_suffix"/>
+                    </group>
+
+                    <!-- Bank Journals and Accounts -->
+                    <group string="Bank Journals and Accounts" col="2">
+                        <field name="receipt_brokers_to"/>
+                        <field name="pay_brokers_from"/>
+                        <field name="split_the_broker_payment"/>
+                        <field name="pay_broker_split_payment_from"/>
+                        <field name="receipt_law_firms_to"/>
+                        <field name="pay_law_firms_from"/>
+                        <field name="receipt_sales_agents_to"/>
+                        <field name="pay_sales_agents_from"/>
+                        <field name="receipt_buyers_and_sellers_to"/>
+                        <field name="pay_buyers_and_sellers_from"/>
+                        <field name="pay_unlicensed_referrals_from"/>
+                        <field name="brokerage_income_account"/>
+                        <field name="commission_receipt_account"/>
+                        <field name="trust_bank_account"/>
+                    </group>
+
+                    <!-- Account Fields -->
+                    <group string="Account Fields" col="2">
+                        <field name="trust_liability_account"/>
+                        <field name="commission_income_account"/>
+                        <field name="company_tax_account"/>
+                    </group>
+
+                    <!-- Journals -->
+                    <group string="Journals" col="2">
+                        <field name="trust_journal"/>
+                        <field name="trust_excess_fund_journal"/>
+                        <field name="commission_journal"/>
+                        <field name="agent_commission_journal"/>
+                        <field name="other_broker_commission_journal"/>
+                        <field name="referral_commission_journal"/>
+                        <field name="inter_account_transfer"/>
+                    </group>
+
+                    <!-- Product-Based Accounting -->
+                    <group string="Product-Based Accounting" col="2">
+                        <field name="trust_deposit_product_id"/>
+                        <field name="trust_excess_funds_product_id"/>
+                        <field name="commission_product_id"/>
+                        <field name="commission_receipt_product_id"/>
+                        <field name="tax_collected_product_id"/>
+                        <field name="sales_agent_commission_product_id"/>
+                        <field name="sales_agent_expense_product_id"/>
+                        <field name="broker_commission_product_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action to open Brokerage Preferences -->
+    <record id="action_brokerage_preferences" model="ir.actions.act_window">
+        <field name="name">Brokerage Preferences</field>
+        <field name="res_model">brokerage.preferences</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_brokerage_preferences_form"/>
+        <field name="target">inline</field>
+        <field name="context">{'default_name': 'Default Brokerage Preferences'}</field>
+        <field name="help" type="html">
+            <p>
+                Configure the default settings for your brokerage operations.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Item to access Brokerage Preferences -->
+    <menuitem id="menu_brokerage_preferences" name="Brokerage Preferences"
+              parent="base.menu_config"
+              action="action_brokerage_preferences"
+              sequence="10"/>
+</odoo>

@@ -1,0 +1,22 @@
+<odoo>
+    <record id="status_unconditional_sale" model="document.deal.status">
+        <field name="code">unconditional_sale</field>
+        <field name="name">Unconditional Sale</field>
+    </record>
+    <record id="status_removal_of_conditions" model="document.deal.status">
+        <field name="code">removal_of_conditions</field>
+        <field name="name">Removal of Conditions</field>
+    </record>
+    <record id="status_pending" model="document.deal.status">
+        <field name="code">pending</field>
+        <field name="name">Pending</field>
+    </record>
+    <record id="status_collapsed" model="document.deal.status">
+        <field name="code">collapsed</field>
+        <field name="name">Collapsed</field>
+    </record>
+    <record id="status_close" model="document.deal.status">
+        <field name="code">close</field>
+        <field name="name">Closed</field>
+    </record>
+</odoo>

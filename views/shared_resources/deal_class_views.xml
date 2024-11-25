@@ -1,0 +1,73 @@
+<odoo>
+    <!-- Tree View for DealClass -->
+    <record id="view_deal_class_tree" model="ir.ui.view">
+        <field name="name">deal.class.tree</field>
+        <field name="model">deal.class</field>
+        <field name="arch" type="xml">
+            <tree string="Deal Classes" editable="bottom">
+                <field name="name"/>
+                <field name="no_of_ends"/>
+                <field name="for_sale"/>
+                <field name="for_lease"/>
+                <field name="end_id"/>
+                <field name="for_sale_or_lease"/>
+                <field name="deal_class_id"/>
+                <field name="listing_id"/>
+                <field name="deal_id"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for DealClass -->
+    <record id="view_deal_class_form" model="ir.ui.view">
+        <field name="name">deal.class.form</field>
+        <field name="model">deal.class</field>
+        <field name="arch" type="xml">
+            <form string="Deal Class">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="no_of_ends"/>
+                            <field name="is_active"/>
+                        </group>
+                        <group>
+                            <field name="for_sale"/>
+                            <field name="for_lease"/>
+                            <field name="end_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="for_sale_or_lease"/>
+                            <field name="deal_class_id" domain="[('is_active', '=', True)]"/>
+                        </group>
+                        <group>
+                            <field name="listing_id"/>
+                            <field name="deal_id"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View for DealClass -->
+    <record id="view_deal_class_search" model="ir.ui.view">
+        <field name="name">deal.class.search</field>
+        <field name="model">deal.class</field>
+        <field name="arch" type="xml">
+            <search string="Deal Classes">
+                <field name="name"/>
+                <field name="no_of_ends"/>
+                <field name="for_sale"/>
+                <field name="for_lease"/>
+                <field name="is_active"/>
+                <filter string="For Sale" domain="[('for_sale', '=', True)]"/>
+                <filter string="For Lease" domain="[('for_lease', '=', True)]"/>
+                <filter string="Active" domain="[('is_active', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

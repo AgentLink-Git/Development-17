@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- =====================================
+         Select Broker Wizard: Form View
+         ===================================== -->
+    <record id="view_select_broker_wizard_form" model="ir.ui.view">
+        <field name="name">select.broker.wizard.form</field>
+        <field name="model">select.broker.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Select or Add Broker">
+                <header>
+                    <!-- Action Buttons -->
+                    <button name="action_select_broker" type="object" string="Select Broker" class="oe_highlight" attrs="{'invisible': [('create_new', '=', False), ('other_broker_id', '=', False)]}"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </header>
+                <sheet>
+                    <group>
+                        <!-- Existing Broker Selection -->
+                        <group string="Select Existing Brokerage" colspan="2">
+                            <field name="other_broker_id" attrs="{'invisible': [('create_new', '=', True)]}"/>
+                        </group>
+                        
+                        <!-- Create New Brokerage Option -->
+                        <group colspan="2">
+                            <field name="create_new"/>
+                        </group>
+                        
+                        <!-- New Brokerage Details -->
+                        <group string="New Brokerage Details" colspan="2" attrs="{'invisible': [('create_new', '=', False)]}">
+                            <field name="new_broker_name"/>
+                            <field name="country_id"/>
+                            <field name="street"/>
+                            <field name="street2"/>
+                            <field name="city"/>
+                            <field name="state_id"/>
+                            <field name="zip"/>
+                            <field name="phone"/>
+                            <field name="email"/>
+                            <field name="payment_method"/>
+                            <field name="note"/>
+                        </group>
+                    </group>
+                    
+                    <!-- Deal and End Information -->
+                    <group>
+                        <field name="deal_id"/>
+                        <field name="end_id"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Select Broker Wizard: Action
+         ===================================== -->
+    <record id="action_select_broker_wizard" model="ir.actions.act_window">
+        <field name="name">Select or Add Broker</field>
+        <field name="res_model">select.broker.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_select_broker_wizard_form"/>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Select an existing brokerage or create a new one to associate with the deal.
+            </p>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Select Broker Wizard: Menu Item (Optional)
+         ===================================== -->
+ 
+    <menuitem id="menu_select_broker_wizard_root" name="Broker Wizards"
+              parent="base.menu_custom"
+              sequence="100"/>
+    
+    <menuitem id="menu_select_broker_wizard" name="Select/Add Broker"
+              parent="menu_select_broker_wizard_root"
+              action="action_select_broker_wizard"
+              sequence="10"/>
+
+
+    <!-- =====================================
+         Select Broker Wizard: Button to Launch Wizard
+         ===================================== -->
+    <!-- 
+    <!-- Example: Adding a button in the deal.records form to launch the wizard -->
+    <record id="view_deal_records_form_inherit_select_broker_button" model="ir.ui.view">
+        <field name="name">deal.records.form.inherit.select.broker.button</field>
+        <field name="model">deal.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_deal_records_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(action_select_broker_wizard)d" type="action" string="Select/Add Broker" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+    -->
+</odoo>

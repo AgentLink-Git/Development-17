@@ -1,0 +1,206 @@
+<odoo>
+    <!-- Business Source Views -->
+    <record id="view_business_source_tree" model="ir.ui.view">
+        <field name="name">business.source.tree</field>
+        <field name="model">business.source</field>
+        <field name="arch" type="xml">
+            <tree string="Business Sources">
+                <field name="name"/>
+                <field name="business_source_type"/>
+                <field name="sequence"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_business_source_form" model="ir.ui.view">
+        <field name="name">business.source.form</field>
+        <field name="model">business.source</field>
+        <field name="arch" type="xml">
+            <form string="Business Source">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="business_source_type"/>
+                        <field name="sequence"/>
+                        <field name="is_active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_business_source_search" model="ir.ui.view">
+        <field name="name">business.source.search</field>
+        <field name="model">business.source</field>
+        <field name="arch" type="xml">
+            <search string="Business Sources">
+                <field name="name"/>
+                <field name="business_source_type"/>
+                <filter string="Active" domain="[('is_active', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Cities and Towns Views -->
+    <record id="view_cities_and_towns_tree" model="ir.ui.view">
+        <field name="name">cities.and.towns.tree</field>
+        <field name="model">cities.and.towns</field>
+        <field name="arch" type="xml">
+            <tree string="Cities & Towns">
+                <field name="name"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_cities_and_towns_form" model="ir.ui.view">
+        <field name="name">cities.and.towns.form</field>
+        <field name="model">cities.and.towns</field>
+        <field name="arch" type="xml">
+            <form string="City or Town">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="is_active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_cities_and_towns_search" model="ir.ui.view">
+        <field name="name">cities.and.towns.search</field>
+        <field name="model">cities.and.towns</field>
+        <field name="arch" type="xml">
+            <search string="Cities & Towns">
+                <field name="name"/>
+                <filter string="Active" domain="[('is_active', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Deal End Views -->
+    <record id="view_deal_end_tree" model="ir.ui.view">
+        <field name="name">deal.end.tree</field>
+        <field name="model">deal.end</field>
+        <field name="arch" type="xml">
+            <tree string="Ends">
+                <field name="name"/>
+                <field name="end_type"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_deal_end_form" model="ir.ui.view">
+        <field name="name">deal.end.form</field>
+        <field name="model">deal.end</field>
+        <field name="arch" type="xml">
+            <form string="End">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="end_type"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_deal_end_search" model="ir.ui.view">
+        <field name="name">deal.end.search</field>
+        <field name="model">deal.end</field>
+        <field name="arch" type="xml">
+            <search string="Ends">
+                <field name="name"/>
+                <field name="end_type"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Property Type Views -->
+    <record id="view_property_type_tree" model="ir.ui.view">
+        <field name="name">property.type.tree</field>
+        <field name="model">property.type</field>
+        <field name="arch" type="xml">
+            <tree string="Property Types">
+                <field name="name"/>
+                <field name="property_type"/>
+                <field name="sequence"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_property_type_form" model="ir.ui.view">
+        <field name="name">property.type.form</field>
+        <field name="model">property.type</field>
+        <field name="arch" type="xml">
+            <form string="Property Type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="property_type"/>
+                        <field name="sequence"/>
+                        <field name="is_active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_property_type_search" model="ir.ui.view">
+        <field name="name">property.type.search</field>
+        <field name="model">property.type</field>
+        <field name="arch" type="xml">
+            <search string="Property Types">
+                <field name="name"/>
+                <field name="property_type"/>
+                <filter string="Active" domain="[('is_active', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- Street Type Views -->
+    <record id="view_street_type_tree" model="ir.ui.view">
+        <field name="name">street.type.tree</field>
+        <field name="model">street.type</field>
+        <field name="arch" type="xml">
+            <tree string="Street Types">
+                <field name="name"/>
+                <field name="street_type"/>
+                <field name="sequence"/>
+                <field name="is_active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_street_type_form" model="ir.ui.view">
+        <field name="name">street.type.form</field>
+        <field name="model">street.type</field>
+        <field name="arch" type="xml">
+            <form string="Street Type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="street_type"/>
+                        <field name="sequence"/>
+                        <field name="is_active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_street_type_search" model="ir.ui.view">
+        <field name="name">street.type.search</field>
+        <field name="model">street.type</field>
+        <field name="arch" type="xml">
+            <search string="Street Types">
+                <field name="name"/>
+                <field name="street_type"/>
+                <filter string="Active" domain="[('is_active', '=', True)]"/>
+            </search>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,904 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Deal End -->
+        <record id="seller_end" model="deal.end">
+            <field name="name">Seller</field>
+            <field name="end_type">seller</field>
+        </record>
+        <record id="buyer_end" model="deal.end">
+            <field name="name">Buyer</field>
+            <field name="end_type">buyer</field>
+        </record>
+        <record id="tenant_end" model="deal.end">
+            <field name="name">Tenant</field>
+            <field name="end_type">tenant</field>
+        </record>
+        <record id="landlord_end" model="deal.end">
+            <field name="name">Landlord</field>
+            <field name="end_type">landlord</field>
+        </record>
+        <record id="double_end" model="deal.end">
+            <field name="name">Double End</field>
+            <field name="end_type">double_end</field>
+        </record>
+
+        <!-- Deal Status -->
+        <record id="firm_status" model="deal.status">
+            <field name="name">Firm</field>
+            <field name="status">firm</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="pending_status" model="deal.status">
+            <field name="name">Pending</field>
+            <field name="status">pending</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="collapsed_status" model="deal.status">
+            <field name="name">Collapsed</field>
+            <field name="status">collapsed</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="closed_status" model="deal.status">
+            <field name="name">Closed</field>
+            <field name="status">close</field>
+            <field name="sequence">4</field>
+        </record>
+
+        <!-- Property Type -->
+        <record id="single_family_type" model="property.type">
+            <field name="name">Residential: Single Family</field>
+            <field name="property_type">single_family</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="multi_family_type" model="property.type">
+            <field name="name">Residential: Multi Family</field>
+            <field name="property_type">multi_family</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="acreage_type" model="property.type">
+            <field name="name">Residential: Acreage</field>
+            <field name="property_type">acreage</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="agricultural_type" model="property.type">
+            <field name="name">Agricultural</field>
+            <field name="property_type">agricultural</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="raw_land_type" model="property.type">
+            <field name="name">Raw Land</field>
+            <field name="property_type">raw_land</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="commercial_type" model="property.type">
+            <field name="name">Commercial</field>
+            <field name="property_type">commercial</field>
+            <field name="sequence">6</field>
+        </record>
+        <record id="industrial_type" model="property.type">
+            <field name="name">Industrial</field>
+            <field name="property_type">industrial</field>
+            <field name="sequence">7</field>
+        </record>
+        <record id="business_type" model="property.type">
+            <field name="name">Business Brokerage</field>
+            <field name="property_type">business</field>
+            <field name="sequence">8</field>
+        </record>
+        <record id="property_management_type" model="property.type">
+            <field name="name">Property Management</field>
+            <field name="property_type">property_management</field>
+            <field name="sequence">9</field>
+        </record>
+
+        <!-- Business Sources -->
+        <record id="client_source" model="business.source">
+            <field name="name">Past Client/Existing Client</field>
+            <field name="business_source_type">client</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="personal_source" model="business.source">
+            <field name="name">Personal Contact (Family/Friend)</field>
+            <field name="business_source_type">personal</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="referral_source" model="business.source">
+            <field name="name">Referral/Word of Mouth</field>
+            <field name="business_source_type">referral</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="online_search_source" model="business.source">
+            <field name="name">Online: Paid Search</field>
+            <field name="business_source_type">online_search</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="online_display_source" model="business.source">
+            <field name="name">Online: Display Ads</field>
+            <field name="business_source_type">online_display</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="online_social_source" model="business.source">
+            <field name="name">Online: Social Media</field>
+            <field name="business_source_type">online_social</field>
+            <field name="sequence">6</field>
+        </record>
+        <record id="email_source" model="business.source">
+            <field name="name">Email Marketing</field>
+            <field name="business_source_type">email</field>
+            <field name="sequence">7</field>
+        </record>
+        <record id="direct_mail_source" model="business.source">
+            <field name="name">Direct Mail/Flyers</field>
+            <field name="business_source_type">direct_mail</field>
+            <field name="sequence">8</field>
+        </record>
+        <record id="open_house_source" model="business.source">
+            <field name="name">Open House/Show Home</field>
+            <field name="business_source_type">open_house</field>
+            <field name="sequence">9</field>
+        </record>
+        <record id="for_sale_signs_source" model="business.source">
+            <field name="name">For Sale/Sold Signs</field>
+            <field name="business_source_type">for_sale_signs</field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="billboards_source" model="business.source">
+            <field name="name">Bus Bench/Billboards</field>
+            <field name="business_source_type">bus_billboards</field>
+            <field name="sequence">11</field>
+        </record>
+        <record id="media_source" model="business.source">
+            <field name="name">Media (Radio/Television/Print)</field>
+            <field name="business_source_type">media</field>
+            <field name="sequence">12</field>
+        </record>
+        <record id="cold_call_source" model="business.source">
+            <field name="name">Cold Call/Door Knocking</field>
+            <field name="business_source_type">cold_call</field>
+            <field name="sequence">13</field>
+        </record>
+        <record id="other_source" model="business.source">
+            <field name="name">Other/Do Not Recall</field>
+            <field name="business_source_type">other</field>
+            <field name="sequence">14</field>
+        </record>
+
+        <!-- Deal Class -->
+        <record id="listing_side" model="deal.class">
+            <field name="name">Listing Side</field>
+            <field name="listing_end_id" ref="seller_end"/>
+            <field name="for_sale" eval="True"/>
+            <field name="no_of_ends">1</field>
+        </record>
+        <record id="buyer_side" model="deal.class">
+            <field name="name">Buyer Side</field>
+            <field name="listing_end_id" ref="buyer_end"/>
+            <field name="for_sale" eval="True"/>
+            <field name="no_of_ends">1</field>
+        </record>
+        <record id="both_sides" model="deal.class">
+            <field name="name">Double End</field>
+            <field name="listing_end_id" ref="double_end"/>
+            <field name="for_sale" eval="True"/>
+            <field name="no_of_ends">2</field>
+        </record>
+
+        <!-- Common Conditions -->
+        <record id="financing_condition" model="condition.type">
+            <field name="name">Financing</field>
+            <field name="type">financing</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="inspection_condition" model="condition.type">
+            <field name="name">Property Inspection</field>
+            <field name="type">inspection</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="documents_condition" model="condition.type">
+            <field name="name">Document Review</field>
+            <field name="type">documents</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="sale_of_home_condition" model="condition.type">
+            <field name="name">Sale of Buyer's Home</field>
+            <field name="type">sale_of_home</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="other_condition" model="condition.type">
+            <field name="name">Other</field>
+            <field name="type">other</field>
+            <field name="sequence">5</field>
+        </record>
+
+        <!-- Deal Preferences -->
+        <record id="deal_preferences_data" model="deal.preference">
+            <field name="name">Deal Preferences</field>
+        </record>
+
+        <!-- Street Types -->
+        <record id="abbey_street" model="street.type">
+            <field name="name">Abbey</field>
+            <field name="street_type">abbey</field>
+            <field name="sequence">1</field>
+        </record>
+        <record id="acres_street" model="street.type">
+            <field name="name">Acres</field>
+            <field name="street_type">acres</field>
+            <field name="sequence">2</field>
+        </record>
+        <record id="alley_street" model="street.type">
+            <field name="name">Alley</field>
+            <field name="street_type">alley</field>
+            <field name="sequence">3</field>
+        </record>
+        <record id="avenue_street" model="street.type">
+            <field name="name">Avenue</field>
+            <field name="street_type">avenue</field>
+            <field name="sequence">4</field>
+        </record>
+        <record id="bay_street" model="street.type">
+            <field name="name">Bay</field>
+            <field name="street_type">bay</field>
+            <field name="sequence">5</field>
+        </record>
+        <record id="beach_street" model="street.type">
+            <field name="name">Beach</field>
+            <field name="street_type">beach</field>
+            <field name="sequence">6</field>
+        </record>
+        <record id="bend_street" model="street.type">
+            <field name="name">Bend</field>
+            <field name="street_type">bend</field>
+            <field name="sequence">7</field>
+        </record>
+        <record id="bluff_street" model="street.type">
+            <field name="name">Bluff</field>
+            <field name="street_type">bluff</field>
+            <field name="sequence">8</field>
+        </record>
+        <record id="bluffs_street" model="street.type">
+            <field name="name">Bluffs</field>
+            <field name="street_type">bluffs</field>
+            <field name="sequence">9</field>
+        </record>
+        <record id="boulevard_street" model="street.type">
+            <field name="name">Boulevard</field>
+            <field name="street_type">boulevard</field>
+            <field name="sequence">10</field>
+        </record>
+        <record id="burrow_street" model="street.type">
+            <field name="name">Burrow</field>
+            <field name="street_type">burrow</field>
+            <field name="sequence">11</field>
+        </record>
+        <record id="byway_street" model="street.type">
+            <field name="name">Byway</field>
+            <field name="street_type">byway</field>
+            <field name="sequence">12</field>
+        </record>
+        <record id="campus_street" model="street.type">
+            <field name="name">Campus</field>
+            <field name="street_type">campus</field>
+            <field name="sequence">13</field>
+        </record>
+        <record id="cape_street" model="street.type">
+            <field name="name">Cape</field>
+            <field name="street_type">cape</field>
+            <field name="sequence">14</field>
+        </record>
+        <record id="center_street" model="street.type">
+            <field name="name">Center</field>
+            <field name="street_type">center</field>
+            <field name="sequence">15</field>
+        </record>
+        <record id="centre_street" model="street.type">
+            <field name="name">Centre</field>
+            <field name="street_type">centre</field>
+            <field name="sequence">16</field>
+        </record>
+        <record id="chase_street" model="street.type">
+            <field name="name">Chase</field>
+            <field name="street_type">chase</field>
+            <field name="sequence">17</field>
+        </record>
+        <record id="circle_street" model="street.type">
+            <field name="name">Circle</field>
+            <field name="street_type">circle</field>
+            <field name="sequence">18</field>
+        </record>
+        <record id="club_street" model="street.type">
+            <field name="name">Club</field>
+            <field name="street_type">club</field>
+            <field name="sequence">19</field>
+        </record>
+        <record id="common_street" model="street.type">
+            <field name="name">Common</field>
+            <field name="street_type">common</field>
+            <field name="sequence">20</field>
+        </record>
+        <record id="corner_street" model="street.type">
+            <field name="name">Corner</field>
+            <field name="street_type">corner</field>
+            <field name="sequence">21</field>
+        </record>
+        <record id="corners_street" model="street.type">
+            <field name="name">Corners</field>
+            <field name="street_type">corners</field>
+            <field name="sequence">22</field>
+        </record>
+        <record id="court_street" model="street.type">
+            <field name="name">Court</field>
+            <field name="street_type">court</field>
+            <field name="sequence">23</field>
+        </record>
+        <record id="cove_street" model="street.type">
+            <field name="name">Cove</field>
+            <field name="street_type">cove</field>
+            <field name="sequence">24</field>
+        </record>
+        <record id="creek_street" model="street.type">
+            <field name="name">Creek</field>
+            <field name="street_type">creek</field>
+            <field name="sequence">25</field>
+        </record>
+        <record id="crescent_street" model="street.type">
+            <field name="name">Crescent</field>
+            <field name="street_type">crescent</field>
+            <field name="sequence">26</field>
+        </record>
+        <record id="crest_street" model="street.type">
+            <field name="name">Crest</field>
+            <field name="street_type">crest</field>
+            <field name="sequence">27</field>
+        </record>
+        <record id="cross_street" model="street.type">
+            <field name="name">Cross</field>
+            <field name="street_type">cross</field>
+            <field name="sequence">28</field>
+        </record>
+        <record id="crossing_street" model="street.type">
+            <field name="name">Crossing</field>
+            <field name="street_type">crossing</field>
+            <field name="sequence">29</field>
+        </record>
+        <record id="dam_street" model="street.type">
+            <field name="name">Dam</field>
+            <field name="street_type">dam</field>
+            <field name="sequence">30</field>
+        </record>
+        <record id="drive_street" model="street.type">
+            <field name="name">Drive</field>
+            <field name="street_type">drive</field>
+            <field name="sequence">31</field>
+        </record>
+        <record id="edge_street" model="street.type">
+            <field name="name">Edge</field>
+            <field name="street_type">edge</field>
+            <field name="sequence">32</field>
+        </record>
+        <record id="end_street" model="street.type">
+            <field name="name">End</field>
+            <field name="street_type">end</field>
+            <field name="sequence">33</field>
+        </record>
+        <record id="estate_street" model="street.type">
+            <field name="name">Estate</field>
+            <field name="street_type">estate</field>
+            <field name="sequence">34</field>
+        </record>
+        <record id="estates_street" model="street.type">
+            <field name="name">Estates</field>
+            <field name="street_type">estates</field>
+            <field name="sequence">35</field>
+        </record>
+        <record id="expressway_street" model="street.type">
+            <field name="name">Expressway</field>
+            <field name="street_type">expressway</field>
+            <field name="sequence">36</field>
+        </record>
+        <record id="fairway_street" model="street.type">
+            <field name="name">Fairway</field>
+            <field name="street_type">fairway</field>
+            <field name="sequence">37</field>
+        </record>
+        <record id="farm_street" model="street.type">
+            <field name="name">Farm</field>
+            <field name="street_type">farm</field>
+            <field name="sequence">38</field>
+        </record>
+        <record id="ferry_street" model="street.type">
+            <field name="name">Ferry</field>
+            <field name="street_type">ferry</field>
+            <field name="sequence">39</field>
+        </record>
+        <record id="field_street" model="street.type">
+            <field name="name">Field</field>
+            <field name="street_type">field</field>
+            <field name="sequence">40</field>
+        </record>
+        <record id="flat_street" model="street.type">
+            <field name="name">Flat</field>
+            <field name="street_type">flat</field>
+            <field name="sequence">41</field>
+        </record>
+        <record id="flats_street" model="street.type">
+            <field name="name">Flats</field>
+            <field name="street_type">flats</field>
+            <field name="sequence">42</field>
+        </record>
+        <record id="forest_street" model="street.type">
+            <field name="name">Forest</field>
+            <field name="street_type">forest</field>
+            <field name="sequence">43</field>
+        </record>
+        <record id="fork_street" model="street.type">
+            <field name="name">Fork</field>
+            <field name="street_type">fork</field>
+            <field name="sequence">44</field>
+        </record>
+        <record id="forks_street" model="street.type">
+            <field name="name">Forks</field>
+            <field name="street_type">forks</field>
+            <field name="sequence">45</field>
+        </record>
+        <record id="garden_street" model="street.type">
+            <field name="name">Garden</field>
+            <field name="street_type">garden</field>
+            <field name="sequence">46</field>
+        </record>
+        <record id="gardens_street" model="street.type">
+            <field name="name">Gardens</field>
+            <field name="street_type">gardens</field>
+            <field name="sequence">47</field>
+        </record>
+        <record id="gate_street" model="street.type">
+            <field name="name">Gate</field>
+            <field name="street_type">gate</field>
+            <field name="sequence">48</field>
+        </record>
+        <record id="gateway_street" model="street.type">
+            <field name="name">Gateway</field>
+            <field name="street_type">gateway</field>
+            <field name="sequence">49</field>
+        </record>
+        <record id="glen_street" model="street.type">
+            <field name="name">Glen</field>
+            <field name="street_type">glen</field>
+            <field name="sequence">50</field>
+        </record>
+        <record id="glens_street" model="street.type">
+            <field name="name">Glens</field>
+            <field name="street_type">glens</field>
+            <field name="sequence">51</field>
+        </record>
+        <record id="green_street" model="street.type">
+            <field name="name">Green</field>
+            <field name="street_type">green</field>
+            <field name="sequence">52</field>
+        </record>
+        <record id="greens_street" model="street.type">
+            <field name="name">Greens</field>
+            <field name="street_type">greens</field>
+            <field name="sequence">53</field>
+        </record>
+        <record id="greenway_street" model="street.type">
+            <field name="name">Greenway</field>
+            <field name="street_type">greenway</field>
+            <field name="sequence">54</field>
+        </record>
+        <record id="grove_street" model="street.type">
+            <field name="name">Grove</field>
+            <field name="street_type">grove</field>
+            <field name="sequence">55</field>
+        </record>
+        <record id="harbour_street" model="street.type">
+            <field name="name">Harbour</field>
+            <field name="street_type">harbour</field>
+            <field name="sequence">56</field>
+        </record>
+        <record id="haven_street" model="street.type">
+            <field name="name">Haven</field>
+            <field name="street_type">haven</field>
+            <field name="sequence">57</field>
+        </record>
+        <record id="heath_street" model="street.type">
+            <field name="name">Heath</field>
+            <field name="street_type">heath</field>
+            <field name="sequence">58</field>
+        </record>
+        <record id="heights_street" model="street.type">
+            <field name="name">Heights</field>
+            <field name="street_type">heights</field>
+            <field name="sequence">59</field>
+        </record>
+        <record id="highlands_street" model="street.type">
+            <field name="name">Highlands</field>
+            <field name="street_type">highlands</field>
+            <field name="sequence">60</field>
+        </record>
+        <record id="highway_street" model="street.type">
+            <field name="name">Highway</field>
+            <field name="street_type">highway</field>
+            <field name="sequence">61</field>
+        </record>
+        <record id="hill_street" model="street.type">
+            <field name="name">Hill</field>
+            <field name="street_type">hill</field>
+            <field name="sequence">62</field>
+        </record>
+        <record id="hollow_street" model="street.type">
+            <field name="name">Hollow</field>
+            <field name="street_type">hollow</field>
+            <field name="sequence">63</field>
+        </record>
+        <record id="junction_street" model="street.type">
+            <field name="name">Junction</field>
+            <field name="street_type">junction</field> <!-- Fixed typo from 'juncton' to 'junction' -->
+            <field name="sequence">64</field>
+        </record>
+        <record id="key_street" model="street.type">
+            <field name="name">Key</field>
+            <field name="street_type">key</field>
+            <field name="sequence">65</field>
+        </record>
+        <record id="keys_street" model="street.type">
+            <field name="name">Keys</field>
+            <field name="street_type">keys</field>
+            <field name="sequence">66</field>
+        </record>
+        <record id="lake_street" model="street.type">
+            <field name="name">Lake</field>
+            <field name="street_type">lake</field>
+            <field name="sequence">67</field>
+        </record>
+        <record id="lakes_street" model="street.type">
+            <field name="name">Lakes</field>
+            <field name="street_type">lakes</field>
+            <field name="sequence">68</field>
+        </record>
+        <record id="landing_street" model="street.type">
+            <field name="name">Landing</field>
+            <field name="street_type">landing</field>
+            <field name="sequence">69</field>
+        </record>
+        <record id="lane_street" model="street.type">
+            <field name="name">Lane</field>
+            <field name="street_type">lane</field>
+            <field name="sequence">70</field>
+        </record>
+        <record id="link_street" model="street.type">
+            <field name="name">Link</field>
+            <field name="street_type">link</field>
+            <field name="sequence">71</field>
+        </record>
+        <record id="lodge_street" model="street.type">
+            <field name="name">Lodge</field>
+            <field name="street_type">lodge</field>
+            <field name="sequence">72</field>
+        </record>
+        <record id="loop_street" model="street.type">
+            <field name="name">Loop</field>
+            <field name="street_type">loop</field>
+            <field name="sequence">73</field>
+        </record>
+        <record id="manor_street" model="street.type">
+            <field name="name">Manor</field>
+            <field name="street_type">manor</field>
+            <field name="sequence">74</field>
+        </record>
+        <record id="meadow_street" model="street.type">
+            <field name="name">Meadow</field>
+            <field name="street_type">meadow</field>
+            <field name="sequence">75</field>
+        </record>
+        <record id="meadows_street" model="street.type">
+            <field name="name">Meadows</field>
+            <field name="street_type">meadows</field>
+            <field name="sequence">76</field>
+        </record>
+        <record id="mews_street" model="street.type">
+            <field name="name">Mews</field>
+            <field name="street_type">mews</field>
+            <field name="sequence">77</field>
+        </record>
+        <record id="mount_street" model="street.type">
+            <field name="name">Mount</field>
+            <field name="street_type">mount</field>
+            <field name="sequence">78</field>
+        </record>
+        <record id="outlook_street" model="street.type">
+            <field name="name">Outlook</field>
+            <field name="street_type">outlook</field>
+            <field name="sequence">79</field>
+        </record>
+        <record id="parade_street" model="street.type">
+            <field name="name">Parade</field>
+            <field name="street_type">parade</field>
+            <field name="sequence">80</field>
+        </record>
+        <record id="park_street" model="street.type">
+            <field name="name">Park</field>
+            <field name="street_type">park</field>
+            <field name="sequence">81</field>
+        </record>
+        <record id="pass_street" model="street.type">
+            <field name="name">Pass</field>
+            <field name="street_type">pass</field>
+            <field name="sequence">82</field>
+        </record>
+        <record id="passage_street" model="street.type">
+            <field name="name">Passage</field>
+            <field name="street_type">passage</field>
+            <field name="sequence">83</field>
+        </record>
+        <record id="pine_street" model="street.type">
+            <field name="name">Pine</field>
+            <field name="street_type">pine</field>
+            <field name="sequence">84</field>
+        </record>
+        <record id="pines_street" model="street.type">
+            <field name="name">Pines</field>
+            <field name="street_type">pines</field>
+            <field name="sequence">85</field>
+        </record>
+        <record id="place_street" model="street.type">
+            <field name="name">Place</field>
+            <field name="street_type">place</field>
+            <field name="sequence">86</field>
+        </record>
+        <record id="plaza_street" model="street.type">
+            <field name="name">Plaza</field>
+            <field name="street_type">plaza</field>
+            <field name="sequence">87</field>
+        </record>
+        <record id="point_street" model="street.type">
+            <field name="name">Point</field>
+            <field name="street_type">point</field>
+            <field name="sequence">88</field>
+        </record>
+        <record id="pointe_street" model="street.type">
+            <field name="name">Pointe</field>
+            <field name="street_type">pointe</field>
+            <field name="sequence">89</field>
+        </record>
+        <record id="pond_street" model="street.type">
+            <field name="name">Pond</field>
+            <field name="street_type">pond</field>
+            <field name="sequence">90</field>
+        </record>
+        <record id="quay_street" model="street.type">
+            <field name="name">Quay</field>
+            <field name="street_type">quay</field>
+            <field name="sequence">91</field>
+        </record>
+        <record id="ridge_street" model="street.type">
+            <field name="name">Ridge</field>
+            <field name="street_type">ridge</field>
+            <field name="sequence">92</field>
+        </record>
+        <record id="road_street" model="street.type">
+            <field name="name">Road</field>
+            <field name="street_type">road</field>
+            <field name="sequence">93</field>
+        </record>
+        <record id="row_street" model="street.type">
+            <field name="name">Row</field>
+            <field name="street_type">row</field>
+            <field name="sequence">94</field>
+        </record>
+        <record id="run_street" model="street.type">
+            <field name="name">Run</field>
+            <field name="street_type">run</field>
+            <field name="sequence">95</field>
+        </record>
+        <record id="shore_street" model="street.type">
+            <field name="name">Shore</field>
+            <field name="street_type">shore</field>
+            <field name="sequence">96</field>
+        </record>
+        <record id="shores_street" model="street.type">
+            <field name="name">Shores</field>
+            <field name="street_type">shores</field>
+            <field name="sequence">97</field>
+        </record>
+        <record id="square_street" model="street.type">
+            <field name="name">Square</field>
+            <field name="street_type">square</field>
+            <field name="sequence">98</field>
+        </record>
+        <record id="stream_street" model="street.type">
+            <field name="name">Stream</field>
+            <field name="street_type">stream</field>
+            <field name="sequence">99</field>
+        </record>
+        <record id="street_street" model="street.type">
+            <field name="name">Street</field>
+            <field name="street_type">street</field>
+            <field name="sequence">100</field>
+        </record>
+        <record id="terrace_street" model="street.type">
+            <field name="name">Terrace</field>
+            <field name="street_type">terrace</field>
+            <field name="sequence">101</field>
+        </record>
+        <record id="trail_street" model="street.type">
+            <field name="name">Trail</field>
+            <field name="street_type">trail</field>
+            <field name="sequence">102</field>
+        </record>
+        <record id="turnpike_street" model="street.type">
+            <field name="name">Turnpike</field>
+            <field name="street_type">turnpike</field>
+            <field name="sequence">103</field>
+        </record>
+        <record id="view_street" model="street.type">
+            <field name="name">View</field>
+            <field name="street_type">view</field>
+            <field name="sequence">104</field>
+        </record>
+        <record id="villa_street" model="street.type">
+            <field name="name">Villa</field>
+            <field name="street_type">villa</field>
+            <field name="sequence">105</field>
+        </record>
+        <record id="village_street" model="street.type">
+            <field name="name">Village</field>
+            <field name="street_type">village</field>
+            <field name="sequence">106</field>
+        </record>
+        <record id="villas_street" model="street.type">
+            <field name="name">Villas</field>
+            <field name="street_type">villas</field>
+            <field name="sequence">107</field>
+        </record>
+        <record id="way_street" model="street.type">
+            <field name="name">Way</field>
+            <field name="street_type">way</field>
+            <field name="sequence">108</field>
+        </record>
+        <record id="wood_street" model="street.type">
+            <field name="name">Wood</field>
+            <field name="street_type">wood</field>
+            <field name="sequence">109</field>
+        </record>
+        <record id="woods_street" model="street.type">
+            <field name="name">Woods</field>
+            <field name="street_type">woods</field>
+            <field name="sequence">110</field>
+        </record>
+
+        <!-- Accounts -->
+        <record id="trust_account" model="account.account">
+            <field name="name">Liability - Trust Funds</field>
+            <field name="account_type">liability_current</field>
+            <field name="code">22000</field>
+            <field name="reconcile" eval="False"/>
+        </record>
+        <record id="commission_from_deal" model="account.account">
+            <field name="name">A/R - Commission Income</field>
+            <field name="account_type">income</field>
+            <field name="code">11000</field>
+            <field name="reconcile" eval="True"/>
+        </record>
+        <record id="commission_income" model="account.account">
+            <field name="name">Commission Income Account</field>
+            <field name="account_type">income</field>
+            <field name="code">40100</field>
+            <field name="reconcile" eval="True"/>
+        </record>
+        <record id="tax_collected_from_deals" model="account.account">
+            <field name="name">Tax Receivable</field>
+            <field name="account_type">asset_current</field>
+            <field name="code">13000</field>
+            <field name="reconcile" eval="True"/>
+        </record>
+        <record id="payable_account" model="account.account">
+            <field name="name">Deal Payable Account</field>
+            <field name="account_type">liability_payable</field>
+            <field name="code">40200</field>
+            <field name="reconcile" eval="True"/>
+        </record>
+        <record id="tax_input_account" model="account.account">
+            <field name="name">Tax Payable</field>
+            <field name="account_type">liability_payable</field>
+            <field name="code">23000</field>
+            <field name="reconcile" eval="True"/>
+        </record>
+
+        <!-- Journals -->
+        <record id="trust_journal" model="account.journal">
+            <field name="name">Trust Journal</field>
+            <field name="code">TST</field>
+            <field name="type">sale</field>
+            <field name="sequence">115</field>
+            <field name="alias_name">trust_journal_expense</field>
+        </record>
+        <record id="ap_commission" model="account.journal">
+            <field name="name">AP - Commission</field>
+            <field name="code">AP</field>
+            <field name="type">sale</field>
+            <field name="sequence">116</field>
+            <field name="alias_name">ap_commissions</field>
+        </record>
+        <record id="sales_agents_bills" model="account.journal">
+            <field name="name">Sales Agent Bills</field>
+            <field name="code">SBILL</field>
+            <field name="type">purchase</field>
+            <field name="sequence">117</field>
+        </record>
+        <record id="brokers_bills" model="account.journal">
+            <field name="name">Other Broker Bills</field>
+            <field name="code">BBILL</field>
+            <field name="type">purchase</field>
+            <field name="sequence">118</field>
+        </record>
+        <record id="company_split_bills" model="account.journal">
+            <field name="name">Company Split Bills</field>
+            <field name="code">CBILL</field>
+            <field name="type">purchase</field>
+            <field name="sequence">119</field>
+        </record>
+        <record id="bank_trust_account" model="account.journal">
+            <field name="name">Bank - Trust Account</field>
+            <field name="code">BTC</field>
+            <field name="type">bank</field>
+            <field name="sequence">120</field>
+        </record>
+        <record id="bank_operating_account" model="account.journal">
+            <field name="name">Bank - Operating Account</field>
+            <field name="code">BOA</field>
+            <field name="type">bank</field>
+            <field name="sequence">121</field>
+        </record>
+
+        <!-- Products -->
+        <record id="product_category_agentlink_transaction_manager" model="product.category">
+            <field name="parent_id" ref="product.product_category_all"/>
+            <field name="name">Transactions</field>
+        </record>
+        <record id="trust_deposit_product_id" model="product.product">
+            <field name="name">Trust Deposit</field>
+            <field name="detailed_type">service</field>
+            <field name="categ_id" ref="product_category_agentlink_transaction_manager"/>
+        </record>
+        <record id="tax_collected_product_id" model="product.product">
+            <field name="name">Tax Collected</field>
+            <field name="detailed_type">service</field>
+            <field name="categ_id" ref="product_category_agentlink_transaction_manager"/>
+        </record>
+        <record id="commission_receipt_product_id" model="product.product">
+            <field name="name">Commission Received</field>
+            <field name="detailed_type">service</field>
+            <field name="categ_id" ref="product_category_agentlink_transaction_manager"/>
+        </record>
+        <record id="commission_from_deal_product_id" model="product.product">
+            <field name="name">Commission From Deal</field>
+            <field name="detailed_type">service</field>
+            <field name="categ_id" ref="product_category_agentlink_transaction_manager"/>
+        </record>
+        <record id="sale_agent_commission_product_id" model="product.product">
+            <field name="name">Sales Agent Commissions</field>
+            <field name="detailed_type">service</field>
+            <field name="categ_id" ref="product_category_agentlink_transaction_manager"/>
+        </record>
+        <record id="other_broker_commission_product_id" model="product.product">
+            <field name="name">Broker Commissions</field>
+            <field name="detailed_type">service</field>
+            <field name="categ_id" ref="product_category_agentlink_transaction_manager"/>
+        </record>
+        <record id="sales_agent_expense_product_id" model="product.product">
+            <field name="name">Sales Agent Expenses</field>
+            <field name="detailed_type">service</field>
+            <field name="categ_id" ref="product_category_agentlink_transaction_manager"/>
+        </record>
+        <!-- Payment Methods (Commented Out) -->
+        <!--
+        <record id="payment_method_cheque" model="account.payment.method">
+            <field name="name">Checks</field>
+            <field name="payment_type">outbound</field>
+            <field name="code">check_printing</field>
+        </record>
+        -->
+    </data>
+</odoo>

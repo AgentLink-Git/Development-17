@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Form View for Listing Records -->
+    <record id="view_listing_records_form" model="ir.ui.view">
+        <field name="name">listing.records.form</field>
+        <field name="model">listing.records</field>
+        <field name="arch" type="xml">
+            <form string="Listing Record">
+                <header>
+                    <!-- Status Buttons -->
+                    <button name="action_create_deal" type="object" string="Create Deal"
+                            states="active,sold" class="btn-primary"/>
+                    <button name="action_cancel_listing" type="object" string="Cancel Listing"
+                            states="active,draft" class="btn-secondary"/>
+                    
+                    <!-- Wizard Launch Button -->
+                    <button name="action_open_listing_wizard" type="object" string="Edit via Wizard"
+                            class="btn-secondary" icon="fa-pencil"/>
+                    
+                    <!-- Other Header Elements -->
+                    <field name="status" widget="statusbar" statusbar_visible="draft,active,expired,sold,cancelled"/>
+                </header>
+                <sheet>
+                    <!-- Basic Information Group -->
+                    <group string="Basic Information" col="2">
+                        <field name="name" readonly="1"/>
+                        <field name="listing_number" readonly="1"/>
+                        <field name="company_id" readonly="1"/>
+                        <field name="currency_id" readonly="1"/>
+                        <field name="end_id" required="1"/>
+                    </group>
+                    
+                    <!-- Address & Legal Description Group -->
+                    <group string="Address & Legal Description" col="2">
+                        <field name="suite_number"/>
+                        <field name="street_number"/>
+                        <field name="street_name"/>
+                        <field name="street_type_id"/>
+                        <field name="street_direction_prefix"/>
+                        <field name="street_direction_suffix"/>
+                        <field name="city_id"/>
+                        <field name="state_id"/>
+                        <field name="country_id"/>
+                        <field name="postal_code"/>
+                        <field name="legal_plan"/>
+                        <field name="legal_block"/>
+                        <field name="legal_lot"/>
+                        <field name="legal_long"/>
+                    </group>
+                    
+                    <!-- Price and Date Fields Group -->
+                    <group string="Price and Dates" col="2">
+                        <field name="list_price"/>
+                        <field name="sell_price"/>
+                        <field name="list_date"/>
+                        <field name="expiry_date"/>
+                        <field name="cancel_date"/>
+                        <field name="offer_date"/>
+                    </group>
+                    
+                    <!-- Property Details Group -->
+                    <group string="Property Details" col="2">
+                        <field name="deal_class_id"/>
+                        <field name="property_type_id"/>
+                        <field name="size"/>
+                        <field name="ml_number"/>
+                        <field name="business_source_id"/>
+                        <field name="for_sale_or_lease"/>
+                    </group>
+                    
+                    <!-- Notes Group -->
+                    <group string="Notes">
+                        <field name="notes"/>
+                    </group>
+                    
+                    <!-- Buyers/Sellers and Sales Agents & Referrals Tabs -->
+                    <notebook>
+                        <page string="Buyers/Sellers">
+                            <field name="buyers_sellers_ids">
+                                <tree editable="bottom">
+                                    <field name="partner_id"/>
+                                    <field name="end_id"/>
+                                    <field name="notes"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Sales Agents & Referrals">
+                            <field name="sales_agents_and_referrals_ids">
+                                <tree editable="bottom">
+                                    <field name="sales_agent_id"/>
+                                    <field name="other_broker_id"/>
+                                    <field name="buyers_sellers_id"/>
+                                    <field name="payment_type"/>
+                                    <field name="percentage_of_end"/>
+                                    <field name="plus_flat_fee"/>
+                                    <field name="less_flat_fee"/>
+                                    <field name="notes"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page string="Documents">
+                            <field name="document_line_ids">
+                                <tree editable="bottom">
+                                    <field name="document_type_id"/>
+                                    <field name="document_review"/>
+                                    <field name="manually_removed"/>
+                                </tree>
+                            </field>
+                            <field name="required_document_ids" readonly="1">
+                                <tree>
+                                    <field name="document_type_id"/>
+                                </tree>
+                            </field>
+                            <field name="all_documents_received" readonly="1"/>
+                            <field name="required_document_count" readonly="1"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    <!-- Search View for Listing Records -->
+    <record id="view_listing_records_search" model="ir.ui.view">
+        <field name="name">listing.records.search</field>
+        <field name="model">listing.records</field>
+        <field name="arch" type="xml">
+            <search string="Listing Records">
+                <field name="listing_number"/>
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="status"/>
+                <field name="list_price"/>
+                <field name="expiry_date"/>
+                <filter string="Draft" domain="[('status', '=', 'draft')]"/>
+                <filter string="Active" domain="[('status', '=', 'active')]"/>
+                <filter string="Sold" domain="[('status', '=', 'sold')]"/>
+                <filter string="Cancelled" domain="[('status', '=', 'cancelled')]"/>
+            </search>
+        </field>
+    </record>
+<!-- =====================================
+     Documents
+     ===================================== -->
+<record id="view_listing_records_form_inherit_documents" model="ir.ui.view">
+    <field name="name">listing.records.form.inherit.documents</field>
+    <field name="model">listing.records</field>
+    <field name="inherit_id" ref="agentlink_transaction_management.view_listing_records_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//sheet" position="inside">
+            <notebook>
+                <page string="Documents">
+                    <field name="document_line_ids" context="{'default_listing_id': active_id}" mode="tree,form,kanban">
+                        <tree string="Document Lines">
+                            <field name="document_type_id"/>
+                            <field name="is_uploaded"/>
+                            <field name="is_approved"/>
+                            <field name="document_review"/>
+                        </tree>
+                        <form string="Document Line">
+                            <group>
+                                <field name="document_type_id"/>
+                                <field name="attachment_ids" widget="many2many_binary"/>
+                                <field name="document_review"/>
+                            </group>
+                        </form>
+                        <kanban>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div class="oe_kanban_card">
+                                        <header>
+                                            <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                        </header>
+                                        <div class="o_kanban_details">
+                                            <strong><field name="document_type_id"/></strong>
+                                            <p>
+                                                <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                            </p>
+                                            <p>
+                                                <strong>Approved:</strong> <field name="is_approved"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    </field>
+                </page>
+            </notebook>
+        </xpath>
+    </field>
+</record>
+    <!-- =====================================
+         Sales Agents and Referrals
+         ===================================== -->
+    <record id="view_listing_records_form_inherit_sales_agents_and_referrals" model="ir.ui.view">
+        <field name="name">listing.records.form.inherit.sales.agents.and.referrals</field>
+        <field name="model">listing.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_listing_records_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Sales Agents and Referrals">
+                        <field name="sales_agents_and_referrals_ids" context="{'default_listing_id': active_id}" mode="tree,form,kanban">
+                            <tree string="Sales Agents and Referrals">
+                                <field name="partner_id"/>
+                                <field name="payment_type"/>
+                                <field name="base_commission"/>
+                                <field name="percentage_of_end"/>
+                                <field name="gross_amount"/>
+                                <field name="total_split_fees"/>
+                                <field name="total_net_amount"/>
+                                <field name="is_uploaded"/>
+                                <field name="is_approved"/>
+                                <field name="document_review"/>
+                            </tree>
+                            <form string="Sales Agent and Referral">
+                                <group>
+                                    <field name="partner_id"/>
+                                    <field name="payment_type"/>
+                                    <field name="deal_id"/>
+                                    <field name="listing_id"/>
+                                    <field name="end_id"/>
+                                </group>
+                                <group>
+                                    <field name="sales_agent_id"/>
+                                    <field name="other_broker_id"/>
+                                    <field name="other_broker_agent_id"/>
+                                    <field name="buyers_sellers_id"/>
+                                    <field name="for_sale_or_lease"/>
+                                    <field name="referral_letter_on_file"/>
+                                </group>
+                                <group>
+                                    <field name="base_commission"/>
+                                    <field name="percentage_of_end"/>
+                                    <field name="plus_flat_fee"/>
+                                    <field name="less_flat_fee"/>
+                                </group>
+                                <group>
+                                    <field name="gross_amount" readonly="1"/>
+                                    <field name="total_split_fees" readonly="1"/>
+                                    <field name="total_net_amount" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="tax" readonly="1"/>
+                                    <field name="total_tax" readonly="1"/>
+                                    <field name="payable_amount" readonly="1"/>
+                                    <field name="payable_type" readonly="1"/>
+                                </group>
+                                <notebook>
+                                    <page string="Commission Plans">
+                                        <field name="commission_plan_line_ids">
+                                            <tree string="Commission Plan Lines">
+                                                <field name="commission_plan_id"/>
+                                                <field name="commission_amount"/>
+                                                <field name="flat_fee"/>
+                                            </tree>
+                                            <form string="Commission Plan Line">
+                                                <group>
+                                                    <field name="commission_plan_id"/>
+                                                    <field name="commission_amount"/>
+                                                    <field name="flat_fee"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                                    </page>
+                                    <page string="Documents">
+                                        <field name="document_line_ids" context="{'default_deal_id': deal_id, 'default_listing_id': listing_id}" mode="tree,form,kanban">
+                                            <tree string="Document Lines">
+                                                <field name="document_type_id"/>
+                                                <field name="is_uploaded"/>
+                                                <field name="is_approved"/>
+                                                <field name="document_review"/>
+                                            </tree>
+                                            <form string="Document Line">
+                                                <group>
+                                                    <field name="document_type_id"/>
+                                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                                    <field name="document_review"/>
+                                                </group>
+                                            </form>
+                                            <kanban>
+                                                <templates>
+                                                    <t t-name="kanban-box">
+                                                        <div class="oe_kanban_card">
+                                                            <header>
+                                                                <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                                            </header>
+                                                            <div class="o_kanban_details">
+                                                                <strong><field name="document_type_id"/></strong>
+                                                                <p>
+                                                                    <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                                                </p>
+                                                                <p>
+                                                                    <strong>Approved:</strong> <field name="is_approved"/>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </t>
+                                                </templates>
+                                            </kanban>
+                                        </field>
+                                    </page>
+                                </notebook>
+                            </form>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+    <!-- Action to Open Listing Records Form View -->
+    <record id="action_listing_records_form" model="ir.actions.act_window">
+        <field name="name">Listing Records</field>
+        <field name="res_model">listing.records</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_listing_records_form"/>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p>
+                Manage your property listings, including adding new listings or editing existing ones.
+            </p>
+        </field>
+    </record>
+    
+    <!-- Menu Item for Listing Records -->
+    <menuitem id="menu_listing_records" name="Listings"
+              parent="base.menu_sales"
+              action="action_listing_records_form"
+              sequence="10"/>
+</odoo>
+

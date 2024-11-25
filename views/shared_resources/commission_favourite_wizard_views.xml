@@ -1,0 +1,31 @@
+<!-- views/commission_favourite_wizard_views.xml -->
+
+<odoo>
+    <record id="view_commission_favourite_wizard_form" model="ir.ui.view">
+        <field name="name">commission.favourite.wizard.form</field>
+        <field name="model">commission.favourite.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Apply Commission Favourites">
+                <sheet>
+                    <group>
+                        <field name="record_id"/>
+                        <field name="total_commission_favourite_id"/>
+                        <field name="buyer_side_commission_favourite_id"/>
+                    </group>
+                    <footer>
+                        <button string="Apply" type="object" name="apply_commission_favourites" class="btn-primary"/>
+                        <button string="Cancel" class="btn-secondary" special="cancel"/>
+                    </footer>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_commission_favourite_wizard" model="ir.actions.act_window">
+        <field name="name">Apply Commission Favourites</field>
+        <field name="res_model">commission.favourite.wizard</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_commission_favourite_wizard_form"/>
+        <field name="target">new</field>
+    </record>
+</odoo>

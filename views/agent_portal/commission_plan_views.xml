@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- =====================================
+         Commission Plan: Search View
+         ===================================== -->
+    <record id="view_commission_plan_search" model="ir.ui.view">
+        <field name="name">commission.plan.search</field>
+        <field name="model">commission.plan</field>
+        <field name="arch" type="xml">
+            <search string="Search Commission Plans">
+                <field name="name"/>
+                <field name="revenue_type"/>
+                <field name="account_product"/>
+                <field name="levels_based_on"/>
+                <filter string="Straight Commission" domain="[('revenue_type', '=', 'straight_commission')]"/>
+                <filter string="Graduated Commission" domain="[('revenue_type', '=', 'graduated_commission')]"/>
+                <filter string="Gross Commission" domain="[('levels_based_on', '=', 'gross_commission')]"/>
+                <filter string="Net Commission" domain="[('levels_based_on', '=', 'net_commission')]"/>
+                <filter string="# of Ends" domain="[('levels_based_on', '=', 'number_of_ends')]"/>
+                <filter string="YTD Fees Paid" domain="[('levels_based_on', '=', 'ytd_fees_paid')]"/>
+                <group expand="1" string="Grouping">
+                    <group string="Revenue Type">
+                        <filter string="Straight Commission" domain="[('revenue_type', '=', 'straight_commission')]"/>
+                        <filter string="Graduated Commission" domain="[('revenue_type', '=', 'graduated_commission')]"/>
+                    </group>
+                    <group string="Levels Based On">
+                        <filter string="Gross Commission" domain="[('levels_based_on', '=', 'gross_commission')]"/>
+                        <filter string="Net Commission" domain="[('levels_based_on', '=', 'net_commission')]"/>
+                        <filter string="# of Ends" domain="[('levels_based_on', '=', 'number_of_ends')]"/>
+                        <filter string="YTD Fees Paid" domain="[('levels_based_on', '=', 'ytd_fees_paid')]"/>
+                    </group>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Commission Plan: Tree (List) View
+         ===================================== -->
+    <record id="view_commission_plan_tree" model="ir.ui.view">
+        <field name="name">commission.plan.tree</field>
+        <field name="model">commission.plan</field>
+        <field name="arch" type="xml">
+            <tree string="Commission Plans">
+                <field name="name"/>
+                <field name="revenue_type"/>
+                <field name="account_product"/>
+                <field name="commission_percentage"/>
+                <field name="flat_fee"/>
+                <field name="levels_based_on"/>
+                <field name="deal_class_ids" widget="many2many_tags"/>
+                <field name="sales_agent_ids" widget="many2many_tags"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Commission Plan: Form View
+         ===================================== -->
+    <record id="view_commission_plan_form" model="ir.ui.view">
+        <field name="name">commission.plan.form</field>
+        <field name="model">commission.plan</field>
+        <field name="arch" type="xml">
+            <form string="Commission Plan">
+                <header>
+                    <!-- Optional: Add state-based buttons if the model has states -->
+                    <!-- Example:
+                    <button name="action_activate" type="object" string="Activate" states="draft" class="btn-primary"/>
+                    <button name="action_archive" type="object" string="Archive" states="active" class="btn-secondary"/>
+                    -->
+                    <!-- Status Bar -->
+                    <field name="state" widget="statusbar" statusbar_visible="draft,active,archived"/>
+                </header>
+                <sheet>
+                    <group>
+                        <!-- Basic Information -->
+                        <group string="Basic Information" col="2">
+                            <field name="name"/>
+                            <field name="revenue_type"/>
+                            <field name="account_product"/>
+                            <field name="levels_based_on"/>
+                        </group>
+                        
+                        <!-- Financial Details -->
+                        <group string="Financial Details" col="2">
+                            <field name="commission_percentage"/>
+                            <field name="flat_fee"/>
+                        </group>
+                    </group>
+                    
+                    <!-- Deal Classes and Sales Agents -->
+                    <group>
+                        <group string="Deal Classes" col="2">
+                            <field name="deal_class_ids" widget="many2many_tags"/>
+                        </group>
+                        <group string="Sales Agents" col="2">
+                            <field name="sales_agent_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                    
+                    <!-- Graduated Commissions Notebook -->
+                    <notebook>
+                        <page string="Graduated Commissions" attrs="{'invisible': [('revenue_type', '!=', 'graduated_commission')]}">
+                            <field name="graduated_commission_ids">
+                                <tree editable="bottom">
+                                    <field name="sequence"/>
+                                    <field name="commission_from"/>
+                                    <field name="commission_to"/>
+                                    <field name="commission_percentage"/>
+                                    <field name="flat_fee"/>
+                                </tree>
+                                <form string="Graduated Commission">
+                                    <group>
+                                        <field name="sequence"/>
+                                        <field name="commission_from"/>
+                                        <field name="commission_to"/>
+                                        <field name="commission_percentage"/>
+                                        <field name="flat_fee"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Commission Plan: Kanban View
+         ===================================== -->
+    <record id="view_commission_plan_kanban" model="ir.ui.view">
+        <field name="name">commission.plan.kanban</field>
+        <field name="model">commission.plan</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="revenue_type">
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card">
+                            <header>
+                                <field name="revenue_type" widget="statusbar" statusbar_visible="straight_commission,graduated_commission"/>
+                            </header>
+                            <div class="o_kanban_details">
+                                <strong><field name="name"/></strong>
+                                <p>
+                                    <strong>Commission %:</strong> <field name="commission_percentage"/>%
+                                </p>
+                                <p>
+                                    <strong>Flat Fee:</strong> <field name="flat_fee" widget="monetary" options="{'currency_field': 'account_product'}"/>
+                                </p>
+                                <p>
+                                    <strong>Levels Based On:</strong> <field name="levels_based_on"/>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Graduated Commission: Search View
+         ===================================== -->
+    <record id="view_graduated_commission_search" model="ir.ui.view">
+        <field name="name">graduated.commission.search</field>
+        <field name="model">graduated.commission</field>
+        <field name="arch" type="xml">
+            <search string="Search Graduated Commissions">
+                <field name="sequence"/>
+                <field name="commission_from"/>
+                <field name="commission_to"/>
+                <field name="commission_percentage"/>
+                <field name="flat_fee"/>
+                <filter string="Valid Range" domain="[('commission_from', '<=', commission_to)]"/>
+            </search>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Graduated Commission: Tree (List) View
+         ===================================== -->
+    <record id="view_graduated_commission_tree" model="ir.ui.view">
+        <field name="name">graduated.commission.tree</field>
+        <field name="model">graduated.commission</field>
+        <field name="arch" type="xml">
+            <tree string="Graduated Commissions">
+                <field name="sequence"/>
+                <field name="commission_from"/>
+                <field name="commission_to"/>
+                <field name="commission_percentage"/>
+                <field name="flat_fee"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Graduated Commission: Form View
+         ===================================== -->
+    <record id="view_graduated_commission_form" model="ir.ui.view">
+        <field name="name">graduated.commission.form</field>
+        <field name="model">graduated.commission</field>
+        <field name="arch" type="xml">
+            <form string="Graduated Commission">
+                <sheet>
+                    <group>
+                        <field name="sequence"/>
+                        <field name="commission_from"/>
+                        <field name="commission_to"/>
+                        <field name="commission_percentage"/>
+                        <field name="flat_fee"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Graduated Commission: Kanban View
+         ===================================== -->
+    <record id="view_graduated_commission_kanban" model="ir.ui.view">
+        <field name="name">graduated.commission.kanban</field>
+        <field name="model">graduated.commission</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <strong><field name="commission_from"/> - <field name="commission_to"/></strong>
+                            <p>
+                                <strong>Commission %:</strong> <field name="commission_percentage"/>%
+                            </p>
+                            <p>
+                                <strong>Flat Fee:</strong> <field name="flat_fee" widget="monetary" options="{'currency_field': 'commission_plan_id.account_product'}"/>
+                            </p>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Graduated Commission: Action Window
+         ===================================== -->
+    <record id="action_graduated_commission" model="ir.actions.act_window">
+        <field name="name">Graduated Commissions</field>
+        <field name="res_model">graduated.commission</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_ids" eval="[
+            (ref('view_graduated_commission_kanban'), 'kanban'),
+            (ref('view_graduated_commission_tree'), 'tree'),
+            (ref('view_graduated_commission_form'), 'form')
+        ]"/>
+        <field name="search_view_id" ref="view_graduated_commission_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Define graduated commission tiers for commission plans.
+            </p>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Commission Plan: Action Window
+         ===================================== -->
+    <record id="action_commission_plan" model="ir.actions.act_window">
+        <field name="name">Commission Plans</field>
+        <field name="res_model">commission.plan</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_ids" eval="[
+            (ref('view_commission_plan_kanban'), 'kanban'),
+            (ref('view_commission_plan_tree'), 'tree'),
+            (ref('view_commission_plan_form'), 'form')
+        ]"/>
+        <field name="search_view_id" ref="view_commission_plan_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new commission plan to define how commissions are calculated for sales agents.
+            </p>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Menu Items
+         ===================================== -->
+    <menuitem id="menu_commission_root" name="Commission Management"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="20"/>
+    
+    <menuitem id="menu_commission_plan" name="Commission Plans"
+              parent="menu_commission_root"
+              action="action_commission_plan"
+              sequence="10"/>
+    
+    <menuitem id="menu_graduated_commission" name="Graduated Commissions"
+              parent="menu_commission_root"
+              action="action_graduated_commission"
+              sequence="20"/>
+
+</odoo>

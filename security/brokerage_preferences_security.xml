@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Allow only administrators to access Brokerage Preferences -->
+    <record id="brokerage_preferences_rule_admin" model="ir.rule">
+        <field name="name">Brokerage Preferences Admin Rule</field>
+        <field name="model_id" ref="model_brokerage_preferences"/>
+        <field name="groups" eval="[(4, ref('base.group_system'))]"/>
+        <field name="domain_force">[]</field>
+        <field name="perm_read" eval="True"/>
+        <field name="perm_write" eval="True"/>
+        <field name="perm_create" eval="True"/>
+        <field name="perm_unlink" eval="True"/>
+    </record>
+</odoo>

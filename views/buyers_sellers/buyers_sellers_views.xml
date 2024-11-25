@@ -1,0 +1,87 @@
+<odoo>
+    <!-- BuyersSellers Form View with Editable Contact Information -->
+    <record id="view_buyers_sellers_form" model="ir.ui.view">
+        <field name="name">buyers.sellers.form</field>
+        <field name="model">buyers.sellers</field>
+        <field name="arch" type="xml">
+            <form string="Buyer/Seller">
+                <sheet>
+                    <group>
+                        <field name="partner_id" context="{'show_address': 1, 'show_email': 1}" options="{'no_create': False">
+                            <form string="Contact Details">
+                                <sheet>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="phone"/>
+                                        <field name="email"/>
+                                        <field name="street"/>
+                                        <field name="street2"/>
+                                        <field name="city"/>
+                                        <field name="state_id"/>
+                                        <field name="zip"/>
+                                        <field name="country_id"/>
+                                    </group>
+                                </sheet>
+                            </form>
+                        </field>
+                        <field name="end_id"/>
+                        <field name="role_type" readonly="1"/>
+                        <field name="active"/>
+                        <field name="notes"/>
+                        <field name="listing_id"/>
+                        <field name="deal_id"/>
+                        <field name="company_id" readonly="1"/>
+                    </group>
+                    <group string="Financial Information">
+                        <field name="payable_type" readonly="1"/>
+                        <field name="due_to_buyer_seller" readonly="1"/>
+                        <field name="due_from_buyer_seller" readonly="1"/>
+                        <field name="total_buyer_deposit" readonly="1"/>
+                        <field name="total_seller_deposit" readonly="1"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- BuyersSellers Tree View -->
+    <record id="view_buyers_sellers_tree" model="ir.ui.view">
+        <field name="name">buyers.sellers.tree</field>
+        <field name="model">buyers.sellers</field>
+        <field name="arch" type="xml">
+            <tree string="Buyers and Sellers">
+                <field name="partner_id"/>
+                <field name="end_id"/>
+                <field name="role_type"/>
+                <field name="active"/>
+                <field name="listing_id"/>
+                <field name="deal_id"/>
+                <field name="payable_type"/>
+                <field name="due_to_buyer_seller"/>
+                <field name="due_from_buyer_seller"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_buyer_seller_type" model="ir.actions.act_window">
+        <field name="name">Buyer/Seller Types</field>
+        <field name="res_model">buyer.seller.type</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_buyers_sellers" model="ir.actions.act_window">
+        <field name="name">Buyers and Sellers</field>
+        <field name="res_model">buyers.sellers</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_real_estate_root" name="Real Estate" sequence="10"/>
+
+    <menuitem id="menu_buyer_seller_management" name="Buyer/Seller Management" parent="menu_real_estate_root" sequence="10"/>
+    
+    <menuitem id="menu_buyer_seller_type" name="Buyer/Seller Types" parent="menu_buyer_seller_management" action="action_buyer_seller_type" sequence="10"/>
+    
+    <menuitem id="menu_buyers_sellers" name="Buyers and Sellers" parent="menu_buyer_seller_management" action="action_buyers_sellers" sequence="20"/>
+</odoo>

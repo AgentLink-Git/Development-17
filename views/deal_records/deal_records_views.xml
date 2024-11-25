@@ -1,0 +1,51 @@
+<!-- =====================================
+     Deal Records: Form View Enhancement
+     ===================================== -->
+<record id="view_deal_records_form_inherit_documents" model="ir.ui.view">
+    <field name="name">deal.records.form.inherit.documents</field>
+    <field name="model">deal.records</field>
+    <field name="inherit_id" ref="agentlink_transaction_management.view_deal_records_form"/>
+    <field name="arch" type="xml">
+        <xpath expr="//sheet" position="inside">
+            <notebook>
+                <page string="Documents">
+                    <field name="document_line_ids" context="{'default_deal_id': active_id}" mode="tree,form,kanban">
+                        <tree string="Document Lines">
+                            <field name="document_type_id"/>
+                            <field name="is_uploaded"/>
+                            <field name="is_approved"/>
+                            <field name="document_review"/>
+                        </tree>
+                        <form string="Document Line">
+                            <group>
+                                <field name="document_type_id"/>
+                                <field name="attachment_ids" widget="many2many_binary"/>
+                                <field name="document_review"/>
+                            </group>
+                        </form>
+                        <kanban>
+                            <templates>
+                                <t t-name="kanban-box">
+                                    <div class="oe_kanban_card">
+                                        <header>
+                                            <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                        </header>
+                                        <div class="o_kanban_details">
+                                            <strong><field name="document_type_id"/></strong>
+                                            <p>
+                                                <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                            </p>
+                                            <p>
+                                                <strong>Approved:</strong> <field name="is_approved"/>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </t>
+                            </templates>
+                        </kanban>
+                    </field>
+                </page>
+            </notebook>
+        </xpath>
+    </field>
+</record>

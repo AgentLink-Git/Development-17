@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- =====================================
+         Commission Management
+         ===================================== -->
+    <menuitem id="menu_commission_management_root" name="Commission Management"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="10"/>
+
+    <menuitem id="menu_commission_advance" name="Commission Advances"
+              parent="menu_commission_management_root"
+              action="action_commission_advance"
+              sequence="10"/>
+
+    <menuitem id="menu_commission_plan" name="Commission Plans"
+              parent="menu_commission_management_root"
+              action="action_commission_plan"
+              sequence="20"/>
+
+    <menuitem id="menu_graduated_commission" name="Graduated Commissions"
+              parent="menu_commission_management_root"
+              action="action_graduated_commission"
+              sequence="30"/>
+
+    <!-- =====================================
+         Mentorship Management
+         ===================================== -->
+    <menuitem id="menu_mentorship_management_root" name="Mentorship Management"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="20"/>
+
+    <menuitem id="menu_sales_agent_mentorship" name="Sales Agent Mentorships"
+              parent="menu_mentorship_management_root"
+              action="action_sales_agent_mentorship"
+              sequence="10"/>
+
+    <menuitem id="menu_sales_agent_mentorship_line" name="Mentorship Lines"
+              parent="menu_mentorship_management_root"
+              action="action_sales_agent_mentorship_line"
+              sequence="20"/>
+
+    <!-- =====================================
+         Sales Agent Teams
+         ===================================== -->
+    <menuitem id="menu_sales_agent_teams_root" name="Sales Agent Teams"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="30"/>
+
+    <menuitem id="menu_sales_agent_teams" name="Teams"
+              parent="menu_sales_agent_teams_root"
+              action="action_sales_agent_teams"
+              sequence="10"/>
+
+    <menuitem id="menu_sales_agent_team_member" name="Team Members"
+              parent="menu_sales_agent_teams_root"
+              action="action_sales_agent_team_member"
+              sequence="20"/>
+
+    <!-- =====================================
+         Sales Agents and Referrals
+         ===================================== -->
+    <menuitem id="menu_sales_agents_and_referrals_root" name="Sales Agents and Referrals"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="40"/>
+
+    <menuitem id="menu_sales_agents_and_referrals" name="Sales Agents and Referrals"
+              parent="menu_sales_agents_and_referrals_root"
+              action="action_sales_agents_and_referrals"
+              sequence="10"/>
+
+    <!-- =====================================
+         Other Brokers Management
+         ===================================== -->
+    <menuitem id="menu_other_brokers_management_root" name="Other Brokers Management"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="50"/>
+
+    <menuitem id="menu_other_broker" name="Other Brokers"
+              parent="menu_other_brokers_management_root"
+              action="action_other_broker"
+              sequence="10"/>
+
+    <menuitem id="menu_other_broker_agent" name="Other Broker Agents"
+              parent="menu_other_brokers_management_root"
+              action="action_other_broker_agent"
+              sequence="20"/>
+
+    <!-- =====================================
+         Document Management
+         ===================================== -->
+    <menuitem id="menu_document_management_root" name="Document Management"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="60"/>
+
+    <menuitem id="menu_document_type" name="Document Types"
+              parent="menu_document_management_root"
+              action="action_document_type"
+              sequence="10"/>
+
+    <menuitem id="menu_document_line" name="Document Lines"
+              parent="menu_document_management_root"
+              action="action_document_line"
+              sequence="20"/>
+
+    <!-- =====================================
+         Broker Wizards
+         ===================================== -->
+    <menuitem id="menu_broker_wizards_root" name="Broker Wizards"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="70"/>
+
+    <menuitem id="menu_select_broker_wizard" name="Select/Add Broker"
+              parent="menu_broker_wizards_root"
+              action="action_select_broker_wizard"
+              sequence="10"/>
+
+    <!-- =====================================
+         Real Estate Management
+         ===================================== -->
+    <menuitem id="menu_real_estate_management_root" name="Real Estate Management"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="80"/>
+
+    <menuitem id="menu_buyer_seller_management" name="Buyer/Seller Management"
+              parent="menu_real_estate_management_root"
+              sequence="10"/>
+
+    <menuitem id="menu_buyer_seller_type" name="Buyer/Seller Types"
+              parent="menu_buyer_seller_management"
+              action="action_buyer_seller_type"
+              sequence="10"/>
+
+    <menuitem id="menu_buyers_sellers" name="Buyers and Sellers"
+              parent="menu_buyer_seller_management"
+              action="action_buyers_sellers"
+              sequence="20"/>
+
+    <menuitem id="menu_listings" name="Listings"
+              parent="menu_real_estate_management_root"
+              action="action_listing_records_form"
+              sequence="30"/>
+
+    <!-- =====================================
+         Brokerage Preferences
+         ===================================== -->
+    <menuitem id="menu_brokerage_preferences" name="Brokerage Preferences"
+              parent="base.menu_config"
+              action="action_brokerage_preferences"
+              sequence="10"/>
+
+    <!-- =====================================
+         Bank Accounts
+         ===================================== -->
+    <menuitem id="menu_res_partner_bank_inherit_root" name="Bank Accounts"
+              parent="base.menu_partner_bank"
+              sequence="10"/>
+
+    <menuitem id="menu_res_partner_bank_inherit" name="Bank Accounts"
+              parent="menu_res_partner_bank_inherit_root"
+              action="action_res_partner_bank_inherit"
+              sequence="10"/>
+
+    <!-- =====================================
+         Commission Forms
+         ===================================== -->
+    <menuitem id="menu_commission_forms_root" name="Commission Forms"
+              parent="accounting.menu_finance_configuration"
+              sequence="10"/>
+
+    <menuitem id="menu_commission_form" name="Commission Forms"
+              parent="menu_commission_forms_root"
+              action="action_commission_form"
+              sequence="10"/>
+
+    <menuitem id="menu_commission_form_line" name="Commission Form Lines"
+              parent="menu_commission_forms_root"
+              action="action_commission_form_line"
+              sequence="20"/>
+
+    <!-- =====================================
+         Listings (under standard Sales menu)
+         ===================================== -->
+    <menuitem id="menu_listing_records" name="Listings"
+              parent="base.menu_sales"
+              action="action_listing_records_form"
+              sequence="10"/>
+</odoo>

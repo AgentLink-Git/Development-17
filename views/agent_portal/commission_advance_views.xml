@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Tree (List) View for Commission Advance -->
+    <record id="view_commission_advance_tree" model="ir.ui.view">
+        <field name="name">commission.advance.tree</field>
+        <field name="model">commission.advance</field>
+        <field name="arch" type="xml">
+            <tree string="Commission Advances">
+                <field name="deal_id"/>
+                <field name="partner_id"/>
+                <field name="amount_requested"/>
+                <field name="amount_advanced"/>
+                <field name="advance_amt_repaid"/>
+                <field name="advance_amt_outstanding"/>
+                <field name="state" widget="statusbar" statusbar_visible="draft,requested,approved,paid,repaid,cancelled"/>
+                <field name="advance_request_date"/>
+                <field name="advance_payment_date"/>
+                <field name="advance_repaid_date"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Form View for Commission Advance -->
+    <record id="view_commission_advance_form" model="ir.ui.view">
+        <field name="name">commission.advance.form</field>
+        <field name="model">commission.advance</field>
+        <field name="arch" type="xml">
+            <form string="Commission Advance">
+                <header>
+                    <!-- State-Based Action Buttons -->
+                    <button name="action_request_advance" type="object" string="Request Advance"
+                            states="draft" class="btn-primary"/>
+                    <button name="action_approve_advance" type="object" string="Approve Advance"
+                            states="requested" class="btn-success"/>
+                    <button name="action_repay_advance" type="object" string="Repay Advance"
+                            states="approved,paid" class="btn-warning"/>
+                    
+                    <!-- Cancel Button -->
+                    <button name="action_cancel" type="object" string="Cancel" states="draft,requested,approved,paid"
+                            class="btn-danger"/>
+                    
+                    <!-- Status Bar -->
+                    <field name="state" widget="statusbar" statusbar_visible="draft,requested,approved,paid,repaid,cancelled"/>
+                </header>
+                <sheet>
+                    <group>
+                        <!-- Basic Information -->
+                        <group string="Basic Information" col="2">
+                            <field name="deal_id"/>
+                            <field name="partner_id"/>
+                            <field name="advance_request_date"/>
+                            <field name="advance_payment_date"/>
+                            <field name="advance_approved_date"/>
+                            <field name="advance_repaid_date"/>
+                            <field name="broker_approved_date"/>
+                        </group>
+                        
+                        <!-- Financial Details -->
+                        <group string="Financial Details" col="2">
+                            <field name="amount_requested"/>
+                            <field name="amount_advanced"/>
+                            <field name="advance_amt_repaid"/>
+                            <field name="advance_amt_outstanding" readonly="1"/>
+                            <field name="advance_fee" readonly="1"/>
+                            <field name="interest_charges" readonly="1"/>
+                            <field name="daily_interest_fee" readonly="1"/>
+                            <field name="total_advance_fees" readonly="1"/>
+                        </group>
+                    </group>
+
+                    <!-- Related Payments -->
+                    <notebook>
+                        <page string="Payments">
+                            <field name="payment_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="amount"/>
+                                    <field name="payment_date"/>
+                                    <field name="payment_type"/>
+                                    <field name="state"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View for Commission Advance -->
+    <record id="view_commission_advance_search" model="ir.ui.view">
+        <field name="name">commission.advance.search</field>
+        <field name="model">commission.advance</field>
+        <field name="arch" type="xml">
+            <search string="Search Commission Advances">
+                <field name="deal_id"/>
+                <field name="partner_id"/>
+                <field name="state"/>
+                <field name="advance_request_date" filter_domain="[('advance_request_date', '>=', self)]"/>
+                <field name="advance_request_date" filter_domain="[('advance_request_date', '<=', self)]"/>
+                <filter string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter string="Requested" domain="[('state', '=', 'requested')]"/>
+                <filter string="Approved" domain="[('state', '=', 'approved')]"/>
+                <filter string="Paid" domain="[('state', '=', 'paid')]"/>
+                <filter string="Repaid" domain="[('state', '=', 'repaid')]"/>
+                <filter string="Cancelled" domain="[('state', '=', 'cancelled')]"/>
+            </search>
+        </field>
+    </record>
+    <!-- Action for Commission Advance -->
+<record id="action_commission_advance" model="ir.actions.act_window">
+    <field name="name">Commission Advances</field>
+    <field name="res_model">commission.advance</field>
+    <field name="view_mode">kanban,tree,form</field>
+    <field name="view_id" ref="view_commission_advance_tree"/>
+    <field name="views" eval="[
+        (ref('view_commission_advance_kanban'), 'kanban'),
+        (ref('view_commission_advance_tree'), 'tree'),
+        (ref('view_commission_advance_form'), 'form')
+    ]"/>
+    <field name="search_view_id" ref="view_commission_advance_search"/>
+    <field name="help" type="html">
+        <p>
+            Manage commission advances requested by sales agents.
+        </p>
+    </field>
+</record>
+<!-- Kanban View for Commission Advance -->
+<record id="view_commission_advance_kanban" model="ir.ui.view">
+    <field name="name">commission.advance.kanban</field>
+    <field name="model">commission.advance</field>
+    <field name="arch" type="xml">
+        <kanban string="Commission Advances">
+            <templates>
+                <t t-name="kanban-box">
+                    <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                        <field name="state" widget="statusbar" statusbar_visible="draft,requested,approved,paid,repaid,cancelled"/>
+                        <strong><field name="partner_id"/></strong>
+                        <div>
+                            <field name="amount_requested"/>
+                        </div>
+                        <div>
+                            <field name="advance_amt_outstanding"/>
+                        </div>
+                    </div>
+                </t>
+            </templates>
+        </kanban>
+    </field>
+</record>
+    <!-- Menu Item for Commission Advance -->
+    <menuitem id="menu_commission_advance_root" name="Commission Advances"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="10"/>
+
+    <menuitem id="menu_commission_advance" name="Commission Advances"
+              parent="menu_commission_advance_root"
+              action="action_commission_advance"
+              sequence="1"/>
+</odoo>

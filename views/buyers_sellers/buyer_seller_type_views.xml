@@ -1,0 +1,29 @@
+<odoo>
+    <record id="view_buyer_seller_type_form" model="ir.ui.view">
+        <field name="name">buyer.seller.type.form</field>
+        <field name="model">buyer.seller.type</field>
+        <field name="arch" type="xml">
+            <form string="Buyer/Seller Type">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="buyer_seller_type"/>
+                        <field name="for_sale_or_lease"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_buyer_seller_type_tree" model="ir.ui.view">
+        <field name="name">buyer.seller.type.tree</field>
+        <field name="model">buyer.seller.type</field>
+        <field name="arch" type="xml">
+            <tree string="Buyer/Seller Types">
+                <field name="name"/>
+                <field name="buyer_seller_type"/>
+                <field name="for_sale_or_lease"/>
+            </tree>
+        </field>
+    </record>
+</odoo>

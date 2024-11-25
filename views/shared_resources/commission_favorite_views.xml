@@ -1,0 +1,76 @@
+<!-- views/commission_favourite_form_view.xml -->
+
+<odoo>
+    <record id="view_commission_favourite_form" model="ir.ui.view">
+        <field name="name">commission.favourite.form</field>
+        <field name="model">commission.favourite</field>
+        <field name="arch" type="xml">
+            <form string="Commission Favourite">
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="company_id"/>
+                        <field name="commission_category"/>
+                        <field name="commission_type"/>
+                        <field name="total_commission_percentage"/>
+                        <field name="commission_flat_fee_plus"/>
+                        <field name="commission_flat_fee_less"/>
+                        <field name="currency_id"/>
+                    </group>
+                    <notebook>
+                        <page string="Commission Favourite Lines">
+                            <field name="commission_favourite_line_ids">
+                                <tree editable="bottom">
+                                    <field name="commission_type"/>
+                                    <field name="commission_category"/>
+                                    <field name="portion_of_selling_price"/>
+                                    <field name="commission_percentage"/>
+                                    <field name="currency_id"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_commission_favourite_tree" model="ir.ui.view">
+        <field name="name">commission.favourite.tree</field>
+        <field name="model">commission.favourite</field>
+        <field name="arch" type="xml">
+            <tree string="Commission Favourites">
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="commission_category"/>
+                <field name="commission_type"/>
+                <field name="total_commission_percentage"/>
+                <field name="commission_flat_fee_plus"/>
+                <field name="commission_flat_fee_less"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="action_commission_favourite" model="ir.actions.act_window">
+        <field name="name">Commission Favourites</field>
+        <field name="res_model">commission.favourite</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_commission_favourite_tree"/>
+        <field name="search_view_id" ref="commission_favourite_search_view"/>
+        <field name="context">{}</field>
+    </record>
+<!-- views/commission_favourite_search_view.xml -->
+
+    <record id="commission_favourite_search_view" model="ir.ui.view">
+        <field name="name">commission.favourite.search</field>
+        <field name="model">commission.favourite</field>
+        <field name="arch" type="xml">
+            <search string="Search Commission Favourites">
+                <field name="name"/>
+                <field name="company_id"/>
+                <field name="commission_category"/>
+                <field name="commission_type"/>
+            </search>
+        </field>
+    </record>
+</odoo>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- =====================================
+         Other Broker: Search View
+         ===================================== -->
+    <record id="view_other_broker_search" model="ir.ui.view">
+        <field name="name">other.broker.search</field>
+        <field name="model">other.broker</field>
+        <field name="arch" type="xml">
+            <search string="Search Other Brokers">
+                <!-- Common Search Fields -->
+                <field name="partner_id"/>
+                <field name="deal_id"/>
+                <field name="broker_type"/>
+                <field name="is_trust"/>
+                <field name="payment_method"/>
+                
+                <!-- Filters -->
+                <filter string="Trust Accounts" domain="[('is_trust', '=', True)]"/>
+                <filter string="Non-Trust Accounts" domain="[('is_trust', '=', False)]"/>
+                <filter string="A/R Brokers" domain="[('broker_type', '=', 'ar')]"/>
+                <filter string="A/P Brokers" domain="[('broker_type', '=', 'ap')]"/>
+                <filter string="No Payables or Receivables" domain="[('broker_type', '=', 'no')]"/>
+                
+                <!-- Grouping -->
+                <group expand="1" string="Grouping">
+                    <group string="Broker Type">
+                        <filter string="A/R Brokers" domain="[('broker_type', '=', 'ar')]"/>
+                        <filter string="A/P Brokers" domain="[('broker_type', '=', 'ap')]"/>
+                        <filter string="No Payables or Receivables" domain="[('broker_type', '=', 'no')]"/>
+                    </group>
+                    <group string="Trust Status">
+                        <filter string="Trust Accounts" domain="[('is_trust', '=', True)]"/>
+                        <filter string="Non-Trust Accounts" domain="[('is_trust', '=', False)]"/>
+                    </group>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Other Broker: Tree (List) View
+         ===================================== -->
+    <record id="view_other_broker_tree" model="ir.ui.view">
+        <field name="name">other.broker.tree</field>
+        <field name="model">other.broker</field>
+        <field name="arch" type="xml">
+            <tree string="Other Brokers">
+                <!-- Partner Information -->
+                <field name="partner_id"/>
+                <field name="deal_id"/>
+                <field name="end_id"/>
+                
+                <!-- Broker Type and Trust Status -->
+                <field name="broker_type"/>
+                <field name="is_trust"/>
+                
+                <!-- Financial Fields -->
+                <field name="payable_to_other_broker"/>
+                <field name="other_broker_trust_balance"/>
+                <field name="other_broker_trust_excess_held"/>
+                <field name="amount_payable"/>
+                <field name="amount_receivable"/>
+                <field name="tax_on_commission"/>
+                
+                <!-- Additional Fields -->
+                <field name="payment_method"/>
+                <field name="deposit_instructions_received"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Other Broker: Form View
+         ===================================== -->
+    <record id="view_other_broker_form" model="ir.ui.view">
+        <field name="name">other.broker.form</field>
+        <field name="model">other.broker</field>
+        <field name="arch" type="xml">
+            <form string="Other Broker">
+                <header>
+                    <!-- Status Bar for Trust Account -->
+                    <field name="is_trust" widget="statusbar" statusbar_visible="False,True" readonly="1"/>
+                    
+                    <!-- Action Buttons -->
+                    <button name="action_view_related_agents" type="object" string="View Agents" class="oe_highlight"/>
+                    <button name="action_send_notification" type="object" string="Send Notification" class="oe_link"/>
+                </header>
+                <sheet>
+                    <group>
+                        <!-- Partner Information -->
+                        <group string="Partner Information" col="2">
+                            <field name="partner_id" options="{'no_create': True}" readonly="1"/>
+                            <field name="company_id" readonly="1"/>
+                            <field name="currency_id" readonly="1"/>
+                            <field name="note" readonly="1"/>
+                        </group>
+                        
+                        <!-- Deal and End Information -->
+                        <group string="Deal Information" col="2">
+                            <field name="deal_id"/>
+                            <field name="end_id"/>
+                        </group>
+                        
+                        <!-- Broker Type and Payment Details -->
+                        <group string="Broker Details" col="3">
+                            <field name="broker_type"/>
+                            <field name="payment_method"/>
+                            <field name="deposit_instructions_received"/>
+                        </group>
+                        
+                        <!-- Financial Information -->
+                        <group string="Financial Information" col="3">
+                            <field name="payable_to_other_broker" readonly="1"/>
+                            <field name="other_broker_trust_balance" readonly="1"/>
+                            <field name="other_broker_trust_excess_held" readonly="1"/>
+                            <field name="amount_payable" readonly="1"/>
+                            <field name="amount_receivable" readonly="1"/>
+                            <field name="tax_on_commission" readonly="1"/>
+                            <field name="base_commission" readonly="1"/>
+                        </group>
+                    </group>
+                    
+                    <group>
+                        <!-- Related Agents -->
+                        <group string="Agents" colspan="2">
+                            <field name="other_broker_agent_ids">
+                                <tree string="Agents">
+                                    <field name="name"/>
+                                    <field name="role"/>
+                                    <field name="email"/>
+                                </tree>
+                                <form string="Agent">
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="role"/>
+                                        <field name="email"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                        
+                        <!-- Commission Plans -->
+                        <group string="Commission Plans" colspan="2">
+                            <field name="commission_plan_line_ids">
+                                <tree string="Commission Plan Lines">
+                                    <field name="commission_plan_id"/>
+                                    <field name="commission_amount"/>
+                                    <field name="flat_fee"/>
+                                </tree>
+                                <form string="Commission Plan Line">
+                                    <group>
+                                        <field name="commission_plan_id"/>
+                                        <field name="commission_amount"/>
+                                        <field name="flat_fee"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <!-- Documents Page -->
+                        <page string="Documents">
+                            <field name="document_line_ids" context="{'default_deal_id': deal_id, 'default_listing_id': listing_id}" mode="tree,form,kanban">
+                                <tree string="Document Lines">
+                                    <field name="document_type_id"/>
+                                    <field name="is_uploaded"/>
+                                    <field name="is_approved"/>
+                                    <field name="document_review"/>
+                                </tree>
+                                <form string="Document Line">
+                                    <group>
+                                        <field name="document_type_id"/>
+                                        <field name="attachment_ids" widget="many2many_binary"/>
+                                        <field name="document_review"/>
+                                    </group>
+                                </form>
+                                <kanban>
+                                    <templates>
+                                        <t t-name="kanban-box">
+                                            <div class="oe_kanban_card">
+                                                <header>
+                                                    <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                                </header>
+                                                <div class="o_kanban_details">
+                                                    <strong><field name="document_type_id"/></strong>
+                                                    <p>
+                                                        <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                                    </p>
+                                                    <p>
+                                                        <strong>Approved:</strong> <field name="is_approved"/>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </t>
+                                    </templates>
+                                </kanban>
+                            </field>
+                        </page>
+                        
+                        <!-- Related Records Page -->
+                        <page string="Related Records">
+                            <group>
+                                <field name="deal_id"/>
+                                <field name="listing_ids"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </record>
+
+    <!-- =====================================
+         Other Broker: Kanban View
+         ===================================== -->
+    <record id="view_other_broker_kanban" model="ir.ui.view">
+        <field name="name">other.broker.kanban</field>
+        <field name="model">other.broker</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <header>
+                                <!-- Trust Status Badge -->
+                                <span t-if="record.is_trust.raw_value" class="badge badge-success">Trust Account</span>
+                                <span t-if="not record.is_trust.raw_value" class="badge badge-secondary">Non-Trust Account</span>
+                            </header>
+                            <div class="o_kanban_details">
+                                <strong><field name="partner_id"/></strong>
+                                <p>
+                                    <strong>Deal:</strong> <field name="deal_id"/>
+                                </p>
+                                <p>
+                                    <strong>Broker Type:</strong> <field name="broker_type"/>
+                                </p>
+                                <p>
+                                    <strong>Payable:</strong> <field name="payable_to_other_broker"/>
+                                </p>
+                                <p>
+                                    <strong>Receivable:</strong> <field name="amount_receivable"/>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Other Broker: Actions
+         ===================================== -->
+
+    <!-- Other Broker Action -->
+    <record id="action_other_broker" model="ir.actions.act_window">
+        <field name="name">Other Brokers</field>
+        <field name="res_model">other.broker</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_ids" eval="[
+            (ref('view_other_broker_kanban'), 'kanban'),
+            (ref('view_other_broker_tree'), 'tree'),
+            (ref('view_other_broker_form'), 'form')
+        ]"/>
+        <field name="search_view_id" ref="view_other_broker_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create and manage other brokers, track commissions, and monitor document statuses.
+            </p>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Other Broker: Menu Items
+         ===================================== -->
+
+    <!-- Parent Menu for Other Brokers -->
+    <menuitem id="menu_other_broker_root" name="Other Brokers"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"  <!-- Adjust parent as necessary -->
+              sequence="70"/>
+
+    <!-- Other Brokers Menu -->
+    <menuitem id="menu_other_broker" name="Other Brokers"
+              parent="menu_other_broker_root"
+              action="action_other_broker"
+              sequence="10"/>
+
+</odoo>

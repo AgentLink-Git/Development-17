@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- =====================================
+         Res Partner Extension: Search View
+         ===================================== -->
+    <record id="view_res_partner_extension_search" model="ir.ui.view">
+        <field name="name">res.partner.extension.search</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_filter"/>
+        <field name="arch" type="xml">
+            <!-- Adding new fields to the search view -->
+            <field name="name" position="after">
+                <field name="is_buyer_seller"/>
+                <field name="is_law_firm"/>
+                <field name="is_lawyer"/>
+                <field name="is_sales_agent"/>
+                <field name="is_other_broker"/>
+                <field name="is_other_broker_agent"/>
+            </field>
+            
+            <!-- Adding filter options for the new boolean fields -->
+            <xpath expr="//filter[@name='group_by_function']" position="after">
+                <filter string="Buyer/Seller" domain="[('is_buyer_seller', '=', True)]"/>
+                <filter string="Law Firm" domain="[('is_law_firm', '=', True)]"/>
+                <filter string="Lawyer" domain="[('is_lawyer', '=', True)]"/>
+                <filter string="Sales Agent" domain="[('is_sales_agent', '=', True)]"/>
+                <filter string="Other Broker" domain="[('is_other_broker', '=', True)]"/>
+                <filter string="Other Broker Agent" domain="[('is_other_broker_agent', '=', True)]"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Res Partner Extension: Tree (List) View
+         ===================================== -->
+    <record id="view_res_partner_extension_tree" model="ir.ui.view">
+        <field name="name">res.partner.extension.tree</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_tree"/>
+        <field name="arch" type="xml">
+            <!-- Adding new fields to the tree view -->
+            <xpath expr="//tree/field[@name='category_id']" position="after">
+                <field name="is_buyer_seller"/>
+                <field name="is_law_firm"/>
+                <field name="is_lawyer"/>
+                <field name="is_sales_agent"/>
+                <field name="is_other_broker"/>
+                <field name="is_other_broker_agent"/>
+                <field name="payment_method"/>
+                <field name="deposit_instructions_received"/>
+                <field name="deduct_agent_expenses"/>
+                <field name="allow_commission_advances"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Res Partner Extension: Form View
+         ===================================== -->
+    <record id="view_res_partner_extension_form" model="ir.ui.view">
+        <field name="name">res.partner.extension.form</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+            <!-- Adding new fields to the form view -->
+            <xpath expr="//sheet//group" position="inside">
+                <group string="Role Identification" colspan="2">
+                    <field name="is_buyer_seller"/>
+                    <field name="is_law_firm"/>
+                    <field name="is_lawyer"/>
+                    <field name="is_sales_agent"/>
+                    <field name="is_other_broker"/>
+                    <field name="is_other_broker_agent"/>
+                </group>
+            </xpath>
+            
+            <!-- Adding Financial Transactions Fields -->
+            <xpath expr="//sheet//group" position="after">
+                <group string="Financial Transactions" colspan="2">
+                    <field name="payment_method"/>
+                    <field name="deposit_instructions_received"/>
+                </group>
+            </xpath>
+            
+            <!-- Adding Additional Boolean Fields -->
+            <xpath expr="//sheet//group" position="after">
+                <group string="Additional Settings" colspan="2">
+                    <field name="deduct_agent_expenses"/>
+                    <field name="allow_commission_advances"/>
+                </group>
+            </xpath>
+            
+            <!-- Adding Relationships -->
+            <xpath expr="//sheet//notebook" position="inside">
+                <page string="Related Records">
+                    <group>
+                        <field name="transaction_line_ids">
+                            <tree string="Transaction Lines">
+                                <field name="field_name1"/> <!-- Replace with actual fields -->
+                                <field name="field_name2"/>
+                                <!-- Add other necessary fields -->
+                            </tree>
+                            <form string="Transaction Line">
+                                <group>
+                                    <field name="field_name1"/>
+                                    <field name="field_name2"/>
+                                    <!-- Add other necessary fields -->
+                                </group>
+                            </form>
+                        </field>
+                        <field name="deal_ids">
+                            <tree string="Deals">
+                                <field name="name"/>
+                                <field name="stage_id"/>
+                                <field name="close_date"/>
+                                <!-- Add other necessary fields -->
+                            </tree>
+                            <form string="Deal">
+                                <group>
+                                    <field name="name"/>
+                                    <field name="stage_id"/>
+                                    <field name="close_date"/>
+                                    <!-- Add other necessary fields -->
+                                </group>
+                            </form>
+                        </field>
+                        <field name="listing_ids">
+                            <tree string="Listings">
+                                <field name="name"/>
+                                <field name="status"/>
+                                <field name="price"/>
+                                <!-- Add other necessary fields -->
+                            </tree>
+                            <form string="Listing">
+                                <group>
+                                    <field name="name"/>
+                                    <field name="status"/>
+                                    <field name="price"/>
+                                    <!-- Add other necessary fields -->
+                                </group>
+                            </form>
+                        </field>
+                        <field name="other_broker_ids">
+                            <tree string="Other Brokers">
+                                <field name="name"/>
+                                <field name="contact_person"/>
+                                <!-- Add other necessary fields -->
+                            </tree>
+                            <form string="Other Broker">
+                                <group>
+                                    <field name="name"/>
+                                    <field name="contact_person"/>
+                                    <!-- Add other necessary fields -->
+                                </group>
+                            </form>
+                        </field>
+                        <field name="law_firm_ids">
+                            <tree string="Law Firms">
+                                <field name="name"/>
+                                <field name="contact_person"/>
+                                <!-- Add other necessary fields -->
+                            </tree>
+                            <form string="Law Firm">
+                                <group>
+                                    <field name="name"/>
+                                    <field name="contact_person"/>
+                                    <!-- Add other necessary fields -->
+                                </group>
+                            </form>
+                        </field>
+                        <field name="sales_agents_and_referrals_ids">
+                            <tree string="Sales Agents and Referrals">
+                                <field name="partner_id"/>
+                                <field name="payment_type"/>
+                                <field name="base_commission"/>
+                                <field name="percentage_of_end"/>
+                                <field name="gross_amount"/>
+                                <field name="total_split_fees"/>
+                                <field name="total_net_amount"/>
+                                <field name="is_uploaded"/>
+                                <field name="is_approved"/>
+                                <field name="document_review"/>
+                            </tree>
+                            <form string="Sales Agent and Referral">
+                                <group>
+                                    <field name="partner_id"/>
+                                    <field name="payment_type"/>
+                                    <field name="deal_id"/>
+                                    <field name="listing_id"/>
+                                    <field name="end_id"/>
+                                </group>
+                                <group>
+                                    <field name="sales_agent_id"/>
+                                    <field name="other_broker_id"/>
+                                    <field name="other_broker_agent_id"/>
+                                    <field name="buyers_sellers_id"/>
+                                    <field name="for_sale_or_lease"/>
+                                    <field name="referral_letter_on_file"/>
+                                </group>
+                                <group>
+                                    <field name="base_commission"/>
+                                    <field name="percentage_of_end"/>
+                                    <field name="plus_flat_fee"/>
+                                    <field name="less_flat_fee"/>
+                                </group>
+                                <group>
+                                    <field name="gross_amount" readonly="1"/>
+                                    <field name="total_split_fees" readonly="1"/>
+                                    <field name="total_net_amount" readonly="1"/>
+                                </group>
+                                <group>
+                                    <field name="tax" readonly="1"/>
+                                    <field name="total_tax" readonly="1"/>
+                                    <field name="payable_amount" readonly="1"/>
+                                    <field name="payable_type" readonly="1"/>
+                                </group>
+                                <notebook>
+                                    <page string="Commission Plans">
+                                        <field name="commission_plan_line_ids">
+                                            <tree string="Commission Plan Lines">
+                                                <field name="commission_plan_id"/>
+                                                <field name="commission_amount"/>
+                                                <field name="flat_fee"/>
+                                            </tree>
+                                            <form string="Commission Plan Line">
+                                                <group>
+                                                    <field name="commission_plan_id"/>
+                                                    <field name="commission_amount"/>
+                                                    <field name="flat_fee"/>
+                                                </group>
+                                            </form>
+                                        </field>
+                                    </page>
+                                    <page string="Documents">
+                                        <field name="document_line_ids" context="{'default_deal_id': deal_id, 'default_listing_id': listing_id}" mode="tree,form,kanban">
+                                            <tree string="Document Lines">
+                                                <field name="document_type_id"/>
+                                                <field name="is_uploaded"/>
+                                                <field name="is_approved"/>
+                                                <field name="document_review"/>
+                                            </tree>
+                                            <form string="Document Line">
+                                                <group>
+                                                    <field name="document_type_id"/>
+                                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                                    <field name="document_review"/>
+                                                </group>
+                                            </form>
+                                            <kanban>
+                                                <templates>
+                                                    <t t-name="kanban-box">
+                                                        <div class="oe_kanban_card">
+                                                            <header>
+                                                                <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                                            </header>
+                                                            <div class="o_kanban_details">
+                                                                <strong><field name="document_type_id"/></strong>
+                                                                <p>
+                                                                    <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                                                </p>
+                                                                <p>
+                                                                    <strong>Approved:</strong> <field name="is_approved"/>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </t>
+                                                </templates>
+                                            </kanban>
+                                        </field>
+                                    </page>
+                                </notebook>
+                            </form>
+                        </field>
+                        <field name="buyers_sellers_ids">
+                            <tree string="Buyers/Sellers">
+                                <field name="name"/>
+                                <field name="contact_type"/>
+                                <field name="related_deal"/>
+                                <!-- Add other necessary fields -->
+                            </tree>
+                            <form string="Buyers/Seller">
+                                <group>
+                                    <field name="name"/>
+                                    <field name="contact_type"/>
+                                    <field name="related_deal"/>
+                                    <!-- Add other necessary fields -->
+                                </group>
+                            </form>
+                        </field>
+                    </group>
+                </page>
+            </notebook>
+        </xpath>
+    </field>
+</record>
+</odoo>

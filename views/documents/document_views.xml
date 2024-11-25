@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- =====================================
+         Document Type: Search View
+         ===================================== -->
+    <record id="view_document_type_search" model="ir.ui.view">
+        <field name="name">document.type.search</field>
+        <field name="model">document.type</field>
+        <field name="arch" type="xml">
+            <search string="Search Document Types">
+                <field name="name"/>
+                <field name="document_category"/>
+                <field name="is_active"/>
+                <filter string="Active" domain="[('is_active', '=', True)]"/>
+                <filter string="Inactive" domain="[('is_active', '=', False)]"/>
+                <filter string="Required Documents" domain="[('document_required', '=', True)]"/>
+                <filter string="Optional Documents" domain="[('document_required', '=', False)]"/>
+                <group expand="1" string="Grouping">
+                    <group string="Document Category">
+                        <filter string="Listing Document" domain="[('document_category', '=', 'listing_document')]"/>
+                        <filter string="Deal Document" domain="[('document_category', '=', 'deal_document')]"/>
+                        <filter string="Miscellaneous Document" domain="[('document_category', '=', 'misc_document')]"/>
+                        <filter string="Admin Document" domain="[('document_category', '=', 'admin_document')]"/>
+                    </group>
+                    <group string="Document Requirement">
+                        <filter string="Required" domain="[('document_required', '=', True)]"/>
+                        <filter string="Not Required" domain="[('document_required', '=', False)]"/>
+                    </group>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Document Type: Tree (List) View
+         ===================================== -->
+    <record id="view_document_type_tree" model="ir.ui.view">
+        <field name="name">document.type.tree</field>
+        <field name="model">document.type</field>
+        <field name="arch" type="xml">
+            <tree string="Document Types">
+                <field name="name"/>
+                <field name="document_category"/>
+                <field name="document_required"/>
+                <field name="is_active"/>
+                <field name="is_listing_document"/>
+                <field name="is_deal_document"/>
+                <field name="is_conveyancing_document"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Document Type: Form View
+         ===================================== -->
+    <record id="view_document_type_form" model="ir.ui.view">
+        <field name="name">document.type.form</field>
+        <field name="model">document.type</field>
+        <field name="arch" type="xml">
+            <form string="Document Type">
+                <header>
+                    <field name="is_active" widget="statusbar" statusbar_visible="is_active"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="document_category"/>
+                        <field name="document_required"/>
+                        <field name="is_required_if_status_changes"/>
+                        <field name="seller_end"/>
+                        <field name="buyer_end"/>
+                        <field name="is_listing_document"/>
+                        <field name="is_deal_document"/>
+                        <field name="is_conveyancing_document"/>
+                        <field name="class_ids" widget="many2many_tags"/>
+                        <field name="convey_ids" widget="many2many_tags"/>
+                    </group>
+                    <notebook>
+                        <page string="Deal Status Requirements">
+                            <group>
+                                <field name="required_for_deal_firm"/>
+                                <field name="required_for_deal_pending"/>
+                                <field name="required_for_deal_collapsed"/>
+                                <field name="required_for_deal_close"/>
+                            </group>
+                        </page>
+                        <page string="Listing Status Requirements">
+                            <group>
+                                <field name="required_for_listing_active"/>
+                                <field name="required_for_listing_expired"/>
+                                <field name="required_for_listing_sold"/>
+                                <field name="required_for_listing_cancelled"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Document Type: Kanban View
+         ===================================== -->
+    <record id="view_document_type_kanban" model="ir.ui.view">
+        <field name="name">document.type.kanban</field>
+        <field name="model">document.type</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <header>
+                                <field name="is_active" widget="statusbar" statusbar_visible="is_active"/>
+                            </header>
+                            <div class="o_kanban_details">
+                                <strong><field name="name"/></strong>
+                                <p>
+                                    <strong>Category:</strong> <field name="document_category"/>
+                                </p>
+                                <p>
+                                    <strong>Required:</strong> <field name="document_required"/>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Document Line: Search View
+         ===================================== -->
+    <record id="view_document_line_search" model="ir.ui.view">
+        <field name="name">document.line.search</field>
+        <field name="model">document.line</field>
+        <field name="arch" type="xml">
+            <search string="Search Document Lines">
+                <field name="document_type_id"/>
+                <field name="deal_id"/>
+                <field name="listing_id"/>
+                <field name="is_uploaded"/>
+                <field name="is_approved"/>
+                <filter string="Uploaded" domain="[('is_uploaded', '=', True)]"/>
+                <filter string="Not Uploaded" domain="[('is_uploaded', '=', False)]"/>
+                <filter string="Approved" domain="[('is_approved', '=', True)]"/>
+                <filter string="Not Approved" domain="[('is_approved', '=', False)]"/>
+                <group expand="1" string="Grouping">
+                    <group string="Approval Status">
+                        <filter string="Approved" domain="[('is_approved', '=', True)]"/>
+                        <filter string="Rejected" domain="[('document_review', '=', 'rejected')]"/>
+                        <filter string="Awaiting Approval" domain="[('document_review', '=', 'awaiting')]"/>
+                    </group>
+                    <group string="Upload Status">
+                        <filter string="Uploaded" domain="[('is_uploaded', '=', True)]"/>
+                        <filter string="Not Uploaded" domain="[('is_uploaded', '=', False)]"/>
+                    </group>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Document Line: Tree (List) View
+         ===================================== -->
+    <record id="view_document_line_tree" model="ir.ui.view">
+        <field name="name">document.line.tree</field>
+        <field name="model">document.line</field>
+        <field name="arch" type="xml">
+            <tree string="Document Lines">
+                <field name="document_type_id"/>
+                <field name="deal_id"/>
+                <field name="listing_id"/>
+                <field name="is_uploaded"/>
+                <field name="is_approved"/>
+                <field name="document_review"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Document Line: Form View
+         ===================================== -->
+    <record id="view_document_line_form" model="ir.ui.view">
+        <field name="name">document.line.form</field>
+        <field name="model">document.line</field>
+        <field name="arch" type="xml">
+            <form string="Document Line">
+                <header>
+                    <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                </header>
+                <sheet>
+                    <group>
+                        <field name="document_type_id"/>
+                        <field name="deal_id"/>
+                        <field name="listing_id"/>
+                        <field name="end_id"/>
+                        <field name="document_required"/>
+                        <field name="is_uploaded" readonly="1"/>
+                        <field name="is_approved" readonly="1"/>
+                        <field name="manually_removed"/>
+                    </group>
+                    <group>
+                        <field name="attachment_ids" widget="many2many_binary"/>
+                        <field name="document_review"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Document Line: Kanban View
+         ===================================== -->
+    <record id="view_document_line_kanban" model="ir.ui.view">
+        <field name="name">document.line.kanban</field>
+        <field name="model">document.line</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card">
+                            <header>
+                                <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                            </header>
+                            <div class="o_kanban_details">
+                                <strong><field name="document_type_id"/></strong>
+                                <p>
+                                    <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                </p>
+                                <p>
+                                    <strong>Approved:</strong> <field name="is_approved"/>
+                                </p>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Document Line: Form View for Wizard
+         ===================================== -->
+    <!-- Since DocumentLine is linked to Deal and Listing, ensure that forms for Deal and Listing include DocumentLine -->
+    <!-- Below are example form modifications assuming existing deal.records and listing.records models -->
+
+    <!-- Example: Deal Records Form View Enhancement -->
+    <record id="view_deal_records_form_inherit_documents" model="ir.ui.view">
+        <field name="name">deal.records.form.inherit.documents</field>
+        <field name="model">deal.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_deal_records_form"/> <!-- Replace with actual module and view -->
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Documents">
+                        <field name="document_line_ids" context="{'default_deal_id': active_id}" mode="tree,form,kanban">
+                            <tree string="Document Lines">
+                                <field name="document_type_id"/>
+                                <field name="is_uploaded"/>
+                                <field name="is_approved"/>
+                                <field name="document_review"/>
+                            </tree>
+                            <form string="Document Line">
+                                <group>
+                                    <field name="document_type_id"/>
+                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                    <field name="document_review"/>
+                                </group>
+                            </form>
+                            <kanban>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div class="oe_kanban_card">
+                                            <header>
+                                                <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                            </header>
+                                            <div class="o_kanban_details">
+                                                <strong><field name="document_type_id"/></strong>
+                                                <p>
+                                                    <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                                </p>
+                                                <p>
+                                                    <strong>Approved:</strong> <field name="is_approved"/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Example: Listing Records Form View Enhancement -->
+    <record id="view_listing_records_form_inherit_documents" model="ir.ui.view">
+        <field name="name">listing.records.form.inherit.documents</field>
+        <field name="model">listing.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_listing_records_form"/> <!-- Replace with actual module and view -->
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <notebook>
+                    <page string="Documents">
+                        <field name="document_line_ids" context="{'default_listing_id': active_id}" mode="tree,form,kanban">
+                            <tree string="Document Lines">
+                                <field name="document_type_id"/>
+                                <field name="is_uploaded"/>
+                                <field name="is_approved"/>
+                                <field name="document_review"/>
+                            </tree>
+                            <form string="Document Line">
+                                <group>
+                                    <field name="document_type_id"/>
+                                    <field name="attachment_ids" widget="many2many_binary"/>
+                                    <field name="document_review"/>
+                                </group>
+                            </form>
+                            <kanban>
+                                <templates>
+                                    <t t-name="kanban-box">
+                                        <div class="oe_kanban_card">
+                                            <header>
+                                                <field name="document_review" widget="statusbar" statusbar_visible="awaiting,approved,rejected,re_submitted"/>
+                                            </header>
+                                            <div class="o_kanban_details">
+                                                <strong><field name="document_type_id"/></strong>
+                                                <p>
+                                                    <strong>Uploaded:</strong> <field name="is_uploaded"/>
+                                                </p>
+                                                <p>
+                                                    <strong>Approved:</strong> <field name="is_approved"/>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </t>
+                                </templates>
+                            </kanban>
+                        </field>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Document Management Actions
+         ===================================== -->
+
+    <!-- Document Type Action -->
+    <record id="action_document_type" model="ir.actions.act_window">
+        <field name="name">Document Types</field>
+        <field name="res_model">document.type</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_ids" eval="[
+            (ref('view_document_type_kanban'), 'kanban'),
+            (ref('view_document_type_tree'), 'tree'),
+            (ref('view_document_type_form'), 'form')
+        ]"/>
+        <field name="search_view_id" ref="view_document_type_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create and manage document types to define required and optional documents for deals and listings.
+            </p>
+        </field>
+    </record>
+
+    <!-- Document Line Action -->
+    <record id="action_document_line" model="ir.actions.act_window">
+        <field name="name">Document Lines</field>
+        <field name="res_model">document.line</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="view_ids" eval="[
+            (ref('view_document_line_kanban'), 'kanban'),
+            (ref('view_document_line_tree'), 'tree'),
+            (ref('view_document_line_form'), 'form')
+        ]"/>
+        <field name="search_view_id" ref="view_document_line_search"/>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Manage document lines to track uploaded and approved documents for deals and listings.
+            </p>
+        </field>
+    </record>
+
+    <!-- =====================================
+         Menu Items
+         ===================================== -->
+
+    <!-- Parent Menu for Document Management -->
+    <menuitem id="menu_document_management_root" name="Document Management"
+              parent="agentlink_transaction_manager.menu_agentlink_transaction_manager"
+              sequence="50"/>
+
+    <!-- Document Types Menu -->
+    <menuitem id="menu_document_type" name="Document Types"
+              parent="menu_document_management_root"
+              action="action_document_type"
+              sequence="10"/>
+
+    <!-- Document Lines Menu -->
+    <menuitem id="menu_document_line" name="Document Lines"
+              parent="menu_document_management_root"
+              action="action_document_line"
+              sequence="20"/>
+
+    <!-- =====================================
+         Wizards Integration
+         ===================================== -->
+
+    <!-- Example: Add a button in Deal Records and Listing Records to open the wizard -->
+    <!-- Assuming you have existing form views for deal.records and listing.records, you need to inherit them and add buttons -->
+
+    <!-- Example: Deal Records Form View Enhancement to Open Wizard -->
+    <record id="view_deal_records_form_inherit_wizard" model="ir.ui.view">
+        <field name="name">deal.records.form.inherit.wizard</field>
+        <field name="model">deal.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_deal_records_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(action_sales_agent_team_wizard)d" type="action" string="Apply Team" class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Example: Listing Records Form View Enhancement to Open Wizard -->
+    <record id="view_listing_records_form_inherit_wizard" model="ir.ui.view">
+        <field name="name">listing.records.form.inherit.wizard</field>
+        <field name="model">listing.records</field>
+        <field name="inherit_id" ref="agentlink_transaction_management.view_listing_records_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//header" position="inside">
+                <button name="%(action_sales_agent_team_wizard)d" type="action" string="Apply Team" class="btn-primary"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
