@@ -7,12 +7,6 @@ from odoo.exceptions import ValidationError, UserError
 
 _logger = logging.getLogger(__name__)
 
-try:
-    value = my_dict["key"]
-except KeyError as e:
-    _logger.error(f"KeyError: {e} in my_dict")
-
-
 class DealRecords(models.Model):
     _name = "deal.records"
     _description = "Deal Records"
@@ -77,14 +71,14 @@ class DealRecords(models.Model):
     street_number = fields.Char(string="Street Number", tracking=True)
     street_direction_prefix = fields.Selection(
         selection=[
-            ("east", "East"),
-            ("ne", "NE"),
-            ("nw", "NW"),
-            ("north", "North"),
-            ("se", "SE"),
-            ("sw", "SW"),
-            ("south", "South"),
-            ("west", "West"),
+            ('east', 'East'),
+            ('ne', 'NE'),
+            ('nw', 'NW'),
+            ('north', 'North'),
+            ('se', 'SE'),
+            ('sw', 'SW'),
+            ('south', 'South'),
+            ('west', 'West'),
         ],
         string="Street Direction Prefix",
         tracking=True,
@@ -97,14 +91,14 @@ class DealRecords(models.Model):
     )
     street_direction_suffix = fields.Selection(
         selection=[
-            ("east", "East"),
-            ("ne", "NE"),
-            ("nw", "NW"),
-            ("north", "North"),
-            ("se", "SE"),
-            ("sw", "SW"),
-            ("south", "South"),
-            ("west", "West"),
+            ('east', 'East'),
+            ('ne', 'NE'),
+            ('nw', 'NW'),
+            ('north', 'North'),
+            ('se', 'SE'),
+            ('sw', 'SW'),
+            ('south', 'South'),
+            ('west', 'West'),
         ],
         string="Street Direction Suffix",
         tracking=True,
@@ -157,7 +151,7 @@ class DealRecords(models.Model):
     # Property Details
     # =====================
     property_type_id = fields.Many2one(
-        "property.type",
+        'property.type',
         string="Property Type",
         domain="[('is_active', '=', True)]",
         tracking=True,
@@ -167,7 +161,7 @@ class DealRecords(models.Model):
     title_requested = fields.Boolean(string="Office to Order Title", tracking=True)
     title_ordered = fields.Boolean(string="Title Ordered", tracking=True)
     business_source_id = fields.Many2one(
-        "business.source",
+        'business.source',
         string="Business Source",
         domain="[('is_active', '=', True)]",
         tracking=True,
@@ -212,16 +206,8 @@ class DealRecords(models.Model):
     )
 
     _sql_constraints = [
-        (
-            "deal_listing_unique",
-            "unique(listing_id)",
-            "A listing can be linked to only one deal.",
-        ),
-        (
-            "deal_number_unique",
-            "unique(deal_number)",
-            "The Deal Number must be unique.",
-        ),
+        ('deal_listing_unique', 'unique(listing_id)', 'A listing can be linked to only one deal.'),
+        ('deal_number_unique', 'unique(deal_number)', 'The Deal Number must be unique.'),
     ]
 
     # =====================
@@ -240,6 +226,9 @@ class DealRecords(models.Model):
     # =====================
     buyers_sellers_ids = fields.One2many(
         "buyers.sellers", "deal_id", string="Buyers/Sellers", tracking=True
+    )
+    buyers_sellers_wizard_ids = fields.One2many(
+        "buyers.sellers.wizard", "deal_id", string="Buyers/Sellers", tracking=True
     )
     buyer_names = fields.Char(
         string="Buyer Names",
@@ -302,20 +291,20 @@ class DealRecords(models.Model):
         help="Number of sales agents associated with the deal.",
     )
     sales_agent_mentorship_line_ids = fields.One2many(
-        "sales.agent.mentorship.line",
-        "deal_id",
+        'sales.agent.mentorship.line',
+        'deal_id',
         string="Sales Agent Mentorship Line",
         help="Mentorship records for sales agents.",
     )
-    sales_agent_team_ids = fields.One2many(
-        "sales.agent.team",
-        "deal_id",
-        string="Sales Agent Teams",
-        help="Team records for sales agents.",
+    sales_agent_mentorship_wizard_ids = fields.One2many(
+        'sales.agent.mentorship.wizard',
+        'deal_id',
+        string="Sales Agent Mentorship Wizard",
+        help="Mentorship records for sales agents.",
     )
     commission_advance_ids = fields.One2many(
-        "commission.advance",
-        "deal_id",
+        'commission.advance',
+        'deal_id',
         string="Commission Advances",
         help="Advance commission records.",
     )
@@ -344,6 +333,13 @@ class DealRecords(models.Model):
         string="Other Broker Agents",
         tracking=True,
         help="Other brokerage agents associated with the deal.",
+    )
+    select_broker_wizard_ids = fields.One2many(
+        "select.broker.wizard",
+        "deal_id",
+        string="Other Brokers",
+        tracking=True,
+        help="Other brokerage associated with the deal.",
     )
 
     # =====================
@@ -417,9 +413,7 @@ class DealRecords(models.Model):
         store=True,
     )
 
-    @api.depends(
-        "document_line_ids.document_required", "document_line_ids.manually_removed"
-    )
+    @api.depends("document_line_ids.document_required", "document_line_ids.manually_removed")
     def _compute_required_document_count(self):
         """
         Count the number of required documents.
@@ -438,14 +432,14 @@ class DealRecords(models.Model):
         "commission.line",
         "deal_id",
         string="Total Commission Lines",
-        domain=[("commission_type", "=", "total")],
+        domain=[('commission_type', '=', 'total')],
         tracking=True,
     )
     buyer_side_commission_line_ids = fields.One2many(
         "commission.line",
         "deal_id",
         string="Buyer Side Commission Lines",
-        domain=[("commission_type", "=", "buyer_side")],
+        domain=[('commission_type', '=', 'buyer_side')],
         tracking=True,
     )
 
@@ -528,6 +522,7 @@ class DealRecords(models.Model):
         "deal.preferences",
         string="Deal Preferences",
         tracking=True,
+        domain="[('deal_id', '=', id)]",
         help="Preference related to the deal.",
     )
 
@@ -535,23 +530,11 @@ class DealRecords(models.Model):
     # Transaction Lines
     # =====================
     transaction_line_ids = fields.One2many(
-        "transaction.line",
-        "deal_id",
-        string="Transaction Lines",
+        'transaction.line',
+        'deal_id',
+        string='Transaction Lines',
         help="Transaction lines associated with the deal.",
     )
-
-    # =====================
-    # Payment Auditing
-    # =====================
-    payment_auditing_ids = fields.One2many(
-        "payment.auditing",
-        "deal_id",
-        string="Payment Audits",
-        tracking=True,
-        help="Payment audit records associated with the deal.",
-    )
-
     # =====================
     # Deal Payments
     # =====================
@@ -577,10 +560,18 @@ class DealRecords(models.Model):
     # =====================
     # Deal Confirmation
     # =====================
-    agent_confirmation = fields.Boolean(string="All Info Correct", tracking=True)
-    agent_signature = fields.Char(string="Enter Full Name", tracking=True)
-    brokerage_confirmation = fields.Boolean(string="Office Approval")
-    agent_confirmation_datetime = fields.Datetime(string="Date/Time", tracking=True)
+    agent_confirmation = fields.Boolean(
+        string="All Info Correct", tracking=True
+    )
+    agent_signature = fields.Char(
+        string="Enter Full Name", tracking=True
+    )
+    brokerage_confirmation = fields.Boolean(
+        string="Office Approval"
+    )
+    agent_confirmation_datetime = fields.Datetime(
+        string="Date/Time", tracking=True
+    )
 
     @api.onchange("agent_confirmation")
     def _onchange_agent_confirmation_datetime(self):
@@ -601,25 +592,24 @@ class DealRecords(models.Model):
                 vals.get("offer_date", fields.Date.context_today(self))
             )
             seq_date = offer_date.strftime("%Y-%m-%d")
-            vals["deal_number"] = self.env["ir.sequence"].with_context(
-                force_company=self.env.user.company_id.id
-            ).next_by_code("deal.records", sequence_date=seq_date) or _("New")
+            vals["deal_number"] = (
+                self.env["ir.sequence"]
+                .with_context(force_company=self.env.user.company_id.id)
+                .next_by_code("deal.records", sequence_date=seq_date)
+                or _("New")
+            )
         # Create the Deal Records with commission line population enabled
-        deals = super(
-            DealRecords, self.with_context(populate_commission_lines=True)
-        ).create(vals_list)
+        deals = super(DealRecords, self.with_context(populate_commission_lines=True)).create(vals_list)
         # Update Required Documents
         deals._update_required_documents()
         return deals
 
     def write(self, vals):
-        res = super(
-            DealRecords, self.with_context(populate_commission_lines=True)
-        ).write(vals)
+        res = super(DealRecords, self.with_context(populate_commission_lines=True)).write(vals)
         self._update_required_documents()
         return res
 
-    @api.depends("deal_number")
+    @api.depends('deal_number')
     def _compute_name(self):
         for rec in self:
             rec.name = rec.deal_number or _("Deal")
@@ -644,8 +634,7 @@ class DealRecords(models.Model):
 
             # Fetch existing DocumentLines linked to this deal and required DocumentTypes
             existing_doc_ids = rec.document_line_ids.filtered(
-                lambda d: d.document_type_id.id in required_doc_ids
-                and not d.manually_removed
+                lambda d: d.document_type_id.id in required_doc_ids and not d.manually_removed
             ).mapped("document_type_id.id")
 
             # Determine missing DocumentTypes
@@ -748,10 +737,7 @@ class DealRecords(models.Model):
         """
         for deal in self:
             invoices = self.env["account.move"].search(
-                [
-                    ("deal_id", "=", deal.id),
-                    ("move_type", "in", ["out_invoice", "out_refund"]),
-                ]
+                [("deal_id", "=", deal.id), ("move_type", "in", ["out_invoice", "out_refund"])]
             )
             bills = self.env["account.move"].search(
                 [("deal_id", "=", deal.id), ("move_type", "=", "in_invoice")]
@@ -784,9 +770,7 @@ class DealRecords(models.Model):
                 rec.sales_agents_and_referrals_ids.mapped("percentage_of_end")
             )
             if total_percentage > 100:
-                raise ValidationError(
-                    _("The total Percentage of End should not exceed 100%.")
-                )
+                raise ValidationError(_("The total Percentage of End should not exceed 100%."))
 
     # =====================
     # Override Unlink Method to Handle Related Records

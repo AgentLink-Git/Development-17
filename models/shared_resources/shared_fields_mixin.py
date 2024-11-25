@@ -2,7 +2,6 @@
 
 from odoo import models, fields
 
-
 class SharedFieldsMixin(models.AbstractModel):
     _name = "shared.fields.mixin"
     _description = "Shared Fields Mixin"
@@ -24,6 +23,7 @@ class SharedFieldsMixin(models.AbstractModel):
         "deal.records",
         string="Deal",
         ondelete="cascade",
+        required=False,
         tracking=True,
     )
     deal_number = fields.Char(

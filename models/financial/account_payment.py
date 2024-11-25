@@ -6,7 +6,6 @@ from odoo.exceptions import UserError
 
 _logger = logging.getLogger(__name__)
 
-
 class AccountPaymentExtension(models.Model):
     _inherit = "account.payment"
 
@@ -29,6 +28,11 @@ class AccountPaymentExtension(models.Model):
         index=True,
         tracking=True,
     )
+    is_commission_payment = fields.Boolean(
+        string="Is Commission Payment",
+        default=False,
+        help="Indicates whether this payment is related to a commission.",
+    )
 
     # =====================
     # Override Methods
@@ -40,21 +44,15 @@ class AccountPaymentExtension(models.Model):
         Override create to associate payment with deal if provided.
         Ensures that the payment adheres to financial rules.
         """
-        if vals.get("deal_id"):
-            deal = self.env["deal.records"].browse(vals["deal_id"])
+        if vals.get('deal_id'):
+            deal = self.env['deal.records'].browse(vals['deal_id'])
             if deal.exists():
                 _logger.debug("Associating payment with Deal ID: %s", deal.id)
                 # Validate deal's financial state before creating payment
-                if deal.stage_id.name != "Closed":
-                    raise UserError(
-                        _("Payments can only be made for deals that are closed.")
-                    )
+                if deal.stage_id.name != 'Closed':
+                    raise UserError(_("Payments can only be made for deals that are closed."))
         payment = super(AccountPaymentExtension, self).create(vals)
-        _logger.info(
-            "Created Payment ID: %s for Deal ID: %s",
-            payment.id,
-            payment.deal_id.id if payment.deal_id else "N/A",
-        )
+        _logger.info("Created Payment ID: %s for Deal ID: %s", payment.id, payment.deal_id.id if payment.deal_id else 'N/A')
         return payment
 
     def write(self, vals):
@@ -62,14 +60,12 @@ class AccountPaymentExtension(models.Model):
         Override write to handle updates related to deal association.
         Ensures that any changes comply with financial rules.
         """
-        if vals.get("deal_id"):
-            deal = self.env["deal.records"].browse(vals["deal_id"])
+        if vals.get('deal_id'):
+            deal = self.env['deal.records'].browse(vals['deal_id'])
             if deal.exists():
                 _logger.debug("Updating payment association to Deal ID: %s", deal.id)
-                if deal.stage_id.name != "Closed":
-                    raise UserError(
-                        _("Payments can only be associated with deals that are closed.")
-                    )
+                if deal.stage_id.name != 'Closed':
+                    raise UserError(_("Payments can only be associated with deals that are closed."))
         result = super(AccountPaymentExtension, self).write(vals)
         _logger.info("Updated Payment IDs: %s with vals: %s", self.ids, vals)
         return result
@@ -88,7 +84,7 @@ class AccountPaymentExtension(models.Model):
                     payment.deal_id.id,
                 )
                 # Update deal's funds received
-                if hasattr(payment.deal_id, "update_funds_received"):
+                if hasattr(payment.deal_id, 'update_funds_received'):
                     payment.deal_id.update_funds_received(payment.amount)
                 else:
                     _logger.warning(
@@ -96,7 +92,7 @@ class AccountPaymentExtension(models.Model):
                         payment.deal_id.id,
                     )
                 # Reconcile payment with deal's financial records
-                if hasattr(payment.deal_id, "reconcile_payment"):
+                if hasattr(payment.deal_id, 'reconcile_payment'):
                     payment.deal_id.reconcile_payment(payment)
                 else:
                     _logger.warning(
@@ -118,15 +114,13 @@ class AccountPaymentRegisterExtension(models.TransientModel):
         Override to include deal_id in payment creation if applicable.
         """
         payments = super(AccountPaymentRegisterExtension, self)._create_payments()
-        active_model = self.env.context.get("active_model")
-        active_id = self.env.context.get("active_id")
-        if active_model == "deal.records" and active_id:
-            deal = self.env["deal.records"].browse(active_id)
+        active_model = self.env.context.get('active_model')
+        active_id = self.env.context.get('active_id')
+        if active_model == 'deal.records' and active_id:
+            deal = self.env['deal.records'].browse(active_id)
             if deal.exists():
-                if deal.stage_id.name != "Closed":
-                    raise UserError(
-                        _("Payments can only be registered for deals that are closed.")
-                    )
-                payments.write({"deal_id": deal.id})
+                if deal.stage_id.name != 'Closed':
+                    raise UserError(_("Payments can only be registered for deals that are closed."))
+                payments.write({'deal_id': deal.id})
                 _logger.debug("Associated Payments with Deal ID: %s", deal.id)
         return payments

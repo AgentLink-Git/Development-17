@@ -9,6 +9,7 @@
     "website": "https://brokerfirst.ca",
     "category": "Sales",
     "depends": ["base", "contacts", "mail", "account", "om_account_accountant"],
+	
     "license": "OPL-1",
     "installable": True,
     "application": False,

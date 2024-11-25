@@ -47,7 +47,12 @@ class DealPreferences(models.Model):
         required=True,
         default=lambda self: self.env["brokerage.preferences"].search([], limit=1),
     )
-
+    deal_id = fields.Many2one(
+        "deal.records",
+        string="Deal",
+        ondelete="cascade",
+        help="Reference to the specific deal this preference applies to.",
+    )
     tax_ids = fields.Many2many(
         "account.tax",
         string="Taxes",
@@ -118,20 +123,20 @@ class DealPreferences(models.Model):
         brokerage_prefs = self.env["brokerage.preferences"].search([], limit=1)
         if brokerage_prefs:
             field_mapping = {
-                "tax_ids": "tax_ids",
-                "seller_broker_is_paid_by": "seller_broker_is_paid_by",
-                "buyer_broker_is_paid_by": "buyer_broker_is_paid_by",
-                "who_holds_the_deposit": "who_holds_the_deposit",
-                "seller_broker_pays_trust_excess_to": "seller_broker_pays_trust_excess_to",
-                "buyer_broker_pays_trust_excess_to": "buyer_broker_pays_trust_excess_to",
-                "seller_broker_conveys_to_seller_lawyer": "seller_broker_conveys_to_seller_lawyer",
-                "seller_broker_conveys_to_buyer_lawyer": "seller_broker_conveys_to_buyer_lawyer",
-                "seller_broker_conveys_to_buyer_broker": "seller_broker_conveys_to_buyer_broker",
-                "is_seller_end_or_double_end": "is_seller_end_or_double_end",
-                "buyer_broker_conveys_to_seller_lawyer": "buyer_broker_conveys_to_seller_lawyer",
-                "buyer_broker_conveys_to_buyer_lawyer": "buyer_broker_conveys_to_buyer_lawyer",
-                "buyer_broker_conveys_to_seller_broker": "buyer_broker_conveys_to_seller_broker",
-                "brokerage_deposit_policy": "brokerage_deposit_policy",
+                'tax_ids': 'tax_ids',
+                'seller_broker_is_paid_by': 'seller_broker_is_paid_by',
+                'buyer_broker_is_paid_by': 'buyer_broker_is_paid_by',
+                'who_holds_the_deposit': 'who_holds_the_deposit',
+                'seller_broker_pays_trust_excess_to': 'seller_broker_pays_trust_excess_to',
+                'buyer_broker_pays_trust_excess_to': 'buyer_broker_pays_trust_excess_to',
+                'seller_broker_conveys_to_seller_lawyer': 'seller_broker_conveys_to_seller_lawyer',
+                'seller_broker_conveys_to_buyer_lawyer': 'seller_broker_conveys_to_buyer_lawyer',
+                'seller_broker_conveys_to_buyer_broker': 'seller_broker_conveys_to_buyer_broker',
+                'is_seller_end_or_double_end': 'is_seller_end_or_double_end',
+                'buyer_broker_conveys_to_seller_lawyer': 'buyer_broker_conveys_to_seller_lawyer',
+                'buyer_broker_conveys_to_buyer_lawyer': 'buyer_broker_conveys_to_buyer_lawyer',
+                'buyer_broker_conveys_to_seller_broker': 'buyer_broker_conveys_to_seller_broker',
+                'brokerage_deposit_policy': 'brokerage_deposit_policy',
             }
             for deal_field, brokerage_field in field_mapping.items():
                 if deal_field in fields_list:
@@ -146,26 +151,26 @@ class DealPreferences(models.Model):
                             defaults[deal_field] = value
         return defaults
 
-    @api.onchange("brokerage_preferences_id")
+    @api.onchange('brokerage_preferences_id')
     def _onchange_brokerage_preferences_id(self):
         """Update fields based on selected Brokerage Preferences."""
         prefs = self.brokerage_preferences_id
         if prefs:
             field_mapping = {
-                "tax_ids": "tax_ids",
-                "seller_broker_is_paid_by": "seller_broker_is_paid_by",
-                "buyer_broker_is_paid_by": "buyer_broker_is_paid_by",
-                "who_holds_the_deposit": "who_holds_the_deposit",
-                "seller_broker_pays_trust_excess_to": "seller_broker_pays_trust_excess_to",
-                "buyer_broker_pays_trust_excess_to": "buyer_broker_pays_trust_excess_to",
-                "seller_broker_conveys_to_seller_lawyer": "seller_broker_conveys_to_seller_lawyer",
-                "seller_broker_conveys_to_buyer_lawyer": "seller_broker_conveys_to_buyer_lawyer",
-                "seller_broker_conveys_to_buyer_broker": "seller_broker_conveys_to_buyer_broker",
-                "is_seller_end_or_double_end": "is_seller_end_or_double_end",
-                "buyer_broker_conveys_to_seller_lawyer": "buyer_broker_conveys_to_seller_lawyer",
-                "buyer_broker_conveys_to_buyer_lawyer": "buyer_broker_conveys_to_buyer_lawyer",
-                "buyer_broker_conveys_to_seller_broker": "buyer_broker_conveys_to_seller_broker",
-                "brokerage_deposit_policy": "brokerage_deposit_policy",
+                'tax_ids': 'tax_ids',
+                'seller_broker_is_paid_by': 'seller_broker_is_paid_by',
+                'buyer_broker_is_paid_by': 'buyer_broker_is_paid_by',
+                'who_holds_the_deposit': 'who_holds_the_deposit',
+                'seller_broker_pays_trust_excess_to': 'seller_broker_pays_trust_excess_to',
+                'buyer_broker_pays_trust_excess_to': 'buyer_broker_pays_trust_excess_to',
+                'seller_broker_conveys_to_seller_lawyer': 'seller_broker_conveys_to_seller_lawyer',
+                'seller_broker_conveys_to_buyer_lawyer': 'seller_broker_conveys_to_buyer_lawyer',
+                'seller_broker_conveys_to_buyer_broker': 'seller_broker_conveys_to_buyer_broker',
+                'is_seller_end_or_double_end': 'is_seller_end_or_double_end',
+                'buyer_broker_conveys_to_seller_lawyer': 'buyer_broker_conveys_to_seller_lawyer',
+                'buyer_broker_conveys_to_buyer_lawyer': 'buyer_broker_conveys_to_buyer_lawyer',
+                'buyer_broker_conveys_to_seller_broker': 'buyer_broker_conveys_to_seller_broker',
+                'brokerage_deposit_policy': 'brokerage_deposit_policy',
             }
             for deal_field, brokerage_field in field_mapping.items():
                 value = getattr(prefs, brokerage_field, False)

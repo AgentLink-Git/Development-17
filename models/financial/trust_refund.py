@@ -6,7 +6,6 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-
 class TrustRefund(models.Model):
     _name = "trust.refund"
     _description = "Trust Refund"
@@ -180,16 +179,16 @@ class TrustRefund(models.Model):
     @api.model
     def default_get(self, fields_list):
         res = super(TrustRefund, self).default_get(fields_list)
-        deal_id = res.get("deal_id")
+        deal_id = res.get('deal_id')
         if deal_id:
-            deal = self.env["deal.records"].browse(deal_id)
+            deal = self.env['deal.records'].browse(deal_id)
             deposit_types = []
             if deal.buyer_deposit > 0:
-                deposit_types.append("buyer")
+                deposit_types.append('buyer')
             if deal.seller_deposit > 0:
-                deposit_types.append("seller")
+                deposit_types.append('seller')
             if len(deposit_types) == 1:
-                res["refund_deposit_type"] = deposit_types[0]
+                res['refund_deposit_type'] = deposit_types[0]
         return res
 
     # =====================
@@ -204,32 +203,28 @@ class TrustRefund(models.Model):
                 continue
 
             # Filter transactions based on deposit type
-            if record.refund_deposit_type == "buyer":
+            if record.refund_deposit_type == 'buyer':
                 transactions = record.deal_id.transaction_line_ids.filtered(
-                    lambda t: t.transaction_type in ["trust_receipt", "trust_refund"]
-                    and t.received_from_id == "buyer"
+                    lambda t: t.transaction_type in ['trust_receipt', 'trust_refund']
+                    and t.received_from_id == 'buyer'
                     and t.held_by == "our_office"
                 )
-            elif record.refund_deposit_type == "seller":
+            elif record.refund_deposit_type == 'seller':
                 transactions = record.deal_id.transaction_line_ids.filtered(
-                    lambda t: t.transaction_type in ["trust_receipt", "trust_refund"]
-                    and t.received_from_id == "seller"
+                    lambda t: t.transaction_type in ['trust_receipt', 'trust_refund']
+                    and t.received_from_id == 'seller'
                     and t.held_by == "our_office"
                 )
             else:
-                transactions = self.env["transaction.line"]
+                transactions = self.env['transaction.line']
 
             # Sum amounts to get net trust balance for the deposit type
-            record.trust_balance = sum(transactions.mapped("amount"))
+            record.trust_balance = sum(transactions.mapped('amount'))
 
     @api.depends("trust_balance")
     def _compute_refund_amount(self):
         for record in self:
-            record.amount = (
-                abs(record.trust_balance)
-                if record.trust_balance < 0
-                else record.trust_balance
-            )
+            record.amount = abs(record.trust_balance) if record.trust_balance < 0 else record.trust_balance
 
     # =====================
     # Action Methods
@@ -247,9 +242,7 @@ class TrustRefund(models.Model):
             "trust_deposit_product_id",
         ]
         missing_prefs_fields = [
-            field
-            for field in required_prefs_fields
-            if not getattr(brokerage_prefs, field)
+            field for field in required_prefs_fields if not getattr(brokerage_prefs, field)
         ]
         if missing_prefs_fields:
             raise UserError(
@@ -266,21 +259,15 @@ class TrustRefund(models.Model):
         trust_balance = self.trust_balance
 
         if trust_balance <= 0:
-            raise UserError(
-                _("No available trust balance to refund for the selected deposit type.")
-            )
+            raise UserError(_("No available trust balance to refund for the selected deposit type."))
 
         # Get the partner to refund
         partner = self._get_partner_for_refund()
         if not partner:
-            raise ValidationError(
-                _("No matching buyer/seller found for this transaction.")
-            )
+            raise ValidationError(_("No matching buyer/seller found for this transaction."))
 
         # Create and post refund invoice
-        refund_invoice = self._create_refund_invoice(
-            partner, brokerage_prefs, trust_balance
-        )
+        refund_invoice = self._create_refund_invoice(partner, brokerage_prefs, trust_balance)
         refund_invoice.action_post()
         self.invoice_id = refund_invoice.id
 
@@ -294,24 +281,19 @@ class TrustRefund(models.Model):
         self._create_transaction_line(trust_balance, payment, brokerage_prefs, partner)
 
         # Update fields
-        self.write(
-            {
-                "is_refunded": True,
-                "date_posted": fields.Date.today(),
-            }
-        )
+        self.write({
+            'is_refunded': True,
+            'date_posted': fields.Date.today(),
+        })
 
         # Update deal's deposit amount
-        if self.refund_deposit_type == "buyer":
+        if self.refund_deposit_type == 'buyer':
             deal.buyer_deposit -= self.amount
-        elif self.refund_deposit_type == "seller":
+        elif self.refund_deposit_type == 'seller':
             deal.seller_deposit -= self.amount
 
         # Notification
-        message = (
-            _("A trust refund payment of %s has been successfully created and posted.")
-            % trust_balance
-        )
+        message = _("A trust refund payment of %s has been successfully created and posted.") % trust_balance
         return self._display_notification(_("Payment Created and Posted!"), message)
 
     # =====================
@@ -345,29 +327,25 @@ class TrustRefund(models.Model):
 
         # Create or update a partner record with the collated names
         partner_name = names
-        existing_partner = self.env["res.partner"].search(
-            [("name", "=", partner_name)], limit=1
-        )
+        existing_partner = self.env['res.partner'].search([('name', '=', partner_name)], limit=1)
         if existing_partner:
             return existing_partner
         else:
             # Create a new partner record
             partner_vals = {
-                "name": partner_name,
-                "is_company": False,
-                "customer_rank": 0,
-                "supplier_rank": 0,
+                'name': partner_name,
+                'is_company': False,
+                'customer_rank': 0,
+                'supplier_rank': 0,
             }
-            new_partner = self.env["res.partner"].create(partner_vals)
+            new_partner = self.env['res.partner'].create(partner_vals)
             return new_partner
 
     def _create_refund_invoice(self, partner, brokerage_prefs, amount):
         product = brokerage_prefs.trust_deposit_product_id
         if not product:
             raise UserError(
-                _(
-                    "The 'Trust Deposits' product is not configured in Brokerage Preferences."
-                )
+                _("The 'Trust Deposits' product is not configured in Brokerage Preferences.")
             )
         invoice_line = {
             "product_id": product.id,
@@ -393,23 +371,21 @@ class TrustRefund(models.Model):
         )
         if not payment_method:
             raise UserError(
-                _(
-                    "Manual Out Payment Method is not defined. Please check the configuration."
-                )
+                _("Manual Out Payment Method is not defined. Please check the configuration.")
             )
 
         payment_vals = {
-            "payment_date": fields.Date.today(),
-            "amount": amount,
-            "payment_type": "outbound",
-            "partner_type": "customer",
-            "partner_id": refund_invoice.partner_id.id,
-            "journal_id": brokerage_prefs.trust_bank_account.id,
-            "payment_method_id": payment_method.id,
-            "communication": refund_invoice.name,
-            "deal_id": self.deal_id.id,
+            'payment_date': fields.Date.today(),
+            'amount': amount,
+            'payment_type': 'outbound',
+            'partner_type': 'customer',
+            'partner_id': refund_invoice.partner_id.id,
+            'journal_id': brokerage_prefs.trust_bank_account.id,
+            'payment_method_id': payment_method.id,
+            'communication': refund_invoice.name,
+            'deal_id': self.deal_id.id,
         }
-        payment = self.env["account.payment"].create(payment_vals)
+        payment = self.env['account.payment'].create(payment_vals)
         return payment
 
     def _create_transaction_line(self, amount, payment, brokerage_prefs, partner):
@@ -450,22 +426,22 @@ class TrustRefund(models.Model):
     # Onchange Methods
     # =====================
 
-    @api.onchange("deal_id")
+    @api.onchange('deal_id')
     def _onchange_deal_id(self):
         if not self.deal_id:
             return
         deposit_types = []
         if self.deal_id.buyer_deposit > 0:
-            deposit_types.append(("buyer", "Buyer Deposit"))
+            deposit_types.append(('buyer', 'Buyer Deposit'))
         if self.deal_id.seller_deposit > 0:
-            deposit_types.append(("seller", "Seller Deposit"))
+            deposit_types.append(('seller', 'Seller Deposit'))
 
         if len(deposit_types) == 1:
             self.refund_deposit_type = deposit_types[0][0]
         else:
             self.refund_deposit_type = False
 
-    @api.onchange("refund_deposit_type")
+    @api.onchange('refund_deposit_type')
     def _onchange_refund_deposit_type(self):
         self._compute_trust_balance()
         self._compute_refund_amount()
@@ -474,7 +450,7 @@ class TrustRefund(models.Model):
     # Constraints
     # =====================
 
-    @api.constrains("refund_deposit_type")
+    @api.constrains('refund_deposit_type')
     def _check_refund_deposit_type(self):
         for record in self:
             if not record.refund_deposit_type:

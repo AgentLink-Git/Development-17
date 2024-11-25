@@ -4,7 +4,6 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-
 class TransactionLine(models.Model):
     _name = "transaction.line"
     _description = "Transaction Line"
@@ -33,6 +32,36 @@ class TransactionLine(models.Model):
     # Refund Status
     is_refunded = fields.Boolean(string="Is Refunded", default=False)
 
+    # Partner Computations
+    partner_id = fields.Many2one(
+        "res.partner",
+        string="Partner",
+        related="buyers_sellers_id.partner_id",
+        store=True,
+        readonly=False,  # Set to False if manual override is needed
+    )
+
+    # Partner Type and Transaction Direction
+    partner_type = fields.Selection(
+        [
+            ('other_broker', "Other Broker"),
+            ('law_firm', "Law Firm"),
+            ('sales_agent', "Sales Agent"),
+            ('buyer', "Buyer"),
+            ('seller', "Seller"),
+            ('unlicensed_referral', "Unlicensed Referral"),
+        ],
+        string="Partner Type",
+        help="Type of the partner involved in the transaction.",
+        tracking=True,
+    )
+
+    # Additional Relationships
+    law_firm_id = fields.Many2one("law.firm", string="Law Firm", ondelete="set null")
+    other_broker_id = fields.Many2one("other.broker", string="Other Broker", ondelete="set null")
+    sales_agents_and_referrals_id = fields.Many2one("sales.agents.and.referrals", string="Sales Agent/Referral", ondelete="set null")
+    buyers_sellers_id = fields.Many2one("buyers.sellers", string="Buyer/Seller", ondelete="set null")
+
     # Computed Buyer/Seller Names
     buyer_name = fields.Char(
         string="Buyer Name",
@@ -45,28 +74,26 @@ class TransactionLine(models.Model):
         store=True,
     )
 
-    @api.depends(
-        "deal_id.buyers_sellers_ids.partner_id.name",
-        "deal_id.buyers_sellers_ids.end_id.type",
-    )
+    @api.depends("buyers_sellers_id.partner_id.name", "buyers_sellers_id.end_id.type")
     def _compute_buyer_seller_names(self):
         """
-        Compute the buyer and seller names based on the related deal.
+        Compute the buyer and seller names based on the related buyers_sellers_id.
         """
         for record in self:
-            if not record.deal_id:
+            if not record.buyers_sellers_id:
                 record.buyer_name = ""
                 record.seller_name = ""
                 continue
 
-            buyers = record.deal_id.buyers_sellers_ids.filtered(
-                lambda bs: bs.end_id.type in ["buyer", "tenant"]
-            )
-            sellers = record.deal_id.buyers_sellers_ids.filtered(
-                lambda bs: bs.end_id.type in ["seller", "landlord"]
-            )
-            record.buyer_name = ", ".join(buyers.mapped("partner_id.name"))
-            record.seller_name = ", ".join(sellers.mapped("partner_id.name"))
+            if record.buyers_sellers_id.end_id.type in ["buyer", "tenant"]:
+                record.buyer_name = record.buyers_sellers_id.partner_id.name
+            else:
+                record.buyer_name = ""
+
+            if record.buyers_sellers_id.end_id.type in ["seller", "landlord"]:
+                record.seller_name = record.buyers_sellers_id.partner_id.name
+            else:
+                record.seller_name = ""
 
     # Financial Fields
     amount = fields.Monetary(
@@ -170,7 +197,7 @@ class TransactionLine(models.Model):
         "account.journal",
         string="Bank Account",
         required=True,
-        domain=[("type", "=", "bank")],
+        domain=[('type', '=', 'bank')],
         help="Bank account associated with this transaction.",
         tracking=True,
     )
@@ -180,111 +207,30 @@ class TransactionLine(models.Model):
         required=True,
         tracking=True,
     )
-
-    # Partner and Deal
-    partner_id = fields.Many2one(
-        "res.partner",
-        string="Partner",
-        required=True,
-        tracking=True,
-    )
-
-    # Partner Type and Transaction Direction
-    partner_type = fields.Selection(
-        [
-            ("other_broker", "Other Broker"),
-            ("law_firm", "Law Firm"),
-            ("sales_agent", "Sales Agent"),
-            ("buyer", "Buyer"),
-            ("seller", "Seller"),
-            ("unlicensed_referral", "Unlicensed Referral"),
-        ],
-        string="Partner Type",
-        help="Type of the partner involved in the transaction.",
-        tracking=True,
-    )
     transaction_direction = fields.Selection(
         [
-            ("receipt", "Receipt"),
-            ("payment", "Payment"),
+            ('receipt', "Receipt"),
+            ('payment', "Payment"),
         ],
         string="Transaction Direction",
         required=True,
-        default="receipt",
+        default='receipt',
         help="Direction of the transaction: Receipt or Payment.",
         tracking=True,
     )
 
-    # Additional Relationships
-    law_firm_id = fields.Many2one("law.firm", string="Law Firm", ondelete="set null")
-    other_broker_id = fields.Many2one(
-        "other.broker", string="Other Broker", ondelete="set null"
-    )
-    sales_agent_referral_id = fields.Many2one(
-        "sales.agent.referral", string="Sales Agent/Referral", ondelete="set null"
-    )
-    buyer_seller_id = fields.Many2one(
-        "buyers.sellers", string="Buyer/Seller", ondelete="set null"
-    )
-
     # Payment Entries
     payment_entry_ids = fields.Many2many(
-        "payment.entry",
-        "transaction_line_payment_entry_rel",
-        "transaction_line_id",
-        "payment_entry_id",
+        'payment.entry',
+        'transaction_line_payment_entry_rel',
+        'transaction_line_id',
+        'payment_entry_id',
         string="Payment Entries",
         help="Payment entries associated with this transaction.",
     )
 
-    # =====================
-    # Trust Balance Computations
-    # =====================
-
-    trust_balance = fields.Monetary(
-        string="Trust Balance",
-        compute="_compute_trust_balance",
-        store=True,
-        currency_field="currency_id",
-    )
-    trust_excess_balance = fields.Monetary(
-        string="Excess Trust Balance",
-        compute="_compute_excess_trust_balance",
-        store=True,
-        currency_field="currency_id",
-    )
-
-    @api.depends(
-        "deal_id.transaction_line_ids.amount", "deal_id.transaction_line_ids.held_by"
-    )
-    def _compute_trust_balance(self):
-        """
-        Compute trust balance for each transaction based on related deal and transactions.
-        """
-        for record in self:
-            if not record.deal_id:
-                record.trust_balance = 0.0
-                continue
-
-            # Filter transactions related to the deal that are trust receipts or refunds held by our office
-            trust_transactions = record.deal_id.transaction_line_ids.filtered(
-                lambda t: t.transaction_type in ["trust_receipt", "trust_refund"]
-                and t.held_by == "our_office"
-            )
-            record.trust_balance = sum(trust_transactions.mapped("amount"))
-
-    @api.depends("trust_balance", "amount")
-    def _compute_excess_trust_balance(self):
-        """
-        Compute excess trust balance.
-        """
-        for record in self:
-            record.trust_excess_balance = max(0.0, record.trust_balance - record.amount)
-
-    # =====================
     # Onchange Methods
-    # =====================
-    @api.onchange("journal_id", "transaction_direction", "partner_type")
+    @api.onchange('journal_id', 'transaction_direction', 'partner_type')
     def _onchange_journal_transaction_partner_type(self):
         """
         Dynamically suggest bank account based on journal and partner type.
@@ -293,7 +239,7 @@ class TransactionLine(models.Model):
             self.bank_account_id = False
             return
 
-        brokerage_prefs = self.env["brokerage.preferences"].search([], limit=1)
+        brokerage_prefs = self.env['brokerage.preferences'].search([], limit=1)
         if not brokerage_prefs:
             self.bank_account_id = False
             return
@@ -301,65 +247,39 @@ class TransactionLine(models.Model):
         journals = self.get_payment_journals()
         self.bank_account_id = journals[0].id if journals else False
 
-    # =====================
     # Helper Methods
-    # =====================
-
     def get_payment_journals(self):
         """
         Retrieve payment journals based on direction and partner type.
         """
         self.ensure_one()
-        brokerage_prefs = self.env["brokerage.preferences"].search([], limit=1)
+        brokerage_prefs = self.env['brokerage.preferences'].search([], limit=1)
         if not brokerage_prefs:
             return []
 
         journals = []
-        if self.transaction_direction == "payment":
-            if self.partner_type == "other_broker":
+        if self.transaction_direction == 'payment':
+            if self.partner_type == 'other_broker':
                 if brokerage_prefs.pay_brokers_from:
                     journals.append(brokerage_prefs.pay_brokers_from)
-                if (
-                    brokerage_prefs.split_the_broker_payment
-                    and brokerage_prefs.pay_broker_split_payment_from
-                ):
+                if brokerage_prefs.split_the_broker_payment and brokerage_prefs.pay_broker_split_payment_from:
                     journals.append(brokerage_prefs.pay_broker_split_payment_from)
-            elif self.partner_type == "law_firm" and brokerage_prefs.pay_law_firms_from:
+            elif self.partner_type == 'law_firm' and brokerage_prefs.pay_law_firms_from:
                 journals.append(brokerage_prefs.pay_law_firms_from)
-            elif (
-                self.partner_type == "sales_agent"
-                and brokerage_prefs.pay_sales_agents_from
-            ):
+            elif self.partner_type == 'sales_agent' and brokerage_prefs.pay_sales_agents_from:
                 journals.append(brokerage_prefs.pay_sales_agents_from)
-            elif (
-                self.partner_type in ["buyer", "seller"]
-                and brokerage_prefs.pay_buyers_and_sellers_from
-            ):
+            elif self.partner_type in ['buyer', 'seller'] and brokerage_prefs.pay_buyers_and_sellers_from:
                 journals.append(brokerage_prefs.pay_buyers_and_sellers_from)
-            elif (
-                self.partner_type == "unlicensed_referral"
-                and brokerage_prefs.pay_unlicensed_referrals_from
-            ):
+            elif self.partner_type == 'unlicensed_referral' and brokerage_prefs.pay_unlicensed_referrals_from:
                 journals.append(brokerage_prefs.pay_unlicensed_referrals_from)
-        elif self.transaction_direction == "receipt":
-            if (
-                self.partner_type == "other_broker"
-                and brokerage_prefs.receipt_brokers_to
-            ):
+        elif self.transaction_direction == 'receipt':
+            if self.partner_type == 'other_broker' and brokerage_prefs.receipt_brokers_to:
                 journals.append(brokerage_prefs.receipt_brokers_to)
-            elif (
-                self.partner_type == "law_firm" and brokerage_prefs.receipt_law_firms_to
-            ):
+            elif self.partner_type == 'law_firm' and brokerage_prefs.receipt_law_firms_to:
                 journals.append(brokerage_prefs.receipt_law_firms_to)
-            elif (
-                self.partner_type == "sales_agent"
-                and brokerage_prefs.receipt_sales_agents_to
-            ):
+            elif self.partner_type == 'sales_agent' and brokerage_prefs.receipt_sales_agents_to:
                 journals.append(brokerage_prefs.receipt_sales_agents_to)
-            elif (
-                self.partner_type in ["buyer", "seller"]
-                and brokerage_prefs.receipt_buyers_and_sellers_to
-            ):
+            elif self.partner_type in ['buyer', 'seller'] and brokerage_prefs.receipt_buyers_and_sellers_to:
                 journals.append(brokerage_prefs.receipt_buyers_and_sellers_to)
         return [journal for journal in journals if journal]
 
@@ -371,16 +291,12 @@ class TransactionLine(models.Model):
         if not account:
             return 0.0
 
-        balance_data = self.env["account.move.line"].read_group(
-            [("account_id", "=", account.id), ("move_id.state", "=", "posted")],
-            ["debit", "credit"],
-            ["account_id"],
+        balance_data = self.env['account.move.line'].read_group(
+            [('account_id', '=', account.id), ('move_id.state', '=', 'posted')],
+            ['debit', 'credit'],
+            ['account_id']
         )
-        return (
-            balance_data[0]["credit"] - balance_data[0]["debit"]
-            if balance_data
-            else 0.0
-        )
+        return balance_data[0]['credit'] - balance_data[0]['debit'] if balance_data else 0.0
 
     def process_split_payment(self, total_amount, journals):
         """
@@ -395,30 +311,22 @@ class TransactionLine(models.Model):
                 continue
 
             pay_amount = min(balance, remaining_amount)
-            sequence_code = (
-                "payment.cheque" if "cheque" in journal.name.lower() else "payment.eft"
-            )
+            sequence_code = "payment.cheque" if 'cheque' in journal.name.lower() else "payment.eft"
             sequence = self.env["ir.sequence"].next_by_code(sequence_code) or "/"
 
-            payment_entry = self.env["payment.entry"].create(
-                {
-                    "deal_id": self.deal_id.id,
-                    "partner_id": self.partner_id.id,
-                    "payment_method": "cheque"
-                    if "cheque" in journal.name.lower()
-                    else "eft",
-                    "sequence_number": sequence,
-                    "payment_date": self.date_posted
-                    if self.transaction_direction == "payment"
-                    else self.date_received,
-                    "type_of_payment": "payment",
-                    "state": "draft",
-                    "bank_journal_id": journal.id,
-                    "amount": pay_amount,
-                    "transaction_type": self.transaction_type,
-                    "transaction_line_ids": [(4, self.id)],
-                }
-            )
+            payment_entry = self.env['payment.entry'].create({
+                'deal_id': self.deal_id.id,
+                'partner_id': self.partner_id.id,
+                'payment_method': 'cheque' if 'cheque' in journal.name.lower() else 'eft',
+                'sequence_number': sequence,
+                'payment_date': self.date_posted if self.transaction_direction == 'payment' else self.date_received,
+                'type_of_payment': 'payment',
+                'state': 'draft',
+                'bank_journal_id': journal.id,
+                'amount': pay_amount,
+                'transaction_type': self.transaction_type,
+                'transaction_line_ids': [(4, self.id)],
+            })
             created_payments.append(payment_entry)
             self.payment_entry_ids = [(4, payment_entry.id)]
 
@@ -427,29 +335,19 @@ class TransactionLine(models.Model):
                 break
 
         if remaining_amount > 0:
-            raise UserError(
-                _(
-                    "Not enough funds in the designated journals to complete the payment."
-                )
-            )
+            raise UserError(_("Not enough funds in the designated journals to complete the payment."))
 
         return created_payments
 
-    # =====================
     # Name Get Method
-    # =====================
     def name_get(self):
         """
         Custom display name for transaction lines.
         """
         result = []
         for record in self:
-            deal_number = (
-                record.deal_id.deal_number if record.deal_id else "No Deal Number"
-            )
-            trans_type = dict(self._fields["transaction_type"].selection).get(
-                record.transaction_type, "Unknown"
-            )
+            deal_number = record.deal_number if record.deal_number else "No Deal Number"
+            trans_type = dict(self._fields['transaction_type'].selection).get(record.transaction_type, 'Unknown')
             name = f"{deal_number} - {trans_type}"
             result.append((record.id, name))
         return result
