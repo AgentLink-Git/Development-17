@@ -11,20 +11,12 @@ class SharedFieldsMixin(models.AbstractModel):
         string="Company",
         default=lambda self: self.env.company,
         required=True,
-        tracking=True,
     )
     currency_id = fields.Many2one(
         "res.currency",
         related="company_id.currency_id",
         string="Currency",
         readonly=True,
-    )
-    deal_id = fields.Many2one(
-        "deal.records",
-        string="Deal",
-        ondelete="cascade",
-        required=False,
-        tracking=True,
     )
     deal_number = fields.Char(
         string="Deal Number",

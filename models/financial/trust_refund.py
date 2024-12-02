@@ -134,6 +134,11 @@ class TrustRefund(models.Model):
     # =====================
     # Relationships
     # =====================
+    deal_id = fields.Many2one(
+        "deal.records",
+        string="Deal",
+        ondelete="cascade",
+    )
     transaction_line_ids = fields.One2many(
         "transaction.line",
         "trust_refund_id",

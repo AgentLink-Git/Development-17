@@ -6,27 +6,21 @@ from odoo.exceptions import ValidationError, UserError
 
 _logger = logging.getLogger(__name__)
 
-
 class LawFirm(models.Model):
     _name = "law.firm"
     _description = "Law Firm"
-    _inherits = {"res.partner": "partner_id"}
-    _inherit = [
-        "mail.thread",
-        "mail.activity.mixin",
-        "notification.mixin",
-        "shared.fields.mixin",
-    ]
+    _inherits = {'res.partner': 'partner_id'}
+    _inherit = ["mail.thread", "mail.activity.mixin", "notification.mixin", "shared.fields.mixin"]
     _rec_name = "id"
 
     # Inherited Partner
     partner_id = fields.Many2one(
-        "res.partner",
-        string="Partner",
+        'res.partner',
+        string='Partner',
         required=True,
-        ondelete="cascade",
-        domain=[("is_law_firm", "=", True)],
-        tracking=True,
+        ondelete='cascade',
+        domain=[('is_law_firm', '=', True)],
+        tracking=True
     )
 
     # Status for this deal
@@ -38,11 +32,18 @@ class LawFirm(models.Model):
     )
 
     # Relationships
+    deal_id = fields.Many2one(
+        'deal.records',
+        string='Deal',
+        required=True,
+        ondelete='cascade',
+        tracking=True,
+    )
     lawyer_ids = fields.One2many(
         "lawyer",
         "lawyer_id",
         string="Lawyers",
-        ondelete="cascade",
+        ondelete='cascade',
         domain=[("is_lawyer", "=", True)],
         tracking=True,
     )
@@ -51,6 +52,13 @@ class LawFirm(models.Model):
         compute="_compute_transaction_line_ids",
         string="Transaction Lines",
         store=False,
+    )
+    account_move_id = fields.Many2one(
+        "account.move",
+        string="Account Move",
+        ondelete="cascade",
+        required=True,
+        help="Related Account Move.",
     )
 
     # Basic Fields
@@ -138,41 +146,31 @@ class LawFirm(models.Model):
             if record.active_status == "active":
                 if self._active_firm_exists(record):
                     raise ValidationError(
-                        _(
-                            "Only one active law firm is allowed per end (Buyer or Seller)."
-                        )
+                        _("Only one active law firm is allowed per end (Buyer or Seller).")
                     )
             elif record.active_status == "archived":
                 self._delete_existing_archived_firm(record)
 
     def _active_firm_exists(self, record):
         """Check if another active firm exists for the same end."""
-        active_firms = self.search(
-            [
-                ("deal_id", "=", record.deal_id.id),
-                ("end_id", "=", record.end_id.id),
-                ("active_status", "=", "active"),
-                ("id", "!=", record.id),
-            ]
-        )
+        active_firms = self.search([
+            ("deal_id", "=", record.deal_id.id),
+            ("end_id", "=", record.end_id.id),
+            ("active_status", "=", "active"),
+            ("id", "!=", record.id),
+        ])
         return bool(active_firms)
 
     def _delete_existing_archived_firm(self, record):
         """Delete any existing archived law firm for the same end."""
-        archived_firms = self.search(
-            [
-                ("deal_id", "=", record.deal_id.id),
-                ("end_id", "=", record.end_id.id),
-                ("active_status", "=", "archived"),
-                ("id", "!=", record.id),
-            ]
-        )
+        archived_firms = self.search([
+            ("deal_id", "=", record.deal_id.id),
+            ("end_id", "=", record.end_id.id),
+            ("active_status", "=", "archived"),
+            ("id", "!=", record.id),
+        ])
         if archived_firms:
-            _logger.info(
-                "Deleting existing archived law firm for Deal ID: %s, End ID: %s",
-                record.deal_id.id,
-                record.end_id.id,
-            )
+            _logger.info("Deleting existing archived law firm for Deal ID: %s, End ID: %s", record.deal_id.id, record.end_id.id)
             archived_firms.unlink()
 
     # Override Create Method
@@ -180,29 +178,25 @@ class LawFirm(models.Model):
     def create(self, vals):
         """Create a new law firm and mark as company law firm."""
         res = super(LawFirm, self).create(vals)
-        res.partner_id.write(
-            {
-                "is_company": True,
-                "is_law_firm": True,
-                "company_id": res.company_id.id,
-            }
-        )
+        res.partner_id.write({
+            "is_company": True,
+            "is_law_firm": True,
+            "company_id": res.company_id.id,
+        })
         return res
 
     # Override Write Method to Handle Archiving Logic
     def write(self, vals):
         """Update the law firm record and apply archiving rules."""
-        if "active_status" in vals and vals["active_status"] == "archived":
+        if 'active_status' in vals and vals['active_status'] == 'archived':
             for record in self:
                 self._delete_existing_archived_firm(record)
         res = super(LawFirm, self).write(vals)
-        self.partner_id.write(
-            {
-                "is_company": True,
-                "is_law_firm": True,
-                "company_id": self.company_id.id,
-            }
-        )
+        self.partner_id.write({
+            "is_company": True,
+            "is_law_firm": True,
+            "company_id": self.company_id.id,
+        })
         return res
 
     # Onchange Methods
@@ -222,32 +216,24 @@ class LawFirm(models.Model):
         """Determine the type of financial relationship with the law firm."""
         for rec in self:
             if rec.active_status == "active":
-                rec.payment_type = (
-                    "ar"
-                    if rec.due_from_law_firm > 0
-                    else "ap"
-                    if rec.due_to_law_firm > 0
-                    else "no"
-                )
+                rec.payment_type = "ar" if rec.due_from_law_firm > 0 else "ap" if rec.due_to_law_firm > 0 else "no"
             else:
                 rec.payment_type = "no"
 
     @api.depends(
-        "deal_id.due_from_buyer_lawyer",
-        "deal_id.due_to_buyer_lawyer",
-        "deal_id.due_from_seller_lawyer",
-        "deal_id.due_to_seller_lawyer",
-        "end_id.type",
+        'deal_id.due_from_buyer_law_firm', 'deal_id.due_to_buyer_law_firm', 
+        'deal_id.due_from_seller_law_firm', 'deal_id.due_to_seller_law_firm', 
+        'end_id.type'
     )
     def _compute_financials(self):
         """Aggregate amounts due from and due to the law firm based on their end."""
         for rec in self:
-            if rec.end_id.type in ["buyer", "tenant"]:
-                rec.due_from_law_firm = rec.deal_id.due_from_buyer_lawyer or 0.0
-                rec.due_to_law_firm = rec.deal_id.due_to_buyer_lawyer or 0.0
-            elif rec.end_id.type in ["seller", "landlord"]:
-                rec.due_from_law_firm = rec.deal_id.due_from_seller_lawyer or 0.0
-                rec.due_to_law_firm = rec.deal_id.due_to_seller_lawyer or 0.0
+            if rec.end_id.type in ['buyer', 'tenant']:
+                rec.due_from_law_firm = rec.deal_id.due_from_buyer_law_firm or 0.0
+                rec.due_to_law_firm = rec.deal_id.due_to_buyer_law_firm or 0.0
+            elif rec.end_id.type in ['seller', 'landlord']:
+                rec.due_from_law_firm = rec.deal_id.due_from_seller_law_firm or 0.0
+                rec.due_to_law_firm = rec.deal_id.due_to_seller_law_firm or 0.0
             else:
                 rec.due_from_law_firm = 0.0
                 rec.due_to_law_firm = 0.0
@@ -257,12 +243,10 @@ class LawFirm(models.Model):
         """Link related transaction lines for the law firm."""
         for record in self:
             if record.deal_id and record.partner_id:
-                record.transaction_line_ids = self.env["transaction.line"].search(
-                    [
-                        ("deal_id", "=", record.deal_id.id),
-                        ("partner_id", "=", record.partner_id.id),
-                    ]
-                )
+                record.transaction_line_ids = self.env["transaction.line"].search([
+                    ("deal_id", "=", record.deal_id.id),
+                    ("partner_id", "=", record.partner_id.id)
+                ])
             else:
                 record.transaction_line_ids = False
 
@@ -281,26 +265,15 @@ class LawFirm(models.Model):
             [("name", "=", self.payment_method), ("type", "=", "bank")], limit=1
         )
         if not journal:
-            _logger.warning(
-                "No bank journal found for payment method '%s'.", self.payment_method
-            )
-            raise UserError(
-                _("No bank journal found for payment method '%s'.")
-                % self.payment_method
-            )
+            _logger.warning("No bank journal found for payment method '%s'.", self.payment_method)
+            raise UserError(_("No bank journal found for payment method '%s'.") % self.payment_method)
 
         partner_bank = self.partner_id.bank_ids.filtered(
             lambda b: b.company_id == self.company_id
         )
         if not partner_bank:
-            _logger.warning(
-                "No bank account found for Law Firm partner in company '%s'.",
-                self.company_id.name,
-            )
-            raise UserError(
-                _("No bank account found for the Law Firm partner in company '%s'.")
-                % self.company_id.name
-            )
+            _logger.warning("No bank account found for Law Firm partner in company '%s'.", self.company_id.name)
+            raise UserError(_("No bank account found for the Law Firm partner in company '%s'.") % self.company_id.name)
 
         return partner_bank[0].id, journal.id
 

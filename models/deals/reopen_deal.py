@@ -1,5 +1,11 @@
 # models/deals/reopen_deal.py
 
+"""
+Module for handling the reopening of Deal Records, including reversing financial operations,
+commission calculations, invoice adjustments, and updating deal stages. It also manages
+notifications and audit logging for transparency and tracking.
+"""
+
 import logging
 from odoo import models, fields, api, _
 from odoo.exceptions import UserError, ValidationError
@@ -8,7 +14,12 @@ _logger = logging.getLogger(__name__)
 
 
 class DealRecords(models.Model):
-    _inherit = "deal.records"
+    """
+    Inherited model from 'deal.records' to handle the reopening of deals,
+    including reversing financial transactions, resetting commission calculations,
+    updating the deal stage, sending notifications, and creating audit logs.
+    """
+    _inherit = 'deal.records'
 
     # =====================
     # Methods for Reopening Deals
@@ -38,9 +49,7 @@ class DealRecords(models.Model):
         if not reopened_stage:
             _logger.error("Reopened stage not found in module 'your_module'.")
             raise UserError(
-                _(
-                    "Reopened stage not found. Please ensure it is defined in your module."
-                )
+                _("Reopened stage not found. Please ensure it is defined in your module.")
             )
         self.stage_id = reopened_stage.id
         _logger.info("Deal '%s' moved to stage '%s'.", self.name, reopened_stage.name)
@@ -48,7 +57,9 @@ class DealRecords(models.Model):
         # Post Notification
         message = _("Deal has been reopened successfully.")
         self.message_post(
-            body=message, message_type="notification", subtype_xmlid="mail.mt_note"
+            body=message,
+            message_type="notification",
+            subtype_xmlid="mail.mt_note"
         )
         _logger.info("Notification sent for Deal ID: %s: %s", self.id, message)
 
@@ -86,20 +97,12 @@ class DealRecords(models.Model):
             [
                 ("deal_id", "=", self.id),
                 ("move_type", "=", "entry"),
-                (
-                    "ref",
-                    "ilike",
-                    f"{self.deal_number} Transfer money from Trust Account to Operating Account",
-                ),
+                ("ref", "ilike", f"{self.deal_number} Transfer money from Trust Account to Operating Account"),
                 ("state", "=", "posted"),
             ]
         )
         for allocation in allocations:
-            _logger.info(
-                "Reverting allocation entry ID: %s for Deal ID: %s",
-                allocation.id,
-                self.id,
-            )
+            _logger.info("Reverting allocation entry ID: %s for Deal ID: %s", allocation.id, self.id)
             allocation.button_draft()
             allocation.unlink()
             _logger.info("Allocation entry ID: %s reverted and deleted.", allocation.id)
@@ -116,18 +119,12 @@ class DealRecords(models.Model):
             ]
         )
         for invoice in invoices:
-            _logger.info(
-                "Reverting Invoice ID: %s for Deal ID: %s", invoice.id, self.id
-            )
-            reversal_move = invoice._reverse_moves(
-                default_values_list=[
-                    {
-                        "journal_id": invoice.journal_id.id,
-                        "date": fields.Date.context_today(self),
-                        "ref": _("Reversal of: %s") % invoice.name,
-                    }
-                ]
-            )
+            _logger.info("Reverting Invoice ID: %s for Deal ID: %s", invoice.id, self.id)
+            reversal_move = invoice._reverse_moves(default_values_list=[{
+                'journal_id': invoice.journal_id.id,
+                'date': fields.Date.context_today(self),
+                'ref': _('Reversal of: %s') % invoice.name,
+            }])
             reversal_move.action_post()
             _logger.info("Invoice ID: %s reversed successfully.", invoice.id)
 
@@ -144,15 +141,11 @@ class DealRecords(models.Model):
         )
         for bill in bills:
             _logger.info("Reverting Bill ID: %s for Deal ID: %s", bill.id, self.id)
-            reversal_move = bill._reverse_moves(
-                default_values_list=[
-                    {
-                        "journal_id": bill.journal_id.id,
-                        "date": fields.Date.context_today(self),
-                        "ref": _("Reversal of: %s") % bill.name,
-                    }
-                ]
-            )
+            reversal_move = bill._reverse_moves(default_values_list=[{
+                'journal_id': bill.journal_id.id,
+                'date': fields.Date.context_today(self),
+                'ref': _('Reversal of: %s') % bill.name,
+            }])
             reversal_move.action_post()
             _logger.info("Bill ID: %s reversed successfully.", bill.id)
 
@@ -168,16 +161,10 @@ class DealRecords(models.Model):
             ]
         )
         for payment in payments:
-            _logger.info(
-                "Reverting Internal Transfer Payment ID: %s for Deal ID: %s",
-                payment.id,
-                self.id,
-            )
+            _logger.info("Reverting Internal Transfer Payment ID: %s for Deal ID: %s", payment.id, self.id)
             payment.action_draft()
             payment.unlink()
-            _logger.info(
-                "Internal Transfer Payment ID: %s reverted and deleted.", payment.id
-            )
+            _logger.info("Internal Transfer Payment ID: %s reverted and deleted.", payment.id)
 
     def _revert_offset_journal_entries(self):
         """
@@ -191,11 +178,7 @@ class DealRecords(models.Model):
             ]
         )
         for entry in offset_entries:
-            _logger.info(
-                "Reverting Offset Journal Entry ID: %s for Deal ID: %s",
-                entry.id,
-                self.id,
-            )
+            _logger.info("Reverting Offset Journal Entry ID: %s for Deal ID: %s", entry.id, self.id)
             entry.button_draft()
             entry.unlink()
             _logger.info("Offset Journal Entry ID: %s reverted and deleted.", entry.id)
@@ -212,9 +195,7 @@ class DealRecords(models.Model):
             ]
         )
         for payment in payments:
-            _logger.info(
-                "Reverting Pre-Payment ID: %s for Deal ID: %s", payment.id, self.id
-            )
+            _logger.info("Reverting Pre-Payment ID: %s for Deal ID: %s", payment.id, self.id)
             payment.action_draft()
             payment.unlink()
             _logger.info("Pre-Payment ID: %s reverted and deleted.", payment.id)
@@ -223,12 +204,10 @@ class DealRecords(models.Model):
         """
         Undo reconciliations related to the deal.
         """
-        move_lines = self.env["account.move.line"].search(
-            [
-                ("move_id.deal_id", "=", self.id),
-                ("reconciled", "=", True),
-            ]
-        )
+        move_lines = self.env['account.move.line'].search([
+            ('move_id.deal_id', '=', self.id),
+            ('reconciled', '=', True),
+        ])
         if move_lines:
             move_lines.remove_move_reconcile()
             _logger.info("Reconciliations undone for Deal ID: %s", self.id)
@@ -244,22 +223,16 @@ class DealRecords(models.Model):
             ]
         )
         for line in transaction_lines:
-            _logger.info(
-                "Cancelling Transaction Line ID: %s for Deal ID: %s", line.id, self.id
-            )
-            line.state = "cancelled"
+            _logger.info("Cancelling Transaction Line ID: %s for Deal ID: %s", line.id, self.id)
+            line.state = 'cancelled'
             _logger.info("Transaction Line ID: %s cancelled.", line.id)
 
     def _reset_commission_calculations(self):
         """
         Reset commission calculations for the sales agents associated with the deal.
         """
-        for agent_line in self.sales_agents_and_referrals_ids.filtered(
-            lambda a: a.payment_type == "sales_agent"
-        ):
-            _logger.info(
-                "Resetting commission calculations for Agent Line ID: %s", agent_line.id
-            )
+        for agent_line in self.sales_agents_and_referrals_ids.filtered(lambda a: a.payment_type == 'sales_agent'):
+            _logger.info("Resetting commission calculations for Agent Line ID: %s", agent_line.id)
             agent_line.gross_amount = 0.0
             agent_line.commission_amount = 0.0
             agent_line.split_fees = 0.0
@@ -269,14 +242,9 @@ class DealRecords(models.Model):
             partner = agent_line.partner_id
             if partner:
                 # Recompute cumulative gross commissions excluding this deal
-                cumulative_gross = partner.get_cumulative_gross_commissions(
-                    exclude_deal_id=self.id
-                )
+                cumulative_gross = partner.get_cumulative_gross_commissions(exclude_deal_id=self.id)
                 partner.cumulative_gross_commissions = cumulative_gross
-                _logger.info(
-                    "Cumulative gross commissions updated for Partner ID: %s",
-                    partner.id,
-                )
+                _logger.info("Cumulative gross commissions updated for Partner ID: %s", partner.id)
 
     def _create_audit_log(self):
         """
@@ -289,11 +257,33 @@ class DealRecords(models.Model):
                 "user_id": self.env.user.id,
                 "action": "reopened",
                 "timestamp": fields.Datetime.now(),
-                "notes": _(
-                    "Deal has been reopened and related financial entries have been reversed."
-                ),
+                "notes": _("Deal has been reopened and related financial entries have been reversed."),
             }
         )
-        _logger.info(
-            "Audit log created with ID: %s for Deal ID: %s", audit_log.id, self.id
-        )
+        _logger.info("Audit log created with ID: %s for Deal ID: %s", audit_log.id, self.id)
+
+    # =====================
+    # Constraints
+    # =====================
+
+    @api.constrains('is_closed')
+    def _check_deal_reopen_constraints(self):
+        """
+        Ensure that only deals marked as closed can be reopened.
+        """
+        for deal in self:
+            if not deal.is_closed:
+                raise ValidationError(_("Only closed deals can be reopened."))
+
+    # =====================
+    # Override Unlink Method
+    # =====================
+
+    def unlink(self):
+        """
+        Override the unlink method to prevent deletion of reopened deals and handle related records.
+        """
+        for deal in self:
+            if deal.is_closed:
+                raise UserError(_("Closed deals cannot be deleted."))
+        return super(DealRecords, self).unlink()

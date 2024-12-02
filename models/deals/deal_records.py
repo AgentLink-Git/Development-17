@@ -1,5 +1,10 @@
 # models/deals/deal_records.py
 
+"""
+Module for managing Deal Records, including creation, updates, and associations with brokers,
+agents, documents, and financial transactions.
+"""
+
 import uuid
 import logging
 from odoo import models, fields, api, _
@@ -7,7 +12,12 @@ from odoo.exceptions import ValidationError, UserError
 
 _logger = logging.getLogger(__name__)
 
+
 class DealRecords(models.Model):
+    """
+    Model representing Deal Records, handling all aspects of a real estate deal,
+    including broker associations, financial transactions, and related documents.
+    """
     _name = "deal.records"
     _description = "Deal Records"
     _order = "possession_date desc"
@@ -15,8 +25,9 @@ class DealRecords(models.Model):
         "mail.thread",
         "mail.activity.mixin",
         "address.compute.mixin",
-        "commission.setup.mixin",
         "commission.favourite.mixin",
+        "commission.setup.mixin",
+        "notification.mixin",
     ]
 
     # =====================
@@ -63,7 +74,12 @@ class DealRecords(models.Model):
         string="Journal Entries",
         help="Journal entries related to this deal.",
     )
-
+    account_move_line_ids = fields.One2many(
+        'account.move.line',
+        'deal_id',
+        string='Journal Items',
+        help='Journal items related to this deal.',
+    )
     # =====================
     # Address & Legal Description
     # =====================
@@ -130,7 +146,10 @@ class DealRecords(models.Model):
     # End - We Represent
     # =====================
     end_id = fields.Many2one(
-        "deal.end", string="We Represent", tracking=True, index=True
+        "deal.end",
+        string="We Represent",
+        tracking=True,
+        index=True
     )
 
     # =====================
@@ -205,11 +224,6 @@ class DealRecords(models.Model):
         help="Related listing record.",
     )
 
-    _sql_constraints = [
-        ('deal_listing_unique', 'unique(listing_id)', 'A listing can be linked to only one deal.'),
-        ('deal_number_unique', 'unique(deal_number)', 'The Deal Number must be unique.'),
-    ]
-
     # =====================
     # Deal Class
     # =====================
@@ -225,10 +239,16 @@ class DealRecords(models.Model):
     # Buyers/Sellers
     # =====================
     buyers_sellers_ids = fields.One2many(
-        "buyers.sellers", "deal_id", string="Buyers/Sellers", tracking=True
+        "buyers.sellers",
+        "deal_id",
+        string="Buyers/Sellers",
+        tracking=True
     )
     buyers_sellers_wizard_ids = fields.One2many(
-        "buyers.sellers.wizard", "deal_id", string="Buyers/Sellers", tracking=True
+        "buyers.sellers.wizard",
+        "deal_id",
+        string="Buyers/Sellers",
+        tracking=True
     )
     buyer_names = fields.Char(
         string="Buyer Names",
@@ -359,7 +379,13 @@ class DealRecords(models.Model):
         tracking=True,
         help="Lawyers associated with the deal.",
     )
-
+    law_firm_wizard_ids = fields.One2many(
+        "law.firm.wizard",
+        "deal_id",
+        string="Law Firm Wizard",
+        tracking=True,
+        help="Law firms associated with the deal.",
+    )
     # =====================
     # Conditions
     # =====================
@@ -406,7 +432,6 @@ class DealRecords(models.Model):
         tracking=True,
         help="Documents related to the deal.",
     )
-
     required_document_count = fields.Integer(
         string="# Required Documents",
         compute="_compute_required_document_count",
@@ -535,6 +560,7 @@ class DealRecords(models.Model):
         string='Transaction Lines',
         help="Transaction lines associated with the deal.",
     )
+
     # =====================
     # Deal Payments
     # =====================
@@ -561,20 +587,26 @@ class DealRecords(models.Model):
     # Deal Confirmation
     # =====================
     agent_confirmation = fields.Boolean(
-        string="All Info Correct", tracking=True
+        string="All Info Correct",
+        tracking=True
     )
     agent_signature = fields.Char(
-        string="Enter Full Name", tracking=True
+        string="Enter Full Name",
+        tracking=True
     )
     brokerage_confirmation = fields.Boolean(
         string="Office Approval"
     )
     agent_confirmation_datetime = fields.Datetime(
-        string="Date/Time", tracking=True
+        string="Date/Time",
+        tracking=True
     )
 
     @api.onchange("agent_confirmation")
     def _onchange_agent_confirmation_datetime(self):
+        """
+        Automatically set or unset the agent confirmation datetime based on agent confirmation.
+        """
         for rec in self:
             if rec.agent_confirmation:
                 rec.agent_confirmation_datetime = fields.Datetime.now()
@@ -586,6 +618,10 @@ class DealRecords(models.Model):
     # =====================
     @api.model_create_multi
     def create(self, vals_list):
+        """
+        Override the create method to handle sequence generation based on 'offer_date'
+        and populate commission lines.
+        """
         for vals in vals_list:
             # Handle Sequence Generation based on 'offer_date'
             offer_date = fields.Date.from_string(
@@ -605,12 +641,18 @@ class DealRecords(models.Model):
         return deals
 
     def write(self, vals):
+        """
+        Override the write method to enable commission line population and update required documents.
+        """
         res = super(DealRecords, self.with_context(populate_commission_lines=True)).write(vals)
         self._update_required_documents()
         return res
 
     @api.depends('deal_number')
     def _compute_name(self):
+        """
+        Compute the name of the deal based on the deal number.
+        """
         for rec in self:
             rec.name = rec.deal_number or _("Deal")
 
@@ -618,6 +660,9 @@ class DealRecords(models.Model):
     # Update Required Documents Method
     # =====================
     def _update_required_documents(self):
+        """
+        Update required documents based on the deal's class and other criteria.
+        """
         for rec in self:
             # Fetch required DocumentTypes based on the deal's deal class and other criteria
             required_docs = self.env["document.type"].search(
@@ -654,6 +699,9 @@ class DealRecords(models.Model):
     # Action Methods
     # =====================
     def action_view_buyers_sellers(self):
+        """
+        Action to view Buyers/Sellers associated with the deal.
+        """
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
@@ -666,6 +714,9 @@ class DealRecords(models.Model):
         }
 
     def action_view_sales_agents_and_referrals(self):
+        """
+        Action to view Sales Agents & Referrals associated with the deal.
+        """
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
@@ -678,6 +729,9 @@ class DealRecords(models.Model):
         }
 
     def action_view_law_firms(self):
+        """
+        Action to view Law Firms associated with the deal.
+        """
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
@@ -690,6 +744,9 @@ class DealRecords(models.Model):
         }
 
     def action_view_other_brokers(self):
+        """
+        Action to view Other Brokers associated with the deal.
+        """
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
@@ -702,6 +759,9 @@ class DealRecords(models.Model):
         }
 
     def action_view_documents(self):
+        """
+        Action to view Documents related to the deal.
+        """
         self.ensure_one()
         return {
             "type": "ir.actions.act_window",
@@ -750,6 +810,9 @@ class DealRecords(models.Model):
     # =====================
     @api.constrains("possession_date", "offer_date")
     def _check_offer_date_possession_date(self):
+        """
+        Ensure that the Closing Date is after the Offer Date.
+        """
         for rec in self:
             if rec.possession_date and rec.offer_date:
                 if rec.possession_date <= rec.offer_date:
@@ -759,12 +822,18 @@ class DealRecords(models.Model):
 
     @api.constrains("sell_price")
     def _check_sell_price(self):
+        """
+        Ensure that the Sell Price is not negative.
+        """
         for rec in self:
             if rec.sell_price < 0:
                 raise ValidationError(_("Sell Price cannot be negative."))
 
     @api.constrains("sales_agents_and_referrals_ids")
     def _check_sales_agents_percentage(self):
+        """
+        Ensure that the total Percentage of End does not exceed 100%.
+        """
         for rec in self:
             total_percentage = sum(
                 rec.sales_agents_and_referrals_ids.mapped("percentage_of_end")
@@ -776,6 +845,10 @@ class DealRecords(models.Model):
     # Override Unlink Method to Handle Related Records
     # =====================
     def unlink(self):
+        """
+        Override the unlink method to prevent deletion of deals with linked invoices or bills
+        and to delete related document lines.
+        """
         for rec in self:
             # Perform necessary checks before deletion
             if rec.invoice_ids or rec.bill_ids:
@@ -791,6 +864,9 @@ class DealRecords(models.Model):
     # =====================
     @api.model
     def default_get(self, fields_list):
+        """
+        Override the default_get method to set default values for company_id and country_id.
+        """
         res = super(DealRecords, self).default_get(fields_list)
         res["company_id"] = self.env.company.id
         res["country_id"] = (
@@ -802,8 +878,19 @@ class DealRecords(models.Model):
     # Name Get Method
     # =====================
     def name_get(self):
+        """
+        Override the name_get method to display the deal's name or a default label.
+        """
         result = []
         for rec in self:
             name = rec.name or _("Deal")
             result.append((rec.id, name))
         return result
+
+    # =====================
+    # SQL Constraints
+    # =====================
+    _sql_constraints = [
+        ('deal_listing_unique', 'unique(listing_id)', 'A listing can be linked to only one deal.'),
+        ('deal_number_unique', 'unique(deal_number)', 'The Deal Number must be unique.'),
+    ]

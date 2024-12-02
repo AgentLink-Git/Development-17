@@ -6,7 +6,6 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-
 class TrustExcessFunds(models.Model):
     _name = "trust.excess.funds"
     _description = "Trust Excess Funds"
@@ -126,6 +125,11 @@ class TrustExcessFunds(models.Model):
     # =====================
     # Relationships
     # =====================
+    deal_id = fields.Many2one(
+        "deal.records",
+        string="Deal",
+        ondelete="cascade",
+    )
     transaction_line_ids = fields.One2many(
         "transaction.line",
         "trust_excess_funds_id",
@@ -190,7 +194,7 @@ class TrustExcessFunds(models.Model):
             else:
                 record.trust_balance = 0.0
 
-    @api.depends("deal_id")
+    @api.depends('deal_id')
     def _compute_excess_held(self):
         for rec in self:
             total_deposits = rec._get_total_deposits()
@@ -215,9 +219,7 @@ class TrustExcessFunds(models.Model):
             "trust_deposit_product_id",
         ]
         missing_prefs_fields = [
-            field
-            for field in required_prefs_fields
-            if not getattr(brokerage_prefs, field)
+            field for field in required_prefs_fields if not getattr(brokerage_prefs, field)
         ]
         if missing_prefs_fields:
             raise UserError(
@@ -256,18 +258,13 @@ class TrustExcessFunds(models.Model):
         self._create_transaction_line(price, payment, brokerage_prefs, partner)
 
         # Update fields
-        self.write(
-            {
-                "is_paid": True,
-                "date_posted": fields.Date.today(),
-            }
-        )
+        self.write({
+            'is_paid': True,
+            'date_posted': fields.Date.today(),
+        })
 
         # Notification
-        message = (
-            _("An excess fund payment of %s has been successfully created and posted.")
-            % price
-        )
+        message = _("An excess fund payment of %s has been successfully created and posted.") % price
         return self._display_notification(_("Excess Funds Paid!"), message)
 
     # =====================
@@ -280,11 +277,9 @@ class TrustExcessFunds(models.Model):
         if not deal:
             return 0.0
         deposit_transactions = deal.transaction_line_ids.filtered(
-            lambda t: t.transaction_type in ["trust_receipt", "trust_refund"]
-            and t.journal_type == "trust"
-            and t.held_by == "our_office"
+            lambda t: t.transaction_type in ['trust_receipt', 'trust_refund'] and t.journal_type == 'trust' and t.held_by == 'our_office'
         )
-        total_deposits = sum(deposit_transactions.mapped("amount"))
+        total_deposits = sum(deposit_transactions.mapped('amount'))
         return total_deposits
 
     def _get_amount_receivable(self):
@@ -300,7 +295,7 @@ class TrustExcessFunds(models.Model):
         deal = self.deal_id
         payment_source = self._determine_excess_payment_source()
         if payment_source in ["buyer_lawyer", "seller_lawyer"]:
-            return self._get_active_law_firm_partner(payment_source.split("_")[0])
+            return self._get_active_law_firm_partner(payment_source.split('_')[0])
         elif payment_source in ["buyer_brokerage", "seller_brokerage"]:
             return self._get_other_brokerage_partner()
         elif payment_source in ["buyer", "seller"]:
@@ -330,7 +325,9 @@ class TrustExcessFunds(models.Model):
         return False
 
     def _get_other_brokerage_partner(self):
-        other_broker = self.deal_id.other_broker_ids.filtered(lambda ob: ob.is_active)
+        other_broker = self.deal_id.other_broker_ids.filtered(
+            lambda ob: ob.is_active
+        )
         if other_broker:
             return other_broker[0].brokerage_id
         return False
@@ -341,9 +338,9 @@ class TrustExcessFunds(models.Model):
         )
         if buyers_sellers:
             names = " and/or ".join(buyers_sellers.mapped("partner_id.name"))
-            partner = self.env["res.partner"].search([("name", "=", names)], limit=1)
+            partner = self.env['res.partner'].search([('name', '=', names)], limit=1)
             if not partner:
-                partner = self.env["res.partner"].create({"name": names})
+                partner = self.env['res.partner'].create({'name': names})
             return partner
         return False
 
@@ -351,9 +348,7 @@ class TrustExcessFunds(models.Model):
         product = brokerage_prefs.trust_deposit_product_id
         if not product:
             raise UserError(
-                _(
-                    "The 'Trust Deposits' product is not configured in Brokerage Preferences."
-                )
+                _("The 'Trust Deposits' product is not configured in Brokerage Preferences.")
             )
         invoice_line = {
             "product_id": product.id,
@@ -379,23 +374,21 @@ class TrustExcessFunds(models.Model):
         )
         if not payment_method:
             raise UserError(
-                _(
-                    "Manual Out Payment Method is not defined. Please check the configuration."
-                )
+                _("Manual Out Payment Method is not defined. Please check the configuration.")
             )
 
         payment_vals = {
-            "payment_date": fields.Date.today(),
-            "amount": amount,
-            "payment_type": "outbound",
-            "partner_type": "customer",
-            "partner_id": invoice.partner_id.id,
-            "journal_id": brokerage_prefs.trust_bank_account.id,
-            "payment_method_id": payment_method.id,
-            "communication": invoice.name,
-            "deal_id": self.deal_id.id,
+            'payment_date': fields.Date.today(),
+            'amount': amount,
+            'payment_type': 'outbound',
+            'partner_type': 'customer',
+            'partner_id': invoice.partner_id.id,
+            'journal_id': brokerage_prefs.trust_bank_account.id,
+            'payment_method_id': payment_method.id,
+            'communication': invoice.name,
+            'deal_id': self.deal_id.id,
         }
-        return self.env["account.payment"].create(payment_vals)
+        return self.env['account.payment'].create(payment_vals)
 
     def _create_transaction_line(self, amount, payment, brokerage_prefs, partner):
         transaction_line_vals = {

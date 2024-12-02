@@ -3,9 +3,10 @@
 from odoo import models, fields, api, _
 from odoo.exceptions import ValidationError
 
-
 class ResPartnerExtension(models.Model):
-    _inherit = "res.partner"
+    _inherit = [
+        "res.partner"
+    ]
 
     # =====================
     # Role Identification Fields
@@ -14,37 +15,31 @@ class ResPartnerExtension(models.Model):
         string="Is Buyer/Seller",
         default=False,
         help="Indicates if the partner is a Buyer or Seller.",
-        tracking=True,
     )
     is_law_firm = fields.Boolean(
         string="Is Law Firm",
         default=False,
         help="Indicates if the partner is a Law Firm.",
-        tracking=True,
     )
     is_lawyer = fields.Boolean(
         string="Is Lawyer",
         default=False,
         help="Indicates if the partner is a Lawyer associated with a Law Firm.",
-        tracking=True,
     )
     is_sales_agent = fields.Boolean(
         string="Is Our Sales Agent",
         default=False,
         help="Indicates if the partner is one of our Sales Agents.",
-        tracking=True,
     )
     is_other_broker = fields.Boolean(
         string="Is Other Broker",
         default=False,
         help="Indicates if the partner is a real estate broker.",
-        tracking=True,
     )
     is_other_broker_agent = fields.Boolean(
         string="Is Other Broker Agent",
         default=False,
         help="Indicates if the partner is an Agent with another real estate broker.",
-        tracking=True,
     )
 
     # =====================
@@ -56,14 +51,12 @@ class ResPartnerExtension(models.Model):
         default="direct_deposit",
         required=True,
         help="Select the preferred payment method for this partner.",
-        tracking=True,
     )
 
     deposit_instructions_received = fields.Boolean(
         string="Deposit Instructions Received",
         default=False,
         help="Indicates if the partner has provided our office with their banking information so we can make payment via Direct Deposits.",
-        tracking=True,
     )
 
     # =====================
@@ -73,13 +66,11 @@ class ResPartnerExtension(models.Model):
         string="Deduct Agent Expenses",
         default=True,
         help="Controls whether agent expenses will be deducted from payments to this partner.",
-        tracking=True,
     )
     allow_commission_advances = fields.Boolean(
         string="Allow Commission Advances",
         default=False,
         help="Indicates whether this partner is allowed to request commission advances.",
-        tracking=True,
     )
 
     # =====================
@@ -93,25 +84,40 @@ class ResPartnerExtension(models.Model):
         "partner_id",
         string="Deals",
         help="Deals associated with this partner.",
-        tracking=True,
     )
     listing_ids = fields.One2many(
         "listing.records",
         "partner_id",
         string="Deals",
         help="Deals associated with this partner.",
-        tracking=True,
     )
 
     other_broker_ids = fields.One2many(
         "other.broker", "partner_id", string="Other Broker"
     )
-    law_firm_ids = fields.One2many("law.firm", "partner_id", string="Law Firm")
+    other_broker_agent_ids = fields.One2many(
+        "other.broker.agent", "partner_id", string="Other Broker Agent"
+    )
+    select_broker_wizard_ids = fields.One2many(
+        "select.broker.wizard", "partner_id", string="Other Broker"
+    )
+    law_firm_ids = fields.One2many(
+        "law.firm", "partner_id", string="Law Firm"
+    )
+    lawyer_ids = fields.One2many(
+        "lawyer", "partner_id", string="Lawyer"
+    )
+    law_firm_wizard_ids = fields.One2many(
+        "law.firm.wizard", "partner_id", string="Law Firm"
+    )
     sales_agents_and_referrals_ids = fields.One2many(
         "sales.agents.and.referrals", "partner_id", string="Sales Agents and Referrals"
     )
     buyers_sellers_ids = fields.One2many(
         "buyers.sellers", "partner_id", string="Buyers/Sellers"
+    )
+    buyers_sellers_wizard_ids = fields.One2many(
+        "buyers.sellers.wizard", "partner_id", string="Buyers/Sellers"
     )
 
     # =====================
@@ -125,24 +131,20 @@ class ResPartnerExtension(models.Model):
         string="Total Gross Amount",
         currency_field="currency_id",
         default=0.0,
-        tracking=True,
     )
     split_fees_total = fields.Monetary(
         string="Total Split Fees",
         currency_field="currency_id",
         default=0.0,
-        tracking=True,
     )
     net_amount_total = fields.Monetary(
         string="Total Net Amount",
         currency_field="currency_id",
         default=0.0,
-        tracking=True,
     )
     ends_total = fields.Integer(
         string="Total Ends",
         default=0,
-        tracking=True,
     )
 
     # =====================
@@ -160,7 +162,9 @@ class ResPartnerExtension(models.Model):
     def _check_broker_agent_parent(self):
         for partner in self:
             if partner.is_other_broker_agent and not partner.parent_broker_id:
-                raise ValidationError(_("An Agent must be linked to a Parent broker."))
+                raise ValidationError(
+                    _("An Agent must be linked to a Parent broker.")
+                )
 
     @api.constrains("is_law_firm", "is_lawyer")
     def _check_law_firm_roles(self):
@@ -191,11 +195,7 @@ class ResPartnerExtension(models.Model):
     # =====================
     # Compute Methods
     # =====================
-    @api.depends(
-        "sales_agents_and_referrals_ids",
-        "sales_agents_and_referrals_ids.deal_id.stage_id",
-        "fee_anniversary",
-    )
+    @api.depends('sales_agents_and_referrals_ids', 'sales_agents_and_referrals_ids.deal_id.stage_id', 'fee_anniversary')
     def _compute_cumulative_totals(self):
         for partner in self:
             if not partner.fee_anniversary:
@@ -217,22 +217,18 @@ class ResPartnerExtension(models.Model):
 
             if today >= anniversary_date:
                 period_start = anniversary_date
-                period_end = (
-                    anniversary_date + relativedelta(years=1) - timedelta(days=1)
-                )
+                period_end = anniversary_date + relativedelta(years=1) - timedelta(days=1)
             else:
                 period_start = anniversary_date - relativedelta(years=1)
                 period_end = anniversary_date - timedelta(days=1)
 
             # Get all deals closed within the current anniversary period
-            deals = self.env["deal.records"].search(
-                [
-                    ("sales_agents_and_referrals_ids.sales_agent_id", "=", partner.id),
-                    ("stage_id.is_closed", "=", True),
-                    ("close_date", ">=", period_start),
-                    ("close_date", "<=", period_end),
-                ]
-            )
+            deals = self.env['deal.records'].search([
+                ('sales_agents_and_referrals_ids.sales_agent_id', '=', partner.id),
+                ('stage_id.is_closed', '=', True),
+                ('close_date', '>=', period_start),
+                ('close_date', '<=', period_end),
+            ])
 
             gross_total = 0.0
             split_fees_total = 0.0
@@ -240,9 +236,7 @@ class ResPartnerExtension(models.Model):
             ends_total = 0
 
             for deal in deals:
-                for agent_line in deal.sales_agents_and_referrals_ids.filtered(
-                    lambda l: l.sales_agent_id == partner
-                ):
+                for agent_line in deal.sales_agents_and_referrals_ids.filtered(lambda l: l.sales_agent_id == partner):
                     gross_total += agent_line.gross_amount
                     split_fees_total += agent_line.total_split_fees
                     net_amount_total += agent_line.total_net_amount

@@ -7,7 +7,6 @@ from odoo.exceptions import ValidationError, UserError
 
 _logger = logging.getLogger(__name__)
 
-
 class ListingRecords(models.Model):
     _name = "listing.records"
     _description = "Listing Records"
@@ -15,8 +14,8 @@ class ListingRecords(models.Model):
         "mail.thread",
         "mail.activity.mixin",
         "address.compute.mixin",
-        "commission.setup.mixin",
         "commission.favourite.mixin",
+        "shared.fields.mixin",
     ]
 
     # =====================
@@ -30,15 +29,7 @@ class ListingRecords(models.Model):
         required=True,
         copy=False,
         readonly=True,
-        default=lambda self: _("New"),
-        index=True,
-    )
-    company_id = fields.Many2one(
-        "res.company",
-        string="Company",
-        default=lambda self: self.env.company,
-        required=True,
-        tracking=True,
+        default=lambda self: _('New'),
         index=True,
     )
     partner_id = fields.Many2one(
@@ -49,13 +40,14 @@ class ListingRecords(models.Model):
         help="Partner associated with this deal.",
         tracking=True,
     )
-    currency_id = fields.Many2one(
-        "res.currency",
-        related="company_id.currency_id",
-        string="Currency",
-        readonly=True,
+    deal_id = fields.Many2one(
+        "deal.records",
+        string="Deal",
+        ondelete="cascade",
+        help="Deal associated with this commission line.",
+        tracking=True,
+        index=True,
     )
-
     # =====================
     # Address & Legal Description
     # =====================
@@ -63,17 +55,17 @@ class ListingRecords(models.Model):
     street_number = fields.Char(string="Street Number", tracking=True)
     street_direction_prefix = fields.Selection(
         selection=[
-            ("east", "East"),
-            ("ne", "NE"),
-            ("nw", "NW"),
-            ("north", "North"),
-            ("se", "SE"),
-            ("sw", "SW"),
-            ("south", "South"),
-            ("west", "West"),
+            ('east', 'East'),
+            ('ne', 'NE'),
+            ('nw', 'NW'),
+            ('north', 'North'),
+            ('se', 'SE'),
+            ('sw', 'SW'),
+            ('south', 'South'),
+            ('west', 'West'),
         ],
         string="Street Direction Prefix",
-        tracking=True,
+        tracking=True
     )
     street_name = fields.Char(string="Street Name", tracking=True)
     street_type_id = fields.Many2one(
@@ -83,17 +75,17 @@ class ListingRecords(models.Model):
     )
     street_direction_suffix = fields.Selection(
         selection=[
-            ("east", "East"),
-            ("ne", "NE"),
-            ("nw", "NW"),
-            ("north", "North"),
-            ("se", "SE"),
-            ("sw", "SW"),
-            ("south", "South"),
-            ("west", "West"),
+            ('east', 'East'),
+            ('ne', 'NE'),
+            ('nw', 'NW'),
+            ('north', 'North'),
+            ('se', 'SE'),
+            ('sw', 'SW'),
+            ('south', 'South'),
+            ('west', 'West'),
         ],
         string="Street Direction Suffix",
-        tracking=True,
+        tracking=True
     )
     city_id = fields.Many2one(
         "cities.and.towns",
@@ -201,28 +193,75 @@ class ListingRecords(models.Model):
     )
 
     # =====================
+    # Commission Fields for Total Commission
+    # =====================
+    total_commission_type = fields.Selection(
+        [
+            ("tiered", "Tiered Percentage"),
+            ("fixed", "Fixed Percentage"),
+            ("flat_fee", "Flat Fee"),
+        ],
+        string="Total Commission Type",
+        tracking=True,
+    )
+    total_commission_percentage = fields.Float(
+        string="Total Commission Percentage (%)",
+        tracking=True,
+    )
+    total_plus_flat_fee = fields.Monetary(
+        string="+ Flat Fee",
+        currency_field="currency_id",
+        help="Additional flat fee to add for total commission.",
+        tracking=True,
+        default=0.0,
+    )
+    total_less_flat_fee = fields.Monetary(
+        string="- Flat Fee",
+        currency_field="currency_id",
+        help="Flat fee to subtract for total commission.",
+        tracking=True,
+        default=0.0,
+    )
+
+    # =====================
+    # Commission Fields for Buyer Side Commission
+    # =====================
+    buyer_side_commission_type = fields.Selection(
+        [
+            ("tiered", "Tiered Percentage"),
+            ("fixed", "Fixed Percentage"),
+            ("flat_fee", "Flat Fee"),
+        ],
+        string="Buyer Side Commission Type",
+        tracking=True,
+    )
+    buyer_side_commission_percentage = fields.Float(
+        string="Buyer Side Commission Percentage (%)",
+        tracking=True,
+    )
+    buyer_side_plus_flat_fee = fields.Monetary(
+        string="+ Flat Fee",
+        currency_field="currency_id",
+        help="Additional flat fee to add for buyer side commission.",
+        tracking=True,
+        default=0.0,
+    )
+    buyer_side_less_flat_fee = fields.Monetary(
+        string="- Flat Fee",
+        currency_field="currency_id",
+        help="Flat fee to subtract for buyer side commission.",
+        tracking=True,
+        default=0.0,
+    )
+
+    # =====================
     # Relationships
     # =====================
-    deal_id = fields.Many2one(
-        "deal.records",
-        string="Deal Record",
-        readonly=False,
-        tracking=True,
-        help="Related deal record.",
-    )
     _sql_constraints = [
-        (
-            "listing_deal_unique",
-            "unique(deal_id)",
-            "A deal can be linked to only one listing.",
-        ),
-        (
-            "listing_number_unique",
-            "unique(listing_number)",
-            "The Listing Number must be unique.",
-        ),
+        ('listing_deal_unique', 'unique(deal_id)', 'A deal can be linked to only one listing.'),
+        ('listing_number_unique', 'unique(listing_number)', 'The Listing Number must be unique.'),
     ]
-
+    
     buyers_sellers_ids = fields.One2many(
         "buyers.sellers", "listing_id", string="Buyers/Sellers", tracking=True
     )
@@ -233,14 +272,14 @@ class ListingRecords(models.Model):
         tracking=True,
     )
     sales_agent_mentorship_line_ids = fields.One2many(
-        "sales.agent.mentorship.line",
-        "deal_id",
+        'sales.agent.mentorship.line',
+        'deal_id',
         string="Sales Agent Mentorship Line",
         help="Mentorship records for sales agents.",
     )
     sales_agent_team_ids = fields.One2many(
-        "sales.agent.team",
-        "deal_id",
+        'sales.agent.team',
+        'deal_id',
         string="Sales Agent Teams",
         help="Team records for sales agents.",
     )
@@ -259,9 +298,7 @@ class ListingRecords(models.Model):
     # =====================
     # Documents
     # =====================
-    document_line_ids = fields.One2many(
-        "document.line", "listing_id", string="Documents"
-    )
+    document_line_ids = fields.One2many("document.line", "listing_id", string="Documents")
     required_document_ids = fields.One2many(
         "document.line",
         compute="_compute_required_documents",
@@ -297,9 +334,7 @@ class ListingRecords(models.Model):
             if record.list_price <= 0:
                 raise ValidationError(_("List Price must be greater than zero."))
 
-    @api.onchange(
-        "expiry_date", "list_date", "is_listing_cancelled", "deal_id", "cancel_date"
-    )
+    @api.onchange("expiry_date", "list_date", "is_listing_cancelled", "deal_id", "cancel_date")
     def _onchange_status(self):
         today_date = fields.Date.today()
         for rec in self:
@@ -319,18 +354,14 @@ class ListingRecords(models.Model):
 
     @api.onchange("sales_agents_and_referrals_ids")
     def _onchange_sales_agents_and_referrals_ids(self):
-        total_percentage = sum(
-            self.sales_agents_and_referrals_ids.mapped("percentage_of_end")
-        )
+        total_percentage = sum(self.sales_agents_and_referrals_ids.mapped("percentage_of_end"))
         if total_percentage > 100:
             raise ValidationError(_("Total percentage of end should not exceed 100%."))
 
     # =====================
     # Document Compute Methods
     # =====================
-    @api.depends(
-        "document_line_ids.document_required", "document_line_ids.manually_removed"
-    )
+    @api.depends("document_line_ids.document_required", "document_line_ids.manually_removed")
     def _compute_required_documents(self):
         for rec in self:
             required_documents = rec.document_line_ids.filtered(
@@ -338,55 +369,37 @@ class ListingRecords(models.Model):
             )
             rec.required_document_ids = required_documents
 
-    @api.depends(
-        "document_line_ids.document_review",
-        "document_line_ids.document_required",
-        "document_line_ids.manually_removed",
-    )
+    @api.depends("document_line_ids.document_review", "document_line_ids.document_required", "document_line_ids.manually_removed")
     def _compute_all_documents_received(self):
         for rec in self:
             pending_documents = rec.document_line_ids.filtered(
-                lambda d: d.document_required
-                and d.document_review != "approved"
-                and not d.manually_removed
+                lambda d: d.document_required and d.document_review != "approved" and not d.manually_removed
             )
             rec.all_documents_received = not bool(pending_documents)
 
-    @api.depends(
-        "document_line_ids.document_required", "document_line_ids.manually_removed"
-    )
+    @api.depends("document_line_ids.document_required", "document_line_ids.manually_removed")
     def _compute_required_document_count(self):
         for rec in self:
             rec.required_document_count = len(
-                rec.document_line_ids.filtered(
-                    lambda d: d.document_required and not d.manually_removed
-                )
+                rec.document_line_ids.filtered(lambda d: d.document_required and not d.manually_removed)
             )
-
     def _update_required_documents(self):
         for rec in self:
-            required_docs = self.env["document.type"].search(
-                [
-                    ("is_active", "=", True),
-                    ("is_listing_document", "=", True),
-                    ("seller_end", "=", True),
-                    ("class_ids", "in", rec.deal_class_id.id),
-                ]
-            )
-            existing_docs = rec.document_line_ids.filtered(
-                lambda d: d.document_type_id.id in required_docs.ids
-                and not d.manually_removed
-            )
+            required_docs = self.env["document.type"].search([
+                ("is_active", "=", True),
+                ("is_listing_document", "=", True),
+                ("seller_end", "=", True),
+                ("class_ids", "in", rec.deal_class_id.id),
+            ])
+            existing_docs = rec.document_line_ids.filtered(lambda d: d.document_type_id.id in required_docs.ids and not d.manually_removed)
             missing_docs = required_docs - existing_docs.mapped("document_type_id")
             for doc_type in missing_docs:
-                self.env["document.line"].create(
-                    {
-                        "document_type_id": doc_type.id,
-                        "deal_id": rec.deal_id.id,
-                        "listing_id": rec.id,
-                        "end_id": rec.end_id.id,
-                    }
-                )
+                self.env["document.line"].create({
+                    "document_type_id": doc_type.id,
+                    "deal_id": rec.deal_id.id,
+                    "listing_id": rec.id,
+                    "end_id": rec.end_id.id,
+                })
 
     # =====================
     # Override Create and Write Methods
@@ -394,48 +407,36 @@ class ListingRecords(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            vals["name"] = (
-                str(uuid.uuid4())
-                if vals.get("name", _("New")) == _("New")
-                else vals["name"]
-            )
-            list_date = fields.Date.from_string(
-                vals.get("list_date", fields.Date.context_today(self))
-            )
-            vals["listing_number"] = self.env["ir.sequence"].next_by_code(
-                "listing.records", sequence_date=list_date.strftime("%Y-%m-%d")
-            ) or _("New")
-        listings = super(
-            ListingRecords, self.with_context(populate_commission_lines=False)
-        ).create(vals_list)
+            vals["name"] = str(uuid.uuid4()) if vals.get("name", _("New")) == _("New") else vals["name"]
+            list_date = fields.Date.from_string(vals.get("list_date", fields.Date.context_today(self)))
+            vals["listing_number"] = self.env["ir.sequence"].next_by_code("listing.records", sequence_date=list_date.strftime("%Y-%m-%d")) or _("New")
+        listings = super(ListingRecords, self.with_context(populate_commission_lines=False)).create(vals_list)
         listings._update_required_documents()
         return listings
 
     def write(self, vals):
-        res = super(
-            ListingRecords, self.with_context(populate_commission_lines=False)
-        ).write(vals)
+        res = super(ListingRecords, self.with_context(populate_commission_lines=False)).write(vals)
         self._update_required_documents()
         return res
 
     # =====================
     # Create Deal from Listing
     # =====================
-
+	
     def action_open_commission_config_wizard(self):
         """
         Open a wizard for configuring commission details.
         """
         return {
-            "type": "ir.actions.act_window",
-            "name": "Configure Commission",
-            "res_model": "commission.favourite.wizard",
-            "view_mode": "form",
-            "target": "new",
-            "context": {
-                "default_listing_id": self.id,
-                "default_total_commission_favourite_id": self.total_commission_favourite_id.id,
-                "default_buyer_side_commission_favourite_id": self.buyer_side_commission_favourite_id.id,
+            'type': 'ir.actions.act_window',
+            'name': 'Configure Commission',
+            'res_model': 'commission.favourite.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'default_listing_id': self.id,
+                'default_total_commission_favourite_id': self.total_commission_favourite_id.id,
+                'default_buyer_side_commission_favourite_id': self.buyer_side_commission_favourite_id.id,
             },
         }
 
@@ -443,28 +444,25 @@ class ListingRecords(models.Model):
         """Open the listing wizard for adding or editing a listing."""
         self.ensure_one()
         return {
-            "type": "ir.actions.act_window",
-            "name": "Listing Wizard",
-            "res_model": "listing.wizard",
-            "view_mode": "form",
-            "target": "new",
-            "context": {
-                "active_id": self.id,
-                "default_listing_id": self.id,
+            'type': 'ir.actions.act_window',
+            'name': 'Listing Wizard',
+            'res_model': 'listing.wizard',
+            'view_mode': 'form',
+            'target': 'new',
+            'context': {
+                'active_id': self.id,
+                'default_listing_id': self.id,
                 # Add other default values if necessary
             },
         }
+
 
     def action_create_deal(self):
         self.ensure_one()
 
         # Validate status requirements
         if self.status == "sold":
-            raise ValidationError(
-                _(
-                    "This listing is already sold and cannot be used to create another deal."
-                )
-            )
+            raise ValidationError(_("This listing is already sold and cannot be used to create another deal."))
 
         # Prepare Deal Values
         deal_vals = self._prepare_deal_vals()
@@ -529,24 +527,14 @@ class ListingRecords(models.Model):
     def _link_to_deal(self, deal):
         """Link the deal to conveyancing documents in the listing."""
         # Add deal_id to existing document lines where is_conveyancing_document == True
-        listing_documents = self.document_line_ids.filtered(
-            lambda d: d.document_type_id.is_conveyancing_document
-        )
+        listing_documents = self.document_line_ids.filtered(lambda d: d.document_type_id.is_conveyancing_document)
         listing_documents.write({"deal_id": deal.id})
 
     def _transfer_related_data_to_deal(self, deal):
         """Transfer related Buyers/Sellers and Sales Agents data to the newly created deal."""
         # Prepare Buyers/Sellers Data
         buyers_sellers_data = [
-            (
-                0,
-                0,
-                {
-                    "partner_id": bs.partner_id.id,
-                    "end_id": bs.end_id.id,
-                    "notes": bs.notes,
-                },
-            )
+            (0, 0, {"partner_id": bs.partner_id.id, "end_id": bs.end_id.id, "notes": bs.notes})
             for bs in self.buyers_sellers_ids
         ]
 
@@ -577,14 +565,6 @@ class ListingRecords(models.Model):
             deal.buyers_sellers_ids = buyers_sellers_data
         if sales_agents_referrals_data:
             deal.sales_agents_and_referrals_ids = sales_agents_referrals_data
-
-    _sql_constraints = [
-        (
-            "listing_number_unique",
-            "unique(listing_number)",
-            "The Listing Number must be unique.",
-        )
-    ]
 
     def name_get(self):
         result = []

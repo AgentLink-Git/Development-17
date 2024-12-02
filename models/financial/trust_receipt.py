@@ -4,15 +4,10 @@ import logging
 
 _logger = logging.getLogger(__name__)
 
-
 class TrustReceipt(models.Model):
     _name = "trust.receipt"
     _description = "Trust Receipt Form"
-    _inherit = [
-        "mail.thread",
-        "mail.activity.mixin",
-        "shared.fields.mixin",
-    ]
+    _inherit = ["shared.fields.mixin", "notification.mixin"]
     _rec_name = "deal_number"
     _order = "date_received desc"
 
@@ -23,19 +18,15 @@ class TrustReceipt(models.Model):
         selection=[("trust_receipt", "Trust Receipt")],
         default="trust_receipt",
         required=True,
-        tracking=True,
     )
     amount = fields.Monetary(
         string="Amount",
         currency_field="currency_id",
         required=True,
-        tracking=True,
     )
     deposited = fields.Monetary(
         string="Deposited Amount",
         currency_field="currency_id",
-        tracking=True,
-        readonly=True,
     )
 
     # =====================
@@ -45,15 +36,12 @@ class TrustReceipt(models.Model):
         string="Date Received",
         default=fields.Date.today,
         required=True,
-        tracking=True,
     )
     date_due = fields.Date(
         string="Date Due",
-        tracking=True,
     )
     date_posted = fields.Date(
         string="Date Posted",
-        tracking=True,
         readonly=True,
     )
 
@@ -64,7 +52,6 @@ class TrustReceipt(models.Model):
         selection=[("buyer", "Buyer"), ("seller", "Seller")],
         string="Received From",
         required=True,
-        tracking=True,
     )
     held_by = fields.Selection(
         [
@@ -75,7 +62,6 @@ class TrustReceipt(models.Model):
         ],
         string="Held By",
         required=True,
-        tracking=True,
     )
     payment_method = fields.Selection(
         [
@@ -86,15 +72,12 @@ class TrustReceipt(models.Model):
         ],
         string="Payment Method",
         default="direct_deposit",
-        tracking=True,
     )
     reference_number = fields.Char(
         string="Reference Number",
-        tracking=True,
     )
     notes = fields.Text(
         string="Notes",
-        tracking=True,
     )
 
     # =====================
@@ -103,7 +86,6 @@ class TrustReceipt(models.Model):
     is_function_completed = fields.Boolean(
         string="Function Completed",
         default=False,
-        tracking=True,
     )
 
     # =====================
@@ -112,13 +94,11 @@ class TrustReceipt(models.Model):
     invoice_id = fields.Many2one(
         "account.move",
         string="Invoice Reference",
-        tracking=True,
         readonly=True,
     )
     payment_id = fields.Many2one(
         "account.payment",
         string="Payment Reference",
-        tracking=True,
         readonly=True,
     )
 
@@ -135,6 +115,11 @@ class TrustReceipt(models.Model):
     # =====================
     # Relationships
     # =====================
+    deal_id = fields.Many2one(
+        "deal.records",
+        string="Deal",
+        ondelete="cascade",
+    )
     transaction_line_ids = fields.One2many(
         "transaction.line",
         "trust_receipt_id",
@@ -206,9 +191,7 @@ class TrustReceipt(models.Model):
             "tax_ids",
         ]
         missing_prefs_fields = [
-            field
-            for field in required_prefs_fields
-            if not getattr(brokerage_prefs, field)
+            field for field in required_prefs_fields if not getattr(brokerage_prefs, field)
         ]
         if missing_prefs_fields:
             raise UserError(
@@ -225,17 +208,19 @@ class TrustReceipt(models.Model):
         # Get the partner based on received_from_id
         partner = self._get_partner_from_received_from()
         if not partner:
-            raise ValidationError(
-                _("No matching buyer/seller found for this transaction.")
-            )
+            raise ValidationError(_("No matching buyer/seller found for this transaction."))
 
         # Update the deal's buyer_deposit or seller_deposit
         if self.received_from_id == "buyer":
             deal.buyer_deposit += self.amount
-            _logger.info(f"Added {self.amount} to Deal ID {deal.id}'s buyer_deposit.")
+            _logger.info(
+                f"Added {self.amount} to Deal ID {deal.id}'s buyer_deposit."
+            )
         elif self.received_from_id == "seller":
             deal.seller_deposit += self.amount
-            _logger.info(f"Added {self.amount} to Deal ID {deal.id}'s seller_deposit.")
+            _logger.info(
+                f"Added {self.amount} to Deal ID {deal.id}'s seller_deposit."
+            )
         else:
             raise ValidationError(_("Invalid 'Received From' selection."))
 
@@ -279,9 +264,7 @@ class TrustReceipt(models.Model):
         product = brokerage_prefs.trust_deposit_product_id
         if not product:
             raise UserError(
-                _(
-                    "The 'Trust Deposits' product is not configured in Brokerage Preferences."
-                )
+                _("The 'Trust Deposits' product is not configured in Brokerage Preferences.")
             )
 
         invoice_line = {
@@ -308,9 +291,7 @@ class TrustReceipt(models.Model):
         )
         if not payment_method:
             raise UserError(
-                _(
-                    "Manual In Payment Method is not defined. Please check the configuration."
-                )
+                _("Manual In Payment Method is not defined. Please check the configuration.")
             )
 
         payment_vals = {
@@ -348,15 +329,3 @@ class TrustReceipt(models.Model):
             "trust_receipt_id": self.id,
         }
         self.env["transaction.line"].create(transaction_line_vals)
-
-    def _display_notification(self, title, message):
-        return {
-            "type": "ir.actions.client",
-            "tag": "display_notification",
-            "params": {
-                "title": title,
-                "message": message,
-                "type": "success",
-                "sticky": False,
-            },
-        }

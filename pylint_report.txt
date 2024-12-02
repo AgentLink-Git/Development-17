@@ -1,0 +1,2547 @@
+************* Module agentlink_transaction_manager/
+__init__.py:3:0: C0304: Final newline missing (missing-final-newline)
+__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+__init__.py:1:0: C0103: Module name "agentlink_transaction_manager/" doesn't conform to snake_case naming style (invalid-name)
+************* Module agentlink_transaction_manager.__manifest__
+__manifest__.py:5:0: C0301: Line too long (125/100) (line-too-long)
+__manifest__.py:12:0: C0303: Trailing whitespace (trailing-whitespace)
+__manifest__.py:17:0: C0304: Final newline missing (missing-final-newline)
+__manifest__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+__manifest__.py:6:4: C8101: One of the following authors must be present in manifest: 'Odoo Community Association (OCA)' (manifest-required-author)
+__manifest__.py:4:4: C8103: Deprecated key "description" in manifest file (manifest-deprecated-key)
+__manifest__.py:13:4: C8105: License "OPL-1" not allowed in manifest file. (license-allowed)
+************* Module agentlink_transaction_manager.models
+models/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module agentlink_transaction_manager.models.other_brokers
+models/other_brokers/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module agentlink_transaction_manager.models.other_brokers.select_broker_wizard
+models/other_brokers/select_broker_wizard.py:151:0: C0301: Line too long (127/100) (line-too-long)
+models/other_brokers/select_broker_wizard.py:167:0: C0301: Line too long (157/100) (line-too-long)
+models/other_brokers/select_broker_wizard.py:178:0: C0301: Line too long (110/100) (line-too-long)
+models/other_brokers/select_broker_wizard.py:244:0: C0304: Final newline missing (missing-final-newline)
+models/other_brokers/select_broker_wizard.py:8:0: E0401: Unable to import 'odoo' (import-error)
+models/other_brokers/select_broker_wizard.py:9:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/other_brokers/select_broker_wizard.py:51:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/other_brokers/select_broker_wizard.py:55:14: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/other_brokers/select_broker_wizard.py:59:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/other_brokers/select_broker_wizard.py:73:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/other_brokers/select_broker_wizard.py:77:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/other_brokers/select_broker_wizard.py:81:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/other_brokers/select_broker_wizard.py:132:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+models/other_brokers/select_broker_wizard.py:138:4: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+models/other_brokers/select_broker_wizard.py:173:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+models/other_brokers/select_broker_wizard.py:15:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+models/other_brokers/select_broker_wizard.py:10:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+models/other_brokers/select_broker_wizard.py:9:0: W0611: Unused UserError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.other_brokers.other_broker
+models/other_brokers/other_broker.py:17:0: C0301: Line too long (102/100) (line-too-long)
+models/other_brokers/other_broker.py:214:0: C0301: Line too long (117/100) (line-too-long)
+models/other_brokers/other_broker.py:305:0: C0304: Final newline missing (missing-final-newline)
+models/other_brokers/other_broker.py:9:0: E0401: Unable to import 'odoo' (import-error)
+models/other_brokers/other_broker.py:10:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/other_brokers/other_broker.py:153:28: W0212: Access to a protected member _get_applicable_taxes of a client class (protected-access)
+models/other_brokers/other_broker.py:162:28: W0212: Access to a protected member _get_applicable_taxes of a client class (protected-access)
+models/other_brokers/other_broker.py:185:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+models/other_brokers/other_broker.py:241:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/other_brokers/other_broker.py:257:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+************* Module agentlink_transaction_manager.models.other_brokers.other_broker_agent
+models/other_brokers/other_broker_agent.py:17:0: C0301: Line too long (117/100) (line-too-long)
+models/other_brokers/other_broker_agent.py:223:0: C0301: Line too long (117/100) (line-too-long)
+models/other_brokers/other_broker_agent.py:341:0: C0304: Final newline missing (missing-final-newline)
+models/other_brokers/other_broker_agent.py:9:0: E0401: Unable to import 'odoo' (import-error)
+models/other_brokers/other_broker_agent.py:10:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/other_brokers/other_broker_agent.py:162:28: W0212: Access to a protected member _get_applicable_taxes of a client class (protected-access)
+models/other_brokers/other_broker_agent.py:171:28: W0212: Access to a protected member _get_applicable_taxes of a client class (protected-access)
+models/other_brokers/other_broker_agent.py:194:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+models/other_brokers/other_broker_agent.py:254:42: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/other_brokers/other_broker_agent.py:254:42: W8120: Translation method _('The agent "%s" is already associated with the brokerage "%s". Please review existing entries before adding a new one.') is using positional string printf formatting with multiple arguments. Use named placeholder `_("%(placeholder)s")` instead. (translation-positional-used)
+models/other_brokers/other_broker_agent.py:268:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/other_brokers/other_broker_agent.py:285:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+************* Module agentlink_transaction_manager.models.documents
+models/documents/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module agentlink_transaction_manager.models.documents.documents
+models/documents/documents.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/documents/documents.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/documents/documents.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/documents/documents.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+models/documents/documents.py:11:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/documents/documents.py:12:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/documents/documents.py:7:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/documents/documents.py:15:0: C0115: Missing class docstring (missing-class-docstring)
+models/documents/documents.py:22:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/documents/documents.py:30:24: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/documents/documents.py:47:26: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/documents/documents.py:48:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/documents/documents.py:49:31: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/documents/documents.py:15:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/documents/documents.py:92:0: C0115: Missing class docstring (missing-class-docstring)
+models/documents/documents.py:106:24: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/documents/documents.py:119:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/documents/documents.py:134:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/documents/documents.py:139:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/documents/documents.py:232:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/documents/documents.py:233:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/documents/documents.py:243:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/documents/documents.py:244:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+************* Module agentlink_transaction_manager.models.listings
+models/listings/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module agentlink_transaction_manager.models.listings.listing_wizard
+models/listings/listing_wizard.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/listings/listing_wizard.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/listings/listing_wizard.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/listings/listing_wizard.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+models/listings/listing_wizard.py:29:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:30:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:32:30: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:33:30: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:37:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:38:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:39:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:40:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:47:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:53:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:58:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:59:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:60:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:61:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:89:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:92:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_wizard.py:109:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/listings/listing_wizard.py:110:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/listings/listing_wizard.py:159:4: C0116: Missing function or method docstring (missing-function-docstring)
+************* Module agentlink_transaction_manager.models.listings.listing_records
+models/listings/listing_records.py:438:0: C0301: Line too long (105/100) (line-too-long)
+models/listings/listing_records.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/listings/listing_records.py:5:0: E0401: Unable to import 'odoo' (import-error)
+models/listings/listing_records.py:6:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/listings/listing_records.py:11:0: C0115: Missing class docstring (missing-class-docstring)
+models/listings/listing_records.py:62:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:63:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:64:30: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:78:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:84:30: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:113:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:130:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:135:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:140:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:141:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:142:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:143:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:164:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:182:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:189:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:255:27: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:256:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:257:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:270:29: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/listings/listing_records.py:377:51: W0640: Cell variable required_docs defined in loop (cell-var-from-loop)
+models/listings/listing_records.py:395:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/listings/listing_records.py:411:8: W0212: Access to a protected member _update_required_documents of a client class (protected-access)
+models/listings/listing_records.py:414:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/listings/listing_records.py:458:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/listings/listing_records.py:589:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/listings/listing_records.py:481:8: W0201: Attribute 'sell_date' defined outside __init__ (attribute-defined-outside-init)
+models/listings/listing_records.py:6:0: W0611: Unused UserError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.sales_agents
+models/sales_agents/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module agentlink_transaction_manager.models.sales_agents.sales_agents_and_referrals
+models/sales_agents/sales_agents_and_referrals.py:469:0: C0301: Line too long (109/100) (line-too-long)
+models/sales_agents/sales_agents_and_referrals.py:512:0: C0325: Unnecessary parens after 'not' keyword (superfluous-parens)
+models/sales_agents/sales_agents_and_referrals.py:515:0: C0301: Line too long (102/100) (line-too-long)
+models/sales_agents/sales_agents_and_referrals.py:544:0: C0301: Line too long (103/100) (line-too-long)
+models/sales_agents/sales_agents_and_referrals.py:551:0: C0301: Line too long (102/100) (line-too-long)
+models/sales_agents/sales_agents_and_referrals.py:686:0: C0301: Line too long (119/100) (line-too-long)
+models/sales_agents/sales_agents_and_referrals.py:908:0: C0301: Line too long (109/100) (line-too-long)
+models/sales_agents/sales_agents_and_referrals.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/sales_agents/sales_agents_and_referrals.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/sales_agents/sales_agents_and_referrals.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/sales_agents/sales_agents_and_referrals.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/sales_agents/sales_agents_and_referrals.py:10:0: R0902: Too many instance attributes (9/7) (too-many-instance-attributes)
+models/sales_agents/sales_agents_and_referrals.py:50:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/sales_agents/sales_agents_and_referrals.py:123:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/sales_agents/sales_agents_and_referrals.py:130:28: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/sales_agents/sales_agents_and_referrals.py:137:29: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/sales_agents/sales_agents_and_referrals.py:165:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/sales_agents/sales_agents_and_referrals.py:179:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/sales_agents/sales_agents_and_referrals.py:226:10: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/sales_agents/sales_agents_and_referrals.py:277:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/sales_agents/sales_agents_and_referrals.py:301:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/sales_agents/sales_agents_and_referrals.py:306:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/sales_agents/sales_agents_and_referrals.py:397:34: W0212: Access to a protected member _get_default_taxes of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:399:30: W0212: Access to a protected member _get_default_taxes of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:407:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+models/sales_agents/sales_agents_and_referrals.py:613:16: W0212: Access to a protected member _onchange_tax_recompute of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:621:16: W0212: Access to a protected member _onchange_tax_recompute of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:637:16: W0212: Access to a protected member _onchange_tax_recompute of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:638:16: W0212: Access to a protected member _apply_commission_plans of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:639:16: W0212: Access to a protected member _compute_available_for_advance of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:648:16: W0212: Access to a protected member _onchange_tax_recompute of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:666:12: R1730: Consider using 'percentage_of_end = min(percentage_of_end, 100)' instead of unnecessary if block (consider-using-min-builtin)
+models/sales_agents/sales_agents_and_referrals.py:664:4: R1710: Either all return statements in a function should return an expression, or none of them should. (inconsistent-return-statements)
+models/sales_agents/sales_agents_and_referrals.py:695:12: W0212: Access to a protected member _compute_tax_ids of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:696:12: W0212: Access to a protected member _compute_tax of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:697:12: W0212: Access to a protected member _compute_total_tax of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:747:12: W0212: Access to a protected member _compute_total_commission of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:757:12: W0212: Access to a protected member _compute_tax of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:758:12: W0212: Access to a protected member _compute_payable_amount of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:796:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/sales_agents/sales_agents_and_referrals.py:797:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/sales_agents/sales_agents_and_referrals.py:798:8: W0212: Access to a protected member _onchange_payment_type of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:799:8: W0212: Access to a protected member _apply_commission_plans of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:800:8: W0212: Access to a protected member _update_partner_information of a client class (protected-access)
+models/sales_agents/sales_agents_and_referrals.py:804:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/sales_agents/sales_agents_and_referrals.py:805:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/sales_agents/sales_agents_and_referrals.py:815:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/sales_agents/sales_agents_and_referrals.py:829:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/sales_agents/sales_agents_and_referrals.py:850:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/sales_agents/sales_agents_and_referrals.py:851:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/sales_agents/sales_agents_and_referrals.py:872:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/sales_agents/sales_agents_and_referrals.py:876:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/sales_agents/sales_agents_and_referrals.py:5:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+************* Module agentlink_transaction_manager.models.res_partner
+models/res_partner/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module agentlink_transaction_manager.models.res_partner.res_partner
+models/res_partner/res_partner.py:65:0: C0301: Line too long (139/100) (line-too-long)
+models/res_partner/res_partner.py:187:0: C0301: Line too long (197/100) (line-too-long)
+models/res_partner/res_partner.py:274:0: C0301: Line too long (107/100) (line-too-long)
+models/res_partner/res_partner.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/res_partner/res_partner.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/res_partner/res_partner.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/res_partner/res_partner.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+models/res_partner/res_partner.py:19:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/res_partner/res_partner.py:25:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/res_partner/res_partner.py:37:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/res_partner/res_partner.py:43:28: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/res_partner/res_partner.py:53:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/res_partner/res_partner.py:62:36: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/res_partner/res_partner.py:72:28: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/res_partner/res_partner.py:78:32: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/res_partner/res_partner.py:120:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/res_partner/res_partner.py:213:23: E0602: Undefined variable 'calendar' (undefined-variable)
+models/res_partner/res_partner.py:221:39: E0602: Undefined variable 'relativedelta' (undefined-variable)
+models/res_partner/res_partner.py:221:64: E0602: Undefined variable 'timedelta' (undefined-variable)
+models/res_partner/res_partner.py:224:50: E0602: Undefined variable 'relativedelta' (undefined-variable)
+models/res_partner/res_partner.py:225:48: E0602: Undefined variable 'timedelta' (undefined-variable)
+models/res_partner/res_partner.py:244:50: W0640: Cell variable partner defined in loop (cell-var-from-loop)
+models/res_partner/res_partner.py:260:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/res_partner/res_partner.py:261:18: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/res_partner/res_partner.py:262:8: W0212: Access to a protected member _post_create_actions of a client class (protected-access)
+models/res_partner/res_partner.py:265:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/res_partner/res_partner.py:266:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+************* Module agentlink_transaction_manager.models.res_partner.res_partner_bank
+models/res_partner/res_partner_bank.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/res_partner/res_partner_bank.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/res_partner/res_partner_bank.py:6:0: C0115: Missing class docstring (missing-class-docstring)
+models/res_partner/res_partner_bank.py:6:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+************* Module agentlink_transaction_manager.models.shared_resources
+models/shared_resources/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module agentlink_transaction_manager.models.shared_resources.commission_setup_mixin
+models/shared_resources/commission_setup_mixin.py:20:0: C0301: Line too long (101/100) (line-too-long)
+models/shared_resources/commission_setup_mixin.py:28:0: C0301: Line too long (106/100) (line-too-long)
+models/shared_resources/commission_setup_mixin.py:191:0: C0301: Line too long (112/100) (line-too-long)
+models/shared_resources/commission_setup_mixin.py:201:0: C0301: Line too long (122/100) (line-too-long)
+models/shared_resources/commission_setup_mixin.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/shared_resources/commission_setup_mixin.py:1:0: E0401: Unable to import 'odoo' (import-error)
+models/shared_resources/commission_setup_mixin.py:2:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/shared_resources/commission_setup_mixin.py:8:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/commission_setup_mixin.py:48:39: W0212: Access to a protected member _context of a client class (protected-access)
+models/shared_resources/commission_setup_mixin.py:54:16: W0212: Access to a protected member _populate_commission_lines of a client class (protected-access)
+models/shared_resources/commission_setup_mixin.py:63:16: W0212: Access to a protected member _clear_commission_lines of a client class (protected-access)
+models/shared_resources/commission_setup_mixin.py:73:16: W0212: Access to a protected member _populate_commission_lines of a client class (protected-access)
+models/shared_resources/commission_setup_mixin.py:82:16: W0212: Access to a protected member _clear_commission_lines of a client class (protected-access)
+models/shared_resources/commission_setup_mixin.py:93:4: R0913: Too many arguments (7/5) (too-many-arguments)
+models/shared_resources/commission_setup_mixin.py:139:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/shared_resources/commission_setup_mixin.py:143:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/shared_resources/commission_setup_mixin.py:147:4: R0913: Too many arguments (6/5) (too-many-arguments)
+models/shared_resources/commission_setup_mixin.py:163:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/shared_resources/commission_setup_mixin.py:169:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+models/shared_resources/commission_setup_mixin.py:8:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/shared_resources/commission_setup_mixin.py:3:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+************* Module agentlink_transaction_manager.models.shared_resources.brokerage_preferences
+models/shared_resources/brokerage_preferences.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/shared_resources/brokerage_preferences.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/shared_resources/brokerage_preferences.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/shared_resources/brokerage_preferences.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/brokerage_preferences.py:48:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:71:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/shared_resources/brokerage_preferences.py:82:33: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:123:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:158:31: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:163:35: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:166:35: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:171:25: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:178:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:196:27: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:203:25: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:210:30: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:217:28: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:238:36: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:245:31: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:252:33: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:270:36: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:271:25: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:281:32: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:296:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:303:32: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/brokerage_preferences.py:7:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+************* Module agentlink_transaction_manager.models.shared_resources.shared_fields_mixin
+models/shared_resources/shared_fields_mixin.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/shared_resources/shared_fields_mixin.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/shared_resources/shared_fields_mixin.py:5:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/shared_fields_mixin.py:29:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/shared_fields_mixin.py:5:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+************* Module agentlink_transaction_manager.models.shared_resources.notification_mixin
+models/shared_resources/notification_mixin.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/shared_resources/notification_mixin.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/shared_resources/notification_mixin.py:5:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/notification_mixin.py:9:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/shared_resources/notification_mixin.py:5:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+************* Module agentlink_transaction_manager.models.shared_resources.commission_template
+models/shared_resources/commission_template.py:125:0: C0301: Line too long (103/100) (line-too-long)
+models/shared_resources/commission_template.py:150:0: C0325: Unnecessary parens after 'not' keyword (superfluous-parens)
+models/shared_resources/commission_template.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/shared_resources/commission_template.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/shared_resources/commission_template.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/shared_resources/commission_template.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/commission_template.py:15:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_template.py:25:26: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_template.py:34:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_template.py:10:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/shared_resources/commission_template.py:91:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/commission_template.py:102:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_template.py:111:26: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_template.py:91:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/shared_resources/commission_template.py:5:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+************* Module agentlink_transaction_manager.models.shared_resources.deal_class
+models/shared_resources/deal_class.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/shared_resources/deal_class.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/shared_resources/deal_class.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/shared_resources/deal_class.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/deal_class.py:18:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/deal_class.py:19:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/deal_class.py:88:16: C8107: String parameter on "UserError" requires translation. Use _('A Deal Class cannot be marked as both For Sale and For Lease.') (translation-required)
+models/shared_resources/deal_class.py:98:12: C8107: String parameter on "UserError" requires translation. Use _('Please specify whether the Deal Class is for Sale or for Lease.') (translation-required)
+models/shared_resources/deal_class.py:101:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/shared_resources/deal_class.py:112:20: C8107: String parameter on "UserError" requires translation. Use _('A Deal Class cannot be marked as both For Sale and For Lease.') (translation-required)
+models/shared_resources/deal_class.py:116:20: C8107: String parameter on "UserError" requires translation. Use _('Please specify whether the Deal Class is for Sale or for Lease.') (translation-required)
+models/shared_resources/deal_class.py:119:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+************* Module agentlink_transaction_manager.models.shared_resources.commission_favourite_mixin
+models/shared_resources/commission_favourite_mixin.py:21:0: C0301: Line too long (101/100) (line-too-long)
+models/shared_resources/commission_favourite_mixin.py:29:0: C0301: Line too long (106/100) (line-too-long)
+models/shared_resources/commission_favourite_mixin.py:199:0: C0301: Line too long (106/100) (line-too-long)
+models/shared_resources/commission_favourite_mixin.py:209:0: C0301: Line too long (111/100) (line-too-long)
+models/shared_resources/commission_favourite_mixin.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/shared_resources/commission_favourite_mixin.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/shared_resources/commission_favourite_mixin.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/shared_resources/commission_favourite_mixin.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/commission_favourite_mixin.py:45:22: W0212: Access to a protected member _context of a client class (protected-access)
+models/shared_resources/commission_favourite_mixin.py:47:16: W0212: Access to a protected member _handle_commission_favourite_update of a client class (protected-access)
+models/shared_resources/commission_favourite_mixin.py:55:16: W0212: Access to a protected member _handle_commission_favourite_update of a client class (protected-access)
+models/shared_resources/commission_favourite_mixin.py:64:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/shared_resources/commission_favourite_mixin.py:72:4: R0913: Too many arguments (7/5) (too-many-arguments)
+models/shared_resources/commission_favourite_mixin.py:102:4: R0913: Too many arguments (7/5) (too-many-arguments)
+models/shared_resources/commission_favourite_mixin.py:145:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/shared_resources/commission_favourite_mixin.py:149:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/shared_resources/commission_favourite_mixin.py:153:4: R0913: Too many arguments (6/5) (too-many-arguments)
+models/shared_resources/commission_favourite_mixin.py:169:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/shared_resources/commission_favourite_mixin.py:221:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/shared_resources/commission_favourite_mixin.py:10:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/shared_resources/commission_favourite_mixin.py:5:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+************* Module agentlink_transaction_manager.models.shared_resources.commission_favourite_wizard
+models/shared_resources/commission_favourite_wizard.py:35:0: C0301: Line too long (101/100) (line-too-long)
+models/shared_resources/commission_favourite_wizard.py:41:0: C0301: Line too long (106/100) (line-too-long)
+models/shared_resources/commission_favourite_wizard.py:231:0: C0301: Line too long (103/100) (line-too-long)
+models/shared_resources/commission_favourite_wizard.py:241:0: C0301: Line too long (108/100) (line-too-long)
+models/shared_resources/commission_favourite_wizard.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/shared_resources/commission_favourite_wizard.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/shared_resources/commission_favourite_wizard.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/shared_resources/commission_favourite_wizard.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/commission_favourite_wizard.py:17:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_favourite_wizard.py:79:15: W0212: Access to a protected member _name of a client class (protected-access)
+models/shared_resources/commission_favourite_wizard.py:107:15: W0212: Access to a protected member _name of a client class (protected-access)
+models/shared_resources/commission_favourite_wizard.py:131:4: R0913: Too many arguments (8/5) (too-many-arguments)
+models/shared_resources/commission_favourite_wizard.py:171:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/shared_resources/commission_favourite_wizard.py:10:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+models/shared_resources/commission_favourite_wizard.py:5:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+************* Module agentlink_transaction_manager.models.shared_resources.commission_favourite
+models/shared_resources/commission_favourite.py:102:0: C0325: Unnecessary parens after 'not' keyword (superfluous-parens)
+models/shared_resources/commission_favourite.py:105:0: C0301: Line too long (117/100) (line-too-long)
+models/shared_resources/commission_favourite.py:168:0: C0301: Line too long (103/100) (line-too-long)
+models/shared_resources/commission_favourite.py:209:0: C0325: Unnecessary parens after 'not' keyword (superfluous-parens)
+models/shared_resources/commission_favourite.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/shared_resources/commission_favourite.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/shared_resources/commission_favourite.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/shared_resources/commission_favourite.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/commission_favourite.py:20:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_favourite.py:31:26: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_favourite.py:41:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_favourite.py:10:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/shared_resources/commission_favourite.py:121:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/commission_favourite.py:138:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_favourite.py:143:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_favourite.py:153:26: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_favourite.py:245:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/shared_resources/commission_favourite.py:247:4: W0246: Useless parent or super() delegation in method 'write' (useless-parent-delegation)
+models/shared_resources/commission_favourite.py:251:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/shared_resources/commission_favourite.py:5:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+************* Module agentlink_transaction_manager.models.shared_resources.common_fields
+models/shared_resources/common_fields.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/shared_resources/common_fields.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/shared_resources/common_fields.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/shared_resources/common_fields.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/common_fields.py:16:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/common_fields.py:7:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/shared_resources/common_fields.py:20:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/common_fields.py:20:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/shared_resources/common_fields.py:35:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/common_fields.py:35:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/shared_resources/common_fields.py:55:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/common_fields.py:62:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/common_fields.py:64:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/common_fields.py:55:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/shared_resources/common_fields.py:72:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/common_fields.py:81:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/common_fields.py:72:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/shared_resources/common_fields.py:3:0: W0611: Unused api imported from odoo (unused-import)
+models/shared_resources/common_fields.py:4:0: W0611: Unused ValidationError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.shared_resources.address_compute_mixin
+models/shared_resources/address_compute_mixin.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/shared_resources/address_compute_mixin.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/shared_resources/address_compute_mixin.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/shared_resources/address_compute_mixin.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/address_compute_mixin.py:15:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/address_compute_mixin.py:77:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/shared_resources/address_compute_mixin.py:80:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/shared_resources/address_compute_mixin.py:83:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/shared_resources/address_compute_mixin.py:86:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/shared_resources/address_compute_mixin.py:5:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+models/shared_resources/address_compute_mixin.py:3:0: W0611: Unused _ imported from odoo (unused-import)
+models/shared_resources/address_compute_mixin.py:4:0: W0611: Unused ValidationError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.shared_resources.commission_line
+models/shared_resources/commission_line.py:35:0: C0301: Line too long (103/100) (line-too-long)
+models/shared_resources/commission_line.py:115:0: C0325: Unnecessary parens after 'not' keyword (superfluous-parens)
+models/shared_resources/commission_line.py:133:0: C0301: Line too long (136/100) (line-too-long)
+models/shared_resources/commission_line.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/shared_resources/commission_line.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/shared_resources/commission_line.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/shared_resources/commission_line.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+models/shared_resources/commission_line.py:42:26: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_line.py:53:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/shared_resources/commission_line.py:130:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/shared_resources/commission_line.py:7:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+************* Module agentlink_transaction_manager.models.deals
+models/deals/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module agentlink_transaction_manager.models.deals.deal_statistics
+models/deals/deal_statistics.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/deals/deal_statistics.py:8:0: E0401: Unable to import 'odoo' (import-error)
+models/deals/deal_statistics.py:9:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/deals/deal_statistics.py:15:0: C0115: Missing class docstring (missing-class-docstring)
+models/deals/deal_statistics.py:66:24: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_statistics.py:71:27: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_statistics.py:128:8: W0612: Unused variable 'today' (unused-variable)
+models/deals/deal_statistics.py:160:12: W0212: Access to a protected member _compute_seller_side_to_office of a client class (protected-access)
+models/deals/deal_statistics.py:161:12: W0212: Access to a protected member _compute_buyer_side_to_office of a client class (protected-access)
+models/deals/deal_statistics.py:162:12: W0212: Access to a protected member _compute_total_to_office of a client class (protected-access)
+models/deals/deal_statistics.py:15:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/deals/deal_statistics.py:7:0: C0411: standard import "datetime.timedelta" should be placed before third party import "dateutil.relativedelta.relativedelta" (wrong-import-order)
+models/deals/deal_statistics.py:3:0: W0611: Unused import uuid (unused-import)
+models/deals/deal_statistics.py:5:0: W0611: Unused import calendar (unused-import)
+models/deals/deal_statistics.py:6:0: W0611: Unused relativedelta imported from dateutil.relativedelta (unused-import)
+models/deals/deal_statistics.py:7:0: W0611: Unused timedelta imported from datetime (unused-import)
+models/deals/deal_statistics.py:9:0: W0611: Unused UserError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.deals.close_deal
+models/deals/close_deal.py:337:0: C0301: Line too long (120/100) (line-too-long)
+models/deals/close_deal.py:412:0: C0301: Line too long (103/100) (line-too-long)
+models/deals/close_deal.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/deals/close_deal.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/deals/close_deal.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/deals/close_deal.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/deals/close_deal.py:16:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/close_deal.py:33:28: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/close_deal.py:36:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/close_deal.py:96:12: W0212: Access to a protected member _apply_commission_plans of a client class (protected-access)
+models/deals/close_deal.py:197:20: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/deals/close_deal.py:119:12: W0612: Unused variable 'partner_bank_id' (unused-variable)
+models/deals/close_deal.py:388:16: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/deals/close_deal.py:404:47: W0613: Unused argument 'brokerage_preference' (unused-argument)
+models/deals/close_deal.py:479:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/deals/close_deal.py:482:16: E8140: No exceptions should be raised inside unlink() functions (no-raise-unlink)
+models/deals/close_deal.py:483:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+************* Module agentlink_transaction_manager.models.deals.deal_preferences
+models/deals/deal_preferences.py:184:0: C0304: Final newline missing (missing-final-newline)
+models/deals/deal_preferences.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/deals/deal_preferences.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/deals/deal_preferences.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/deals/deal_preferences.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/deals/deal_preferences.py:112:31: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_preferences.py:10:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+models/deals/deal_preferences.py:4:0: W0611: Unused _ imported from odoo (unused-import)
+models/deals/deal_preferences.py:5:0: W0611: Unused UserError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.deals.conveyancing_wizard
+models/deals/conveyancing_wizard.py:93:0: C0301: Line too long (107/100) (line-too-long)
+models/deals/conveyancing_wizard.py:191:0: C0301: Line too long (110/100) (line-too-long)
+models/deals/conveyancing_wizard.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/deals/conveyancing_wizard.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/deals/conveyancing_wizard.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/deals/conveyancing_wizard.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/deals/conveyancing_wizard.py:44:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:47:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:56:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:59:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:62:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:79:32: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/deals/conveyancing_wizard.py:90:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:96:16: W0707: Consider explicitly re-raising using 'except ValueError as exc' and 'raise UserError(error_message) from exc' (raise-missing-from)
+models/deals/conveyancing_wizard.py:100:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:113:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:126:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:132:12: W0707: Consider explicitly re-raising using 'raise UserError(_('Error: Failed to send email. %s') % str(e)) from e' (raise-missing-from)
+models/deals/conveyancing_wizard.py:132:28: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/deals/conveyancing_wizard.py:32:4: R0915: Too many statements (62/50) (too-many-statements)
+models/deals/conveyancing_wizard.py:136:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:137:8: C0103: Variable name "Attachment" doesn't conform to snake_case naming style (invalid-name)
+models/deals/conveyancing_wizard.py:145:39: W0212: Access to a protected member _name of a client class (protected-access)
+models/deals/conveyancing_wizard.py:151:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:161:37: W0212: Access to a protected member _name of a client class (protected-access)
+models/deals/conveyancing_wizard.py:167:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:172:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:177:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:183:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:194:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/deals/conveyancing_wizard.py:10:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+models/deals/conveyancing_wizard.py:5:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.UserError" (wrong-import-order)
+models/deals/conveyancing_wizard.py:3:0: W0611: Unused api imported from odoo (unused-import)
+************* Module agentlink_transaction_manager.models.deals.status_and_stage
+models/deals/status_and_stage.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/deals/status_and_stage.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/deals/status_and_stage.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/deals/status_and_stage.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/deals/status_and_stage.py:17:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/status_and_stage.py:46:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/status_and_stage.py:63:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/status_and_stage.py:70:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/status_and_stage.py:84:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/status_and_stage.py:91:34: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/status_and_stage.py:98:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/status_and_stage.py:174:16: R0916: Too many boolean expressions in if statement (6/5) (too-many-boolean-expressions)
+models/deals/status_and_stage.py:185:16: R0916: Too many boolean expressions in if statement (7/5) (too-many-boolean-expressions)
+models/deals/status_and_stage.py:197:16: R0916: Too many boolean expressions in if statement (8/5) (too-many-boolean-expressions)
+models/deals/status_and_stage.py:210:16: R0916: Too many boolean expressions in if statement (16/5) (too-many-boolean-expressions)
+models/deals/status_and_stage.py:241:16: R0916: Too many boolean expressions in if statement (13/5) (too-many-boolean-expressions)
+models/deals/status_and_stage.py:277:16: R0916: Too many boolean expressions in if statement (15/5) (too-many-boolean-expressions)
+models/deals/status_and_stage.py:315:16: R0916: Too many boolean expressions in if statement (16/5) (too-many-boolean-expressions)
+models/deals/status_and_stage.py:354:16: R0916: Too many boolean expressions in if statement (16/5) (too-many-boolean-expressions)
+models/deals/status_and_stage.py:130:4: R0912: Too many branches (15/12) (too-many-branches)
+models/deals/status_and_stage.py:10:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/deals/status_and_stage.py:4:0: W0611: Unused _ imported from odoo (unused-import)
+models/deals/status_and_stage.py:5:0: W0611: Unused UserError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.deals.conditions
+models/deals/conditions.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/deals/conditions.py:10:0: E0401: Unable to import 'odoo' (import-error)
+models/deals/conditions.py:10:0: C0413: Import "from odoo import models, fields, api" should be placed at the top of the module (wrong-import-position)
+models/deals/conditions.py:13:0: C0115: Missing class docstring (missing-class-docstring)
+models/deals/conditions.py:18:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/conditions.py:19:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/conditions.py:20:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/conditions.py:13:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/deals/conditions.py:28:0: E0401: Unable to import 'odoo' (import-error)
+models/deals/conditions.py:28:0: W0404: Reimport 'models' (imported line 10) (reimported)
+models/deals/conditions.py:28:0: W0404: Reimport 'fields' (imported line 10) (reimported)
+models/deals/conditions.py:28:0: W0404: Reimport 'api' (imported line 10) (reimported)
+models/deals/conditions.py:28:0: C0413: Import "from odoo import models, fields, api, _" should be placed at the top of the module (wrong-import-position)
+models/deals/conditions.py:29:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/deals/conditions.py:29:0: C0413: Import "from odoo.exceptions import ValidationError" should be placed at the top of the module (wrong-import-position)
+models/deals/conditions.py:32:0: C0115: Missing class docstring (missing-class-docstring)
+models/deals/conditions.py:43:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/conditions.py:44:24: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/conditions.py:47:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/conditions.py:48:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/conditions.py:32:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/deals/conditions.py:10:0: W0611: Unused api imported from odoo (unused-import)
+models/deals/conditions.py:28:0: W0611: Unused _ imported from odoo (unused-import)
+models/deals/conditions.py:29:0: W0611: Unused ValidationError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.deals.reopen_deal
+models/deals/reopen_deal.py:83:0: C0301: Line too long (104/100) (line-too-long)
+models/deals/reopen_deal.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/deals/reopen_deal.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/deals/reopen_deal.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/deals/reopen_deal.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/deals/reopen_deal.py:122:28: W0212: Access to a protected member _reverse_moves of a client class (protected-access)
+models/deals/reopen_deal.py:127:31: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/deals/reopen_deal.py:147:28: W0212: Access to a protected member _reverse_moves of a client class (protected-access)
+models/deals/reopen_deal.py:152:31: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/deals/reopen_deal.py:45:8: W0201: Attribute 'stage_id' defined outside __init__ (attribute-defined-outside-init)
+models/deals/reopen_deal.py:10:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+models/deals/reopen_deal.py:4:0: W0611: Unused api imported from odoo (unused-import)
+models/deals/reopen_deal.py:5:0: W0611: Unused ValidationError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.deals.deal_records
+models/deals/deal_records.py:603:0: C0301: Line too long (103/100) (line-too-long)
+models/deals/deal_records.py:810:0: C0304: Final newline missing (missing-final-newline)
+models/deals/deal_records.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/deals/deal_records.py:5:0: E0401: Unable to import 'odoo' (import-error)
+models/deals/deal_records.py:6:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/deals/deal_records.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/deals/deal_records.py:26:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:71:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:72:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:73:30: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:87:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:93:30: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:122:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:140:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:141:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:142:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:143:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:145:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:163:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:181:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:183:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:234:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:240:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:288:25: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:460:28: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:491:33: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/deals/deal_records.py:589:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/deals/deal_records.py:605:8: W0212: Access to a protected member _update_required_documents of a client class (protected-access)
+models/deals/deal_records.py:608:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/deals/deal_records.py:638:51: W0640: Cell variable required_doc_ids defined in loop (cell-var-from-loop)
+models/deals/deal_records.py:657:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/deals/deal_records.py:669:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/deals/deal_records.py:681:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/deals/deal_records.py:693:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/deals/deal_records.py:705:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/deals/deal_records.py:779:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/deals/deal_records.py:783:16: E8140: No exceptions should be raised inside unlink() functions (no-raise-unlink)
+models/deals/deal_records.py:788:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/deals/deal_records.py:794:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/deals/deal_records.py:795:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/deals/deal_records.py:805:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/deals/deal_records.py:3:0: W0611: Unused import uuid (unused-import)
+************* Module agentlink_transaction_manager.models.financial.__init__
+models/financial/__init__.py:15:0: C0304: Final newline missing (missing-final-newline)
+************* Module agentlink_transaction_manager.models.financial
+models/financial/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module agentlink_transaction_manager.models.financial.account_payment
+models/financial/account_payment.py:55:0: C0301: Line too long (124/100) (line-too-long)
+models/financial/account_payment.py:68:0: C0301: Line too long (101/100) (line-too-long)
+models/financial/account_payment.py:126:0: C0304: Final newline missing (missing-final-newline)
+models/financial/account_payment.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/account_payment.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/account_payment.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/account_payment.py:9:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/account_payment.py:31:28: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_payment.py:54:18: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/account_payment.py:69:17: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/account_payment.py:78:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/account_payment.py:105:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/account_payment.py:116:19: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/account_payment.py:105:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+************* Module agentlink_transaction_manager.models.financial.bank_balances
+models/financial/bank_balances.py:87:0: C0301: Line too long (105/100) (line-too-long)
+models/financial/bank_balances.py:134:0: C0301: Line too long (118/100) (line-too-long)
+models/financial/bank_balances.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/bank_balances.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/bank_balances.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/bank_balances.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/bank_balances.py:4:0: W0611: Unused _ imported from odoo (unused-import)
+models/financial/bank_balances.py:5:0: W0611: Unused UserError imported from odoo.exceptions (unused-import)
+models/financial/bank_balances.py:5:0: W0611: Unused ValidationError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.financial.create_bills
+models/financial/create_bills.py:63:0: C0301: Line too long (111/100) (line-too-long)
+models/financial/create_bills.py:93:0: C0301: Line too long (107/100) (line-too-long)
+models/financial/create_bills.py:160:0: C0301: Line too long (103/100) (line-too-long)
+models/financial/create_bills.py:199:0: C0301: Line too long (139/100) (line-too-long)
+models/financial/create_bills.py:253:0: C0301: Line too long (132/100) (line-too-long)
+models/financial/create_bills.py:406:0: C0301: Line too long (115/100) (line-too-long)
+models/financial/create_bills.py:457:0: C0301: Line too long (101/100) (line-too-long)
+models/financial/create_bills.py:557:0: C0301: Line too long (115/100) (line-too-long)
+models/financial/create_bills.py:600:0: C0301: Line too long (122/100) (line-too-long)
+models/financial/create_bills.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/create_bills.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/create_bills.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/create_bills.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/create_bills.py:17:4: R0914: Too many local variables (18/15) (too-many-locals)
+models/financial/create_bills.py:28:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:69:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:75:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:92:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:159:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:203:28: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:17:4: R0912: Too many branches (17/12) (too-many-branches)
+models/financial/create_bills.py:217:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:259:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:265:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:390:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:207:4: R0912: Too many branches (13/12) (too-many-branches)
+models/financial/create_bills.py:412:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:451:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:495:24: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:522:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:563:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:569:20: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:599:16: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:610:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/create_bills.py:4:0: W0611: Unused api imported from odoo (unused-import)
+************* Module agentlink_transaction_manager.models.financial.commission_calculation
+models/financial/commission_calculation.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/commission_calculation.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/commission_calculation.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/commission_calculation.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/commission_calculation.py:17:28: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_calculation.py:50:33: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_calculation.py:83:29: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_calculation.py:90:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_calculation.py:97:24: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_calculation.py:108:28: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_calculation.py:115:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_calculation.py:122:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_calculation.py:133:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_calculation.py:140:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_calculation.py:147:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_calculation.py:296:39: W0212: Access to a protected member _calculate_tiered_commission of a client class (protected-access)
+models/financial/commission_calculation.py:326:44: W0212: Access to a protected member _calculate_tiered_commission of a client class (protected-access)
+models/financial/commission_calculation.py:10:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+************* Module agentlink_transaction_manager.models.financial.trust_receipt
+models/financial/trust_receipt.py:346:0: C0304: Final newline missing (missing-final-newline)
+models/financial/trust_receipt.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/trust_receipt.py:1:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/trust_receipt.py:2:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/trust_receipt.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/trust_receipt.py:28:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_receipt.py:44:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_receipt.py:50:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_receipt.py:54:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_receipt.py:69:14: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_receipt.py:80:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_receipt.py:91:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_receipt.py:95:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_receipt.py:128:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_receipt.py:165:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/financial/trust_receipt.py:169:18: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/trust_receipt.py:172:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/financial/trust_receipt.py:175:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/trust_receipt.py:194:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/financial/trust_receipt.py:213:16: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/financial/trust_receipt.py:231:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/trust_receipt.py:236:12: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/trust_receipt.py:258:18: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/financial/trust_receipt.py:266:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+models/financial/trust_receipt.py:3:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+************* Module agentlink_transaction_manager.models.financial.trust_balances
+models/financial/trust_balances.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/trust_balances.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/trust_balances.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/trust_balances.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/trust_balances.py:35:29: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_balances.py:42:28: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_balances.py:56:37: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_balances.py:4:0: W0611: Unused _ imported from odoo (unused-import)
+models/financial/trust_balances.py:5:0: W0611: Unused UserError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.financial.due_to_due_from
+models/financial/due_to_due_from.py:422:0: C0301: Line too long (104/100) (line-too-long)
+models/financial/due_to_due_from.py:428:0: C0301: Line too long (105/100) (line-too-long)
+models/financial/due_to_due_from.py:504:0: C0301: Line too long (109/100) (line-too-long)
+models/financial/due_to_due_from.py:528:0: C0301: Line too long (118/100) (line-too-long)
+models/financial/due_to_due_from.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/due_to_due_from.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/due_to_due_from.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/due_to_due_from.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/due_to_due_from.py:91:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/due_to_due_from.py:98:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/due_to_due_from.py:125:4: R0912: Too many branches (29/12) (too-many-branches)
+models/financial/due_to_due_from.py:125:4: R0915: Too many statements (94/50) (too-many-statements)
+models/financial/due_to_due_from.py:162:12: W0612: Unused variable 'other_broker_trust_balance' (unused-variable)
+models/financial/due_to_due_from.py:503:28: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/financial/due_to_due_from.py:503:28: W8120: Translation method _("Total deposits and funds received (%s) exceed the amount receivable (%s) for Deal '%s'.") is using positional string printf formatting with multiple arguments. Use named placeholder `_("%(placeholder)s")` instead. (translation-positional-used)
+models/financial/due_to_due_from.py:527:20: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/financial/due_to_due_from.py:10:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/financial/due_to_due_from.py:5:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+************* Module agentlink_transaction_manager.models.financial.commission_balances
+models/financial/commission_balances.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/commission_balances.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/commission_balances.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/commission_balances.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/commission_balances.py:31:25: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_balances.py:119:46: W0212: Access to a protected member _get_commission_we_have_received of a client class (protected-access)
+models/financial/commission_balances.py:135:37: W0212: Access to a protected member _get_commission_balance of a client class (protected-access)
+models/financial/commission_balances.py:10:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/financial/commission_balances.py:5:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.UserError" (wrong-import-order)
+models/financial/commission_balances.py:3:0: W0611: Unused _ imported from odoo (unused-import)
+models/financial/commission_balances.py:4:0: W0611: Unused UserError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.financial.account_move
+models/financial/account_move.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/account_move.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/account_move.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/account_move.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/account_move.py:24:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:36:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:41:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:46:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:52:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:76:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:98:18: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/account_move.py:105:17: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/account_move.py:111:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/account_move.py:125:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:127:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:128:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:129:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:132:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:150:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:154:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:162:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/account_move.py:223:18: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/account_move.py:230:17: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/account_move.py:5:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.UserError" (wrong-import-order)
+models/financial/account_move.py:3:0: W0611: Unused _ imported from odoo (unused-import)
+models/financial/account_move.py:4:0: W0611: Unused UserError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.financial.trust_refund
+models/financial/trust_refund.py:227:0: C0301: Line too long (107/100) (line-too-long)
+models/financial/trust_refund.py:262:0: C0301: Line too long (101/100) (line-too-long)
+models/financial/trust_refund.py:296:0: C0301: Line too long (109/100) (line-too-long)
+models/financial/trust_refund.py:457:0: C0304: Final newline missing (missing-final-newline)
+models/financial/trust_refund.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/trust_refund.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/trust_refund.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/trust_refund.py:9:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/trust_refund.py:29:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_refund.py:47:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_refund.py:53:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_refund.py:62:26: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_refund.py:68:14: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_refund.py:79:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_refund.py:90:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_refund.py:94:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_refund.py:102:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_refund.py:127:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_refund.py:164:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/financial/trust_refund.py:168:18: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/trust_refund.py:171:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/financial/trust_refund.py:174:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/trust_refund.py:180:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/financial/trust_refund.py:181:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/trust_refund.py:233:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/financial/trust_refund.py:249:16: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/financial/trust_refund.py:296:18: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/financial/trust_refund.py:331:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+models/financial/trust_refund.py:314:12: W0612: Unused variable 'partner' (unused-variable)
+models/financial/trust_refund.py:5:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+************* Module agentlink_transaction_manager.models.financial.trust_excess_funds
+models/financial/trust_excess_funds.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/trust_excess_funds.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/trust_excess_funds.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/trust_excess_funds.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/trust_excess_funds.py:30:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_excess_funds.py:38:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_excess_funds.py:44:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_excess_funds.py:49:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_excess_funds.py:60:14: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_excess_funds.py:71:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_excess_funds.py:82:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_excess_funds.py:86:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_excess_funds.py:94:14: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_excess_funds.py:119:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/trust_excess_funds.py:166:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/financial/trust_excess_funds.py:170:18: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/trust_excess_funds.py:173:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/financial/trust_excess_funds.py:176:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/financial/trust_excess_funds.py:196:29: W0212: Access to a protected member _get_total_deposits of a client class (protected-access)
+models/financial/trust_excess_funds.py:197:32: W0212: Access to a protected member _get_amount_receivable of a client class (protected-access)
+models/financial/trust_excess_funds.py:206:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/financial/trust_excess_funds.py:224:16: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/financial/trust_excess_funds.py:268:12: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/financial/trust_excess_funds.py:302:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+models/financial/trust_excess_funds.py:300:8: W0612: Unused variable 'deal' (unused-variable)
+models/financial/trust_excess_funds.py:317:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+models/financial/trust_excess_funds.py:5:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+************* Module agentlink_transaction_manager.models.financial.transaction_line
+models/financial/transaction_line.py:62:0: C0301: Line too long (133/100) (line-too-long)
+models/financial/transaction_line.py:63:0: C0301: Line too long (101/100) (line-too-long)
+models/financial/transaction_line.py:265:0: C0301: Line too long (110/100) (line-too-long)
+models/financial/transaction_line.py:271:0: C0301: Line too long (106/100) (line-too-long)
+models/financial/transaction_line.py:273:0: C0301: Line too long (110/100) (line-too-long)
+models/financial/transaction_line.py:282:0: C0301: Line too long (108/100) (line-too-long)
+models/financial/transaction_line.py:322:0: C0301: Line too long (116/100) (line-too-long)
+models/financial/transaction_line.py:338:0: C0301: Line too long (102/100) (line-too-long)
+models/financial/transaction_line.py:350:0: C0301: Line too long (113/100) (line-too-long)
+models/financial/transaction_line.py:353:0: C0304: Final newline missing (missing-final-newline)
+models/financial/transaction_line.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/transaction_line.py:1:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/transaction_line.py:2:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/transaction_line.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/transaction_line.py:18:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:33:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:45:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:66:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:71:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:99:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:105:16: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:111:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:112:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:113:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:116:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:127:14: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:139:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:152:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:163:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:210:28: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/transaction_line.py:251:4: R0912: Too many branches (14/12) (too-many-branches)
+models/financial/transaction_line.py:3:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+models/financial/transaction_line.py:2:0: W0611: Unused ValidationError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.financial.commission_receipt
+models/financial/commission_receipt.py:160:0: C0301: Line too long (112/100) (line-too-long)
+models/financial/commission_receipt.py:162:0: C0301: Line too long (144/100) (line-too-long)
+models/financial/commission_receipt.py:167:0: C0301: Line too long (128/100) (line-too-long)
+models/financial/commission_receipt.py:211:0: C0301: Line too long (110/100) (line-too-long)
+models/financial/commission_receipt.py:235:0: C0301: Line too long (111/100) (line-too-long)
+models/financial/commission_receipt.py:242:0: C0301: Line too long (107/100) (line-too-long)
+models/financial/commission_receipt.py:244:0: C0301: Line too long (106/100) (line-too-long)
+models/financial/commission_receipt.py:249:0: C0301: Line too long (138/100) (line-too-long)
+models/financial/commission_receipt.py:263:0: C0301: Line too long (111/100) (line-too-long)
+models/financial/commission_receipt.py:291:0: C0304: Final newline missing (missing-final-newline)
+models/financial/commission_receipt.py:291:0: C0301: Line too long (129/100) (line-too-long)
+models/financial/commission_receipt.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/financial/commission_receipt.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/financial/commission_receipt.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/financial/commission_receipt.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/financial/commission_receipt.py:40:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_receipt.py:47:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_receipt.py:67:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_receipt.py:92:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/financial/commission_receipt.py:162:28: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/financial/commission_receipt.py:178:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/commission_receipt.py:184:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/commission_receipt.py:188:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/commission_receipt.py:195:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/commission_receipt.py:198:18: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/financial/commission_receipt.py:235:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/commission_receipt.py:263:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/commission_receipt.py:283:21: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/financial/commission_receipt.py:291:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/financial/commission_receipt.py:177:8: W0201: Attribute 'invoice_id' defined outside __init__ (attribute-defined-outside-init)
+models/financial/commission_receipt.py:10:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+************* Module agentlink_transaction_manager.models.agent_portal
+models/agent_portal/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module agentlink_transaction_manager.models.agent_portal.graduated_commission
+models/agent_portal/graduated_commission.py:72:0: C0325: Unnecessary parens after 'not' keyword (superfluous-parens)
+models/agent_portal/graduated_commission.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/agent_portal/graduated_commission.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/agent_portal/graduated_commission.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/agent_portal/graduated_commission.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+models/agent_portal/graduated_commission.py:13:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/graduated_commission.py:40:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/graduated_commission.py:7:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/agent_portal/graduated_commission.py:80:0: C0115: Missing class docstring (missing-class-docstring)
+models/agent_portal/graduated_commission.py:85:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/graduated_commission.py:80:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+************* Module agentlink_transaction_manager.models.agent_portal.sales_agent_mentorship
+models/agent_portal/sales_agent_mentorship.py:254:0: C0325: Unnecessary parens after 'not' keyword (superfluous-parens)
+models/agent_portal/sales_agent_mentorship.py:257:0: C0301: Line too long (101/100) (line-too-long)
+models/agent_portal/sales_agent_mentorship.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/agent_portal/sales_agent_mentorship.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/agent_portal/sales_agent_mentorship.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/agent_portal/sales_agent_mentorship.py:8:0: C0115: Missing class docstring (missing-class-docstring)
+models/agent_portal/sales_agent_mentorship.py:118:8: W0212: Access to a protected member _check_and_end_mentorship of a client class (protected-access)
+models/agent_portal/sales_agent_mentorship.py:8:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+models/agent_portal/sales_agent_mentorship.py:128:0: C0115: Missing class docstring (missing-class-docstring)
+models/agent_portal/sales_agent_mentorship.py:147:28: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/sales_agent_mentorship.py:153:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/sales_agent_mentorship.py:158:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/sales_agent_mentorship.py:163:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/sales_agent_mentorship.py:168:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/sales_agent_mentorship.py:174:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/sales_agent_mentorship.py:192:17: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/sales_agent_mentorship.py:198:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/sales_agent_mentorship.py:289:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/agent_portal/sales_agent_mentorship.py:290:18: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/agent_portal/sales_agent_mentorship.py:291:8: W0212: Access to a protected member _check_and_end_mentorship of a client class (protected-access)
+models/agent_portal/sales_agent_mentorship.py:294:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/agent_portal/sales_agent_mentorship.py:295:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/agent_portal/sales_agent_mentorship.py:300:0: C0115: Missing class docstring (missing-class-docstring)
+models/agent_portal/sales_agent_mentorship.py:317:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/sales_agent_mentorship.py:324:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/sales_agent_mentorship.py:300:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/agent_portal/sales_agent_mentorship.py:5:0: C0411: standard import "datetime.date" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+************* Module agentlink_transaction_manager.models.agent_portal.commission_advance
+models/agent_portal/commission_advance.py:147:0: C0301: Line too long (124/100) (line-too-long)
+models/agent_portal/commission_advance.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/agent_portal/commission_advance.py:1:0: E0401: Unable to import 'odoo' (import-error)
+models/agent_portal/commission_advance.py:2:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/agent_portal/commission_advance.py:8:0: C0115: Missing class docstring (missing-class-docstring)
+models/agent_portal/commission_advance.py:8:0: R0902: Too many instance attributes (9/7) (too-many-instance-attributes)
+models/agent_portal/commission_advance.py:50:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/commission_advance.py:56:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/commission_advance.py:62:18: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/commission_advance.py:73:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/commission_advance.py:80:25: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/commission_advance.py:234:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/agent_portal/commission_advance.py:249:16: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/agent_portal/commission_advance.py:287:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+models/agent_portal/commission_advance.py:309:8: W1203: Use lazy % formatting in logging functions (logging-fstring-interpolation)
+models/agent_portal/commission_advance.py:330:16: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/agent_portal/commission_advance.py:383:4: C0116: Missing function or method docstring (missing-function-docstring)
+models/agent_portal/commission_advance.py:386:16: E8140: No exceptions should be raised inside unlink() functions (no-raise-unlink)
+models/agent_portal/commission_advance.py:389:15: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/agent_portal/commission_advance.py:3:0: C0411: standard import "logging" should be placed before third party imports "odoo.models", "odoo.exceptions.ValidationError" (wrong-import-order)
+************* Module agentlink_transaction_manager.models.agent_portal.sales_agent_teams
+models/agent_portal/sales_agent_teams.py:98:0: C0301: Line too long (113/100) (line-too-long)
+models/agent_portal/sales_agent_teams.py:196:0: C0325: Unnecessary parens after 'not' keyword (superfluous-parens)
+models/agent_portal/sales_agent_teams.py:199:0: C0301: Line too long (101/100) (line-too-long)
+models/agent_portal/sales_agent_teams.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/agent_portal/sales_agent_teams.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/agent_portal/sales_agent_teams.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/agent_portal/sales_agent_teams.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/agent_portal/sales_agent_teams.py:49:12: R1720: Unnecessary "elif" after "raise", remove the leading "el" from "elif" (no-else-raise)
+models/agent_portal/sales_agent_teams.py:77:16: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/agent_portal/sales_agent_teams.py:82:38: E1101: Instance of 'bool' has no 'id' member (no-member)
+models/agent_portal/sales_agent_teams.py:97:16: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/agent_portal/sales_agent_teams.py:109:40: E1101: Instance of 'bool' has no 'id' member (no-member)
+models/agent_portal/sales_agent_teams.py:123:12: E1101: Instance of 'bool' has no 'id' member (no-member)
+models/agent_portal/sales_agent_teams.py:10:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+models/agent_portal/sales_agent_teams.py:130:0: C0115: Missing class docstring (missing-class-docstring)
+models/agent_portal/sales_agent_teams.py:143:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/sales_agent_teams.py:151:20: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/agent_portal/sales_agent_teams.py:160:20: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/agent_portal/sales_agent_teams.py:130:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/agent_portal/sales_agent_teams.py:164:0: C0115: Missing class docstring (missing-class-docstring)
+models/agent_portal/sales_agent_teams.py:164:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+************* Module agentlink_transaction_manager.models.agent_portal.commission_plan
+models/agent_portal/commission_plan.py:172:0: C0325: Unnecessary parens after 'not' keyword (superfluous-parens)
+models/agent_portal/commission_plan.py:307:0: C0301: Line too long (117/100) (line-too-long)
+models/agent_portal/commission_plan.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/agent_portal/commission_plan.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/agent_portal/commission_plan.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/agent_portal/commission_plan.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+models/agent_portal/commission_plan.py:15:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/commission_plan.py:20:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/commission_plan.py:42:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/commission_plan.py:56:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/commission_plan.py:104:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+models/agent_portal/commission_plan.py:117:36: E1101: Instance of 'list' has no 'sorted' member (no-member)
+models/agent_portal/commission_plan.py:7:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+models/agent_portal/commission_plan.py:201:0: C0115: Missing class docstring (missing-class-docstring)
+models/agent_portal/commission_plan.py:206:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/commission_plan.py:223:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/agent_portal/commission_plan.py:311:36: W0212: Access to a protected member _compute_graduated_commission of a client class (protected-access)
+models/agent_portal/commission_plan.py:201:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+************* Module agentlink_transaction_manager.models.law_firms
+models/law_firms/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module agentlink_transaction_manager.models.law_firms.lawyer
+models/law_firms/lawyer.py:58:0: C0301: Line too long (140/100) (line-too-long)
+models/law_firms/lawyer.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/law_firms/lawyer.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/law_firms/lawyer.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/law_firms/lawyer.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/law_firms/lawyer.py:57:20: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/law_firms/lawyer.py:57:20: W8120: Translation method _('The contact "%s" is already a lawyer in the "%s" law firm. Please review existing entries before adding a new one.') is using positional string printf formatting with multiple arguments. Use named placeholder `_("%(placeholder)s")` instead. (translation-positional-used)
+models/law_firms/lawyer.py:78:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/law_firms/lawyer.py:79:8: W0212: Access to a protected member _update_partner_to_lawyer of a client class (protected-access)
+models/law_firms/lawyer.py:85:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/law_firms/lawyer.py:87:12: W0212: Access to a protected member _update_partner_to_lawyer of a client class (protected-access)
+models/law_firms/lawyer.py:5:0: W0611: Unused UserError imported from odoo.exceptions (unused-import)
+************* Module agentlink_transaction_manager.models.law_firms.law_firm
+models/law_firms/law_firm.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/law_firms/law_firm.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/law_firms/law_firm.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/law_firms/law_firm.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/law_firms/law_firm.py:85:21: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/law_firms/law_firm.py:91:36: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/law_firms/law_firm.py:99:15: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/law_firms/law_firm.py:107:20: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/law_firms/law_firm.py:182:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/law_firms/law_firm.py:198:14: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/law_firms/law_firm.py:288:16: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/law_firms/law_firm.py:301:16: W8301: Use lazy % formatting in odoo._ functions (translation-not-lazy)
+models/law_firms/law_firm.py:344:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+************* Module agentlink_transaction_manager.models.law_firms.law_firm_wizard
+models/law_firms/law_firm_wizard.py:95:0: C0301: Line too long (103/100) (line-too-long)
+models/law_firms/law_firm_wizard.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/law_firms/law_firm_wizard.py:3:0: E0401: Unable to import 'odoo' (import-error)
+models/law_firms/law_firm_wizard.py:4:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/law_firms/law_firm_wizard.py:7:0: C0115: Missing class docstring (missing-class-docstring)
+models/law_firms/law_firm_wizard.py:40:24: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/law_firms/law_firm_wizard.py:41:22: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/law_firms/law_firm_wizard.py:42:23: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/law_firms/law_firm_wizard.py:75:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+models/law_firms/law_firm_wizard.py:7:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+models/law_firms/law_firm_wizard.py:3:0: W0611: Unused api imported from odoo (unused-import)
+************* Module agentlink_transaction_manager.models.buyers_sellers
+models/buyers_sellers/__init__.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+************* Module agentlink_transaction_manager.models.buyers_sellers.buyers_sellers
+models/buyers_sellers/buyers_sellers.py:371:0: C0301: Line too long (112/100) (line-too-long)
+models/buyers_sellers/buyers_sellers.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/buyers_sellers/buyers_sellers.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/buyers_sellers/buyers_sellers.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/buyers_sellers/buyers_sellers.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/buyers_sellers/buyers_sellers.py:15:11: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/buyers_sellers/buyers_sellers.py:40:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+models/buyers_sellers/buyers_sellers.py:10:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/buyers_sellers/buyers_sellers.py:60:0: C0115: Missing class docstring (missing-class-docstring)
+models/buyers_sellers/buyers_sellers.py:90:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/buyers_sellers/buyers_sellers.py:95:13: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/buyers_sellers/buyers_sellers.py:96:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/buyers_sellers/buyers_sellers.py:101:19: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/buyers_sellers/buyers_sellers.py:157:26: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/buyers_sellers/buyers_sellers.py:163:27: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/buyers_sellers/buyers_sellers.py:428:17: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+models/buyers_sellers/buyers_sellers.py:429:8: W0212: Access to a protected member _update_partner_info of a client class (protected-access)
+models/buyers_sellers/buyers_sellers.py:436:17: R1725: Consider using Python 3 style super() without arguments (super-with-arguments)
+************* Module agentlink_transaction_manager.models.buyers_sellers.buyer_seller_wizard
+models/buyers_sellers/buyer_seller_wizard.py:1:0: C0114: Missing module docstring (missing-module-docstring)
+models/buyers_sellers/buyer_seller_wizard.py:4:0: E0401: Unable to import 'odoo' (import-error)
+models/buyers_sellers/buyer_seller_wizard.py:5:0: E0401: Unable to import 'odoo.exceptions' (import-error)
+models/buyers_sellers/buyer_seller_wizard.py:10:0: C0115: Missing class docstring (missing-class-docstring)
+models/buyers_sellers/buyer_seller_wizard.py:108:8: R1705: Unnecessary "else" after "return", remove the "else" and de-indent the code inside it (no-else-return)
+models/buyers_sellers/buyer_seller_wizard.py:10:0: R0903: Too few public methods (1/2) (too-few-public-methods)
+models/buyers_sellers/buyer_seller_wizard.py:121:0: C0115: Missing class docstring (missing-class-docstring)
+models/buyers_sellers/buyer_seller_wizard.py:178:12: W8113: The attribute string is redundant. String parameter equal to name of variable (attribute-string-redundant)
+models/buyers_sellers/buyer_seller_wizard.py:214:8: R1705: Unnecessary "elif" after "return", remove the leading "el" from "elif" (no-else-return)
+models/buyers_sellers/buyer_seller_wizard.py:121:0: R0903: Too few public methods (0/2) (too-few-public-methods)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.other_brokers.other_broker:[45:171]
+==agentlink_transaction_manager.models.other_brokers.other_broker_agent:[54:180]
+    )
+
+    # =====================
+    # Commission & Payment Information
+    # =====================
+    payable_to_other_broker = fields.Monetary(
+        related="deal_id.payable_to_other_broker",
+        store=True,
+        currency_field="currency_id",
+        tracking=True,
+    )
+    other_broker_trust_balance = fields.Monetary(
+        related="deal_id.other_broker_trust_balance",
+        store=True,
+        currency_field="currency_id",
+        tracking=True,
+    )
+    other_broker_trust_excess_held = fields.Monetary(
+        related="deal_id.other_broker_trust_excess_held",
+        store=True,
+        currency_field="currency_id",
+        tracking=True,
+    )
+    amount_payable = fields.Monetary(
+        related="deal_id.due_to_other_broker",
+        store=True,
+        currency_field="currency_id",
+        tracking=True,
+    )
+    amount_receivable = fields.Monetary(
+        related="deal_id.due_from_other_broker",
+        store=True,
+        currency_field="currency_id",
+        tracking=True,
+    )
+    tax_on_commission = fields.Monetary(
+        compute="_compute_tax_on_commission",
+        store=True,
+        currency_field="currency_id",
+        tracking=True,
+    )
+
+    # =====================
+    # Broker-specific Fields
+    # =====================
+    end_id = fields.Many2one(
+        "deal.end",
+        string="End",
+        required=True,
+        tracking=True,
+    )
+    broker_type = fields.Selection(
+        [
+            ("ar", "A/R - Receivable from this Brokerage"),
+            ("ap", "A/P - Payable to this Brokerage"),
+            ("no", "No Payables or Receivables")
+        ],
+        compute="_compute_broker_type",
+        store=True,
+        tracking=True,
+    )
+    deposit_instructions_received = fields.Boolean(
+        default=False,
+        help="Indicates if the broker has provided banking information for Direct Deposits.",
+        tracking=True,
+    )
+
+    # =====================
+    # Additional Fields
+    # =====================
+    payment_method = fields.Selection(
+        selection=[("cheque", "Cheque"), ("direct_deposit", "Direct Deposit")],
+        related="partner_id.payment_method",
+        store=True,
+        tracking=True,
+    )
+    note = fields.Html(
+        related="partner_id.comment",
+        store=True,
+        tracking=True,
+    )
+
+    # =====================
+    # Compute Methods
+    # =====================
+    @api.depends("end_id.type", "payable_to_other_broker", "amount_receivable")
+    def _compute_broker_type(self):
+        """
+        Compute the broker type based on payable and receivable amounts and the deal end type.
+        """
+        for rec in self:
+            if rec.payable_to_other_broker > 0:
+                rec.broker_type = "ap" if rec.end_id.type in ["seller", "landlord"] else "ar"
+            elif rec.amount_receivable > 0:
+                rec.broker_type = "ar" if rec.end_id.type in ["seller", "landlord"] else "ap"
+            else:
+                rec.broker_type = "no"
+
+    @api.depends('payable_to_other_broker', 'amount_receivable')
+    def _compute_tax_on_commission(self):
+        """
+        Compute the tax on commission based on payable or receivable amounts.
+        """
+        for rec in self:
+            tax_amount = 0.0
+            try:
+                if rec.payable_to_other_broker > 0:
+                    taxes = rec._get_applicable_taxes()
+                    tax_result = taxes.compute_all(
+                        rec.payable_to_other_broker,
+                        rec.currency_id,
+                        1,
+                        partner=rec.partner_id
+                    )
+                    tax_amount = tax_result['total_included'] - tax_result['total_excluded']
+                elif rec.amount_receivable > 0:
+                    taxes = rec._get_applicable_taxes()
+                    tax_result = taxes.compute_all(
+                        rec.amount_receivable,
+                        rec.currency_id,
+                        1,
+                        partner=rec.partner_id
+                    )
+                    tax_amount = tax_result['total_included'] - tax_result['total_excluded']
+            except UserError as e:
+                _logger.error( (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.other_brokers.other_broker:[172:240]
+==agentlink_transaction_manager.models.other_brokers.other_broker_agent:[181:245]
+                    rec.id, e
+                )
+                rec.tax_on_commission = 0.0
+                continue
+            rec.tax_on_commission = tax_amount
+
+    def _get_applicable_taxes(self):
+        """
+        Retrieve applicable taxes for the other broker based on the deal preferences.
+        """
+        self.ensure_one()
+        deal_prefs = self.deal_id.deal_preferences_id
+        if deal_prefs and deal_prefs.tax_ids:
+            return deal_prefs.tax_ids
+        else:
+            # Fallback to company purchase taxes
+            default_taxes = self.env['account.tax'].search([
+                ('type_tax_use', '=', 'purchase'),
+                ('company_id', '=', self.company_id.id),
+                ('active', '=', True),
+            ])
+            if not default_taxes:
+                raise UserError(_("No default purchase taxes defined for the company."))
+            return default_taxes
+
+    # =====================
+    # Constraints
+    # =====================
+    @api.constrains("deal_id", "end_id")
+    def _check_single_broker_per_deal_end(self):
+        """
+        Ensure that only one broker is associated with each deal and end combination.
+        """
+        for rec in self:
+            existing_brokers = self.search_count([
+                ("deal_id", "=", rec.deal_id.id),
+                ("end_id", "=", rec.end_id.id),
+                ("id", "!=", rec.id),
+            ])
+            if existing_brokers >= 1:
+                raise ValidationError(
+                    _("Only one other broker can be associated with each end (Buyer or Seller) of a deal at a time.")
+                )
+
+    @api.constrains("end_id.type")
+    def _check_no_other_broker_for_double_end(self):
+        """
+        Prevent associating other brokers with double-ended deals.
+        """
+        for rec in self:
+            if rec.end_id.type == 'double_end':
+                existing_brokers = self.search_count([
+                    ("deal_id", "=", rec.deal_id.id),
+                    ("end_id.type", "=", rec.end_id.type),
+                    ("id", "!=", rec.id),
+                ])
+                if existing_brokers >= 1:
+                    raise ValidationError(_("No other brokers are allowed for double-ended deals."))
+
+    # =====================
+    # Overridden Methods
+    # =====================
+    @api.model
+    def create(self, vals):
+        """
+        Override the create method to ensure the partner is marked as an other broker
+        and associated with the correct company.
+        """ (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_receipt:[65:102]
+==agentlink_transaction_manager.models.financial.trust_refund:[64:101]
+        required=True,
+        tracking=True,
+    )
+    held_by = fields.Selection(
+        [
+            ("our_office", "Our Office"),
+            ("other_broker", "Other Broker"),
+            ("seller_lawyer", "Seller's Lawyer"),
+            ("buyer_lawyer", "Buyer's Lawyer"),
+        ],
+        string="Held By",
+        required=True,
+        tracking=True,
+    )
+    payment_method = fields.Selection(
+        [
+            ("draft", "Bank Draft"),
+            ("direct_deposit", "Direct Deposit"),
+            ("cheque", "Cheque"),
+            ("cash", "Cash"),
+        ],
+        string="Payment Method",
+        default="direct_deposit",
+        tracking=True,
+    )
+    reference_number = fields.Char(
+        string="Reference Number",
+        tracking=True,
+    )
+    notes = fields.Text(
+        string="Notes",
+        tracking=True,
+    )
+
+    # =====================
+    # Status Fields
+    # ===================== (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_excess_funds:[54:93]
+==agentlink_transaction_manager.models.financial.trust_receipt:[67:102]
+    )
+    held_by = fields.Selection(
+        [
+            ("our_office", "Our Office"),
+            ("other_broker", "Other Broker"),
+            ("seller_lawyer", "Seller's Lawyer"),
+            ("buyer_lawyer", "Buyer's Lawyer"),
+        ],
+        string="Held By",
+        required=True,
+        tracking=True,
+    )
+    payment_method = fields.Selection(
+        [
+            ("draft", "Bank Draft"),
+            ("direct_deposit", "Direct Deposit"),
+            ("cheque", "Cheque"),
+            ("cash", "Cash"),
+        ],
+        string="Payment Method",
+        default="direct_deposit",
+        tracking=True,
+    )
+    reference_number = fields.Char(
+        string="Reference Number",
+        tracking=True,
+    )
+    notes = fields.Text(
+        string="Notes",
+        tracking=True,
+    )
+
+    # =====================
+    # Status Fields
+    # ===================== (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_records:[32:60]
+==agentlink_transaction_manager.models.listings.listing_records:[29:61]
+        required=True,
+        copy=False,
+        readonly=True,
+        default=lambda self: _("New"),
+        index=True,
+    )
+    company_id = fields.Many2one(
+        "res.company",
+        string="Company",
+        default=lambda self: self.env.company,
+        required=True,
+        tracking=True,
+        index=True,
+    )
+    partner_id = fields.Many2one(
+        "res.partner",
+        string="Partner",
+        required=True,
+        ondelete="cascade",
+        help="Partner associated with this deal.",
+        tracking=True,
+    )
+    currency_id = fields.Many2one(
+        "res.currency",
+        related="company_id.currency_id",
+        string="Currency",
+        readonly=True,
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_records:[102:139]
+==agentlink_transaction_manager.models.listings.listing_records:[93:129]
+        ],
+        string="Street Direction Suffix",
+        tracking=True,
+    )
+    city_id = fields.Many2one(
+        "cities.and.towns",
+        string="City",
+        tracking=True,
+    )
+    state_id = fields.Many2one(
+        "res.country.state",
+        string="Province",
+        tracking=True,
+    )
+    country_id = fields.Many2one(
+        "res.country",
+        string="Country",
+        tracking=True,
+    )
+    postal_code = fields.Char(string="Postal Code", size=7, tracking=True)
+
+    # Legal Description
+    legal_plan = fields.Char(string="Plan/Condo Plan #", tracking=True)
+    legal_block = fields.Char(string="Block/Unit #", tracking=True)
+    legal_lot = fields.Char(string="Lot/Unit Factor #", tracking=True)
+    legal_long = fields.Char(string="Long Legal (Rural)", tracking=True)
+
+    # =====================
+    # Representation (End)
+    # =====================
+    end_id = fields.Many2one(
+        "deal.end", string="We Represent", tracking=True, index=True
+    )
+    # =====================
+    # Price and Date Fields
+    # ===================== (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_receipt:[104:139]
+==agentlink_transaction_manager.models.financial.trust_refund:[103:138]
+        default=False,
+        tracking=True,
+    )
+
+    # =====================
+    # References to Financial Records
+    # =====================
+    invoice_id = fields.Many2one(
+        "account.move",
+        string="Invoice Reference",
+        tracking=True,
+        readonly=True,
+    )
+    payment_id = fields.Many2one(
+        "account.payment",
+        string="Payment Reference",
+        tracking=True,
+        readonly=True,
+    )
+
+    # =====================
+    # Computed Fields
+    # =====================
+    trust_balance = fields.Monetary(
+        string="Trust Balance",
+        compute="_compute_trust_balance",
+        store=True,
+        currency_field="currency_id",
+    )
+
+    # =====================
+    # Relationships
+    # =====================
+    transaction_line_ids = fields.One2many(
+        "transaction.line", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_preferences:[17:42]
+==agentlink_transaction_manager.models.shared_resources.brokerage_preferences:[15:37]
+    PAYMENT_SOURCE_SELECTION = [
+        ("seller_law_firm", "Seller's Law Firm"),
+        ("buyer_law_firm", "Buyer's Law Firm"),
+        ("buyer_broker", "Buyer's Broker"),
+        ("buyer", "Buyer"),
+        ("seller", "Seller"),
+    ]
+
+    WHO_HOLDS_DEPOSIT_SELECTION = [
+        ("seller_broker", "Seller's Broker"),
+        ("buyer_broker", "Buyer's Broker"),
+        ("seller_law_firm", "Seller's Law Firm"),
+        ("buyer_law_firm", "Buyer's Law Firm"),
+    ]
+
+    TRUST_EXCESS_SELECTION = [
+        ("buyer_law_firm", "Buyer's Law Firm"),
+        ("seller_law_firm", "Seller's Law Firm"),
+        ("seller", "Seller"),
+        ("buyer", "Buyer"),
+    ]
+ (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_excess_funds:[361:381]
+==agentlink_transaction_manager.models.financial.trust_refund:[353:373]
+            "quantity": 1,
+            "price_unit": amount,
+            "tax_ids": [],
+        }
+        invoice_vals = {
+            "move_type": "out_refund",
+            "partner_id": partner.id,
+            "invoice_date": fields.Date.today(),
+            "invoice_line_ids": [(0, 0, invoice_line)],
+            "deal_id": self.deal_id.id,
+            "journal_id": brokerage_prefs.trust_journal.id,
+        }
+        return self.env["account.move"].create(invoice_vals)
+
+    def _register_payment(self, brokerage_prefs, refund_invoice, amount):
+        payment_method = self.env.ref(
+            "account.account_payment_method_manual_out", raise_if_not_found=False
+        )
+        if not payment_method:
+            raise UserError( (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_preferences:[59:80]
+==agentlink_transaction_manager.models.shared_resources.brokerage_preferences:[85:105]
+    )
+
+    # Payment Source Selections
+    seller_broker_is_paid_by = fields.Selection(
+        selection=PAYMENT_SOURCE_SELECTION,
+        string="Seller's Broker is Paid By",
+        tracking=True,
+    )
+    buyer_broker_is_paid_by = fields.Selection(
+        selection=PAYMENT_SOURCE_SELECTION,
+        string="Buyer's Broker is Paid By",
+        tracking=True,
+    )
+    who_holds_the_deposit = fields.Selection(
+        selection=WHO_HOLDS_DEPOSIT_SELECTION,
+        string="Who Holds Deposits",
+        tracking=True,
+    )
+
+    seller_broker_pays_trust_excess_to = fields.Selection(
+        selection=TRUST_EXCESS_SELECTION, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_records:[165:182]
+==agentlink_transaction_manager.models.listings.listing_records:[166:186]
+        string="Business Source",
+        domain="[('is_active', '=', True)]",
+        tracking=True,
+    )
+    for_sale_or_lease = fields.Selection(
+        [
+            ("for_sale", "For Sale"),
+            ("for_lease", "For Lease"),
+        ],
+        string="For Sale or Lease",
+        required=True,
+        default="for_sale",
+        tracking=True,
+        help="Indicates whether the deal is for sale or lease.",
+    )
+    notes = fields.Html(string="Notes", tracking=True)
+
+    # =====================
+    # Status and Details
+    # ===================== (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_records:[502:521]
+==agentlink_transaction_manager.models.financial.commission_calculation:[63:82]
+    )
+    buyer_side_plus_flat_fee = fields.Monetary(
+        string="+ Flat Fee",
+        currency_field="currency_id",
+        help="Additional flat fee to add for buyer side commission.",
+        tracking=True,
+        default=0.0,
+    )
+    buyer_side_less_flat_fee = fields.Monetary(
+        string="- Flat Fee",
+        currency_field="currency_id",
+        help="Flat fee to subtract for buyer side commission.",
+        tracking=True,
+        default=0.0,
+    )
+
+    # =====================
+    # Deal Preferences
+    # ===================== (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_receipt:[206:223]
+==agentlink_transaction_manager.models.financial.trust_refund:[242:258]
+        ]
+        missing_prefs_fields = [
+            field for field in required_prefs_fields if not getattr(brokerage_prefs, field)
+        ]
+        if missing_prefs_fields:
+            raise UserError(
+                _(
+                    "Please set up the following Trust settings in Brokerage Preferences: %s"
+                )
+                % ", ".join(missing_prefs_fields)
+            )
+
+        deal = self.deal_id
+        if not deal:
+            raise ValidationError(_("Please save the Deal record before proceeding."))
+
+        # Get the partner based on received_from_id (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_receipt:[140:168]
+==agentlink_transaction_manager.models.financial.trust_refund:[139:167]
+        string="Transaction Lines",
+        readonly=True,
+    )
+
+    # =====================
+    # Hidden Fields
+    # =====================
+    partner_id = fields.Many2one(
+        "res.partner",
+        string="Partner",
+        help="Used internally to assign a partner for invoices/payments.",
+    )
+
+    # =====================
+    # Constraints and Overrides
+    # =====================
+
+    @api.constrains("held_by")
+    def _check_held_by(self):
+        for record in self:
+            if not record.held_by:
+                raise UserError(_("Please specify who holds the trust funds."))
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if not vals.get("held_by"):
+                raise UserError(_("Please specify who holds the trust funds.")) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.agent_portal.commission_advance:[90:104]
+==agentlink_transaction_manager.models.sales_agents.sales_agents_and_referrals:[284:298]
+        tracking=True,
+    )
+    advance_amt_outstanding = fields.Monetary(
+        string="Advance Outstanding",
+        compute="_compute_advance_amt_outstanding",
+        store=True,
+        currency_field="currency_id",
+        tracking=True,
+    )
+    available_for_advance = fields.Monetary(
+        string="Available for Advance",
+        compute="_compute_available_for_advance",
+        store=True,
+        currency_field="currency_id", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.listings.listing_records:[502:517]
+==agentlink_transaction_manager.models.listings.listing_wizard:[163:177]
+            "suite_number": self.suite_number,
+            "street_number": self.street_number,
+            "street_name": self.street_name,
+            "street_type_id": self.street_type_id.id,
+            "street_direction_prefix": self.street_direction_prefix,
+            "street_direction_suffix": self.street_direction_suffix,
+            "city_id": self.city_id.id,
+            "state_id": self.state_id.id,
+            "country_id": self.country_id.id,
+            "postal_code": self.postal_code,
+            "legal_plan": self.legal_plan,
+            "legal_block": self.legal_block,
+            "legal_lot": self.legal_lot,
+            "legal_long": self.legal_long, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.transaction_line:[134:151]
+==agentlink_transaction_manager.models.financial.trust_receipt:[77:90]
+        tracking=True,
+    )
+    payment_method = fields.Selection(
+        [
+            ("draft", "Bank Draft"),
+            ("direct_deposit", "Direct Deposit"),
+            ("cheque", "Cheque"),
+            ("cash", "Cash"),
+        ],
+        string="Payment Method",
+        default="direct_deposit",
+        tracking=True,
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_receipt:[32:49]
+==agentlink_transaction_manager.models.financial.trust_refund:[35:52]
+    )
+    deposited = fields.Monetary(
+        string="Deposited Amount",
+        currency_field="currency_id",
+        tracking=True,
+        readonly=True,
+    )
+
+    # =====================
+    # Date Fields
+    # =====================
+    date_received = fields.Date(
+        string="Date Received",
+        default=fields.Date.today,
+        required=True,
+        tracking=True,
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_excess_funds:[417:431]
+==agentlink_transaction_manager.models.financial.trust_refund:[409:430]
+        }
+        self.env["transaction.line"].create(transaction_line_vals)
+
+    def _display_notification(self, title, message):
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": title,
+                "message": message,
+                "type": "success",
+                "sticky": False,
+            },
+        } (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_excess_funds:[36:48]
+==agentlink_transaction_manager.models.financial.trust_refund:[41:61]
+    )
+
+    # =====================
+    # Date Fields
+    # =====================
+    date_received = fields.Date(
+        string="Date Received",
+        default=fields.Date.today,
+        required=True,
+        tracking=True,
+    )
+    date_posted = fields.Date(
+        string="Date Posted",
+        tracking=True,
+        readonly=True,
+    )
+
+    # =====================
+    # Additional Fields
+    # ===================== (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_line:[40:52]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[109:121]
+    )
+    commission_category = fields.Selection(
+        [
+            ("first", "First"),
+            ("next", "Next"),
+            ("total_selling_price", "Total Selling Price"),
+            ("remainder", "Remainder"),
+        ],
+        string="Commission Category",
+        required=True,
+        help="Category of the commission line.",
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_records:[82:94]
+==agentlink_transaction_manager.models.listings.listing_records:[73:85]
+        ],
+        string="Street Direction Prefix",
+        tracking=True,
+    )
+    street_name = fields.Char(string="Street Name", tracking=True)
+    street_type_id = fields.Many2one(
+        "street.type",
+        string="Street Type",
+        tracking=True,
+    )
+    street_direction_suffix = fields.Selection(
+        selection=[ (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.transaction_line:[121:134]
+==agentlink_transaction_manager.models.financial.trust_receipt:[65:76]
+        required=True,
+        tracking=True,
+    )
+    held_by = fields.Selection(
+        [
+            ("our_office", "Our Office"),
+            ("other_broker", "Other Broker"),
+            ("seller_lawyer", "Seller's Lawyer"),
+            ("buyer_lawyer", "Buyer's Lawyer"),
+        ],
+        string="Held By", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_excess_funds:[220:233]
+==agentlink_transaction_manager.models.financial.trust_receipt:[209:223]
+        ]
+        if missing_prefs_fields:
+            raise UserError(
+                _(
+                    "Please set up the following Trust settings in Brokerage Preferences: %s"
+                )
+                % ", ".join(missing_prefs_fields)
+            )
+
+        deal = self.deal_id
+        if not deal:
+            raise ValidationError(_("Please save the Deal record before proceeding."))
+ (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_records:[480:499]
+==agentlink_transaction_manager.models.financial.commission_calculation:[39:58]
+        string="- Flat Fee",
+        currency_field="currency_id",
+        help="Flat fee to subtract for total commission.",
+        tracking=True,
+        default=0.0,
+    )
+
+    # =====================
+    # Commission Fields for Buyer Side Commission
+    # =====================
+    buyer_side_commission_type = fields.Selection(
+        [
+            ("tiered", "Tiered Percentage"),
+            ("fixed", "Fixed Percentage"),
+            ("flat_fee", "Flat Fee"),
+        ],
+        string="Buyer Side Commission Type",
+        tracking=True,
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_line:[113:124]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[148:159]
+                )
+            if not (0 <= record.commission_percentage <= 100):
+                raise ValidationError(
+                    _("Commission percentage must be between 0 and 100.")
+                )
+            if (
+                record.commission_category in ["total_selling_price", "remainder"]
+                and record.portion_of_selling_price <= 0
+            ):
+                raise ValidationError(
+                    _( (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite:[151:162]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[109:120]
+    )
+    commission_category = fields.Selection(
+        [
+            ("first", "First"),
+            ("next", "Next"),
+            ("total_selling_price", "Total Selling Price"),
+            ("remainder", "Remainder"),
+        ],
+        string="Commission Category",
+        required=True,
+        help="Category of the commission line.", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.buyers_sellers.buyer_seller_wizard:[166:176]
+==agentlink_transaction_manager.models.buyers_sellers.buyers_sellers:[23:33]
+    )
+    buyer_seller_type = fields.Selection(
+        [
+            ("buyer", "Buyer"),
+            ("seller", "Seller"),
+            ("tenant", "Tenant"),
+            ("landlord", "Landlord"),
+        ],
+        string="Type",
+        required=True, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite:[211:231]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[152:162]
+                )
+            if (
+                record.commission_category in ["total_selling_price", "remainder"]
+                and record.portion_of_selling_price <= 0
+            ):
+                raise ValidationError(
+                    _(
+                        "Final commission categories must cover the remaining selling price."
+                    )
+                )
+
+    # =====================
+    # Methods
+    # =====================
+
+    @api.model
+    def create(self, vals):
+        """
+        Override the create method to set default sequence if not provided.
+        """ (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite:[39:49]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[32:42]
+    )
+    commission_type = fields.Selection(
+        [
+            ("tiered", "Tiered Percentage"),
+            ("fixed", "Fixed Percentage"),
+            ("flat_fee", "Flat Fee"),
+        ],
+        string="Commission Type",
+        required=True,
+        help="Type of commission.", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.listings.listing_records:[285:303]
+==agentlink_transaction_manager.models.listings.listing_wizard:[213:226]
+        for record in self:
+            if (
+                record.list_date
+                and record.expiry_date
+                and record.expiry_date <= record.list_date
+            ):
+                raise ValidationError(_("Expiry Date must be greater than List Date."))
+
+    @api.constrains("list_price")
+    def _check_list_price(self):
+        for record in self:
+            if record.list_price <= 0:
+                raise ValidationError(_("List Price must be greater than zero.")) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.buyers_sellers.buyer_seller_wizard:[166:175]
+==agentlink_transaction_manager.models.buyers_sellers.buyers_sellers:[138:147]
+    )
+    buyer_seller_type = fields.Selection(
+        [
+            ("buyer", "Buyer"),
+            ("seller", "Seller"),
+            ("tenant", "Tenant"),
+            ("landlord", "Landlord"),
+        ],
+        string="Type", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.transaction_line:[123:134]
+==agentlink_transaction_manager.models.financial.trust_excess_funds:[54:67]
+    )
+
+    # Held By
+    held_by = fields.Selection(
+        [
+            ("our_office", "Our Office"),
+            ("other_broker", "Other Broker"),
+            ("seller_lawyer", "Seller's Lawyer"),
+            ("buyer_lawyer", "Buyer's Lawyer"),
+        ],
+        string="Held By", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_excess_funds:[402:411]
+==agentlink_transaction_manager.models.financial.trust_refund:[393:402]
+            "deal_id": self.deal_id.id,
+            "amount": -amount,  # Negative amount for refund
+            "deposited": -amount,
+            "date_received": self.date_received,
+            "date_posted": fields.Date.today(),
+            "journal_type": "trust",
+            "held_by": self.held_by,
+            "payment_method": self.payment_method,
+            "reference_number": self.reference_number, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_excess_funds:[206:217]
+==agentlink_transaction_manager.models.financial.trust_refund:[233:244]
+        self.ensure_one()
+        brokerage_prefs = self.env["brokerage.preferences"].search([], limit=1)
+
+        # Validate Brokerage Preferences
+        required_prefs_fields = [
+            "trust_journal",
+            "trust_liability_account",
+            "trust_bank_account",
+            "trust_deposit_product_id",
+        ]
+        missing_prefs_fields = [ (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_excess_funds:[390:401]
+==agentlink_transaction_manager.models.financial.trust_receipt:[315:326]
+            "partner_type": "customer",
+            "partner_id": invoice.partner_id.id,
+            "journal_id": brokerage_prefs.trust_bank_account.id,
+            "payment_method_id": payment_method.id,
+            "communication": invoice.name,
+            "deal_id": self.deal_id.id,
+        }
+        return self.env["account.payment"].create(payment_vals)
+
+    def _create_transaction_line(self, amount, payment, brokerage_prefs, partner):
+        transaction_line_vals = { (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_records:[459:468]
+==agentlink_transaction_manager.models.financial.commission_calculation:[16:25]
+    total_commission_type = fields.Selection(
+        [
+            ("tiered", "Tiered Percentage"),
+            ("fixed", "Fixed Percentage"),
+            ("flat_fee", "Flat Fee"),
+        ],
+        string="Total Commission Type",
+        tracking=True,
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite:[141:150]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[100:109]
+    )
+    commission_type = fields.Selection(
+        [
+            ("total", "Total Commission"),
+            ("buyer_side", "Buyer Side Commission"),
+        ],
+        string="Commission Type",
+        required=True,
+        help="Type of commission this line represents.", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_records:[155:164]
+==agentlink_transaction_manager.models.listings.listing_records:[156:165]
+        string="Property Type",
+        domain="[('is_active', '=', True)]",
+        tracking=True,
+    )
+    size = fields.Char(string="Size (Sq Ft/Sq M)", tracking=True)
+    ml_number = fields.Char(string="ML Number", tracking=True)
+    title_requested = fields.Boolean(string="Office to Order Title", tracking=True)
+    title_ordered = fields.Boolean(string="Title Ordered", tracking=True)
+    business_source_id = fields.Many2one( (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.listings.listing_records:[188:197]
+==agentlink_transaction_manager.models.listings.listing_wizard:[91:100]
+    status = fields.Selection(
+        [
+            ("draft", "Draft"),
+            ("active", "Active"),
+            ("expired", "Expired"),
+            ("sold", "Sold"),
+            ("cancelled", "Cancelled"),
+        ],
+        string="Status", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.agent_portal.sales_agent_mentorship:[308:316]
+==agentlink_transaction_manager.models.buyers_sellers.buyer_seller_wizard:[149:157]
+        required=True,
+    )
+    deal_id = fields.Many2one(
+        "deal.records",
+        string="Deal",
+        required=True,
+        ondelete="cascade",
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_excess_funds:[12:24]
+==agentlink_transaction_manager.models.financial.trust_refund:[11:23]
+    _inherit = [
+        "mail.thread",
+        "mail.activity.mixin",
+        "shared.fields.mixin",
+    ]
+    _rec_name = "deal_number"
+    _order = "date_received desc"
+
+    # =====================
+    # Financial Fields
+    # =====================
+    transaction_type = fields.Selection( (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_excess_funds:[131:147]
+==agentlink_transaction_manager.models.financial.trust_receipt:[140:159]
+        string="Transaction Lines",
+        readonly=True,
+    )
+
+    # =====================
+    # Hidden Fields
+    # =====================
+    partner_id = fields.Many2one(
+        "res.partner",
+        string="Partner",
+        help="Used internally to assign a partner for invoices/payments.",
+    )
+
+    # =====================
+    # Deal Preferences
+    # ===================== (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.reopen_deal:[58:71]
+==agentlink_transaction_manager.models.financial.create_bills:[503:516]
+                "type": "ir.actions.client",
+                "tag": "display_notification",
+                "params": {
+                    "message": message,
+                    "type": "success",
+                    "sticky": False,
+                },
+            }
+
+    def _generate_sales_agent_expense_invoice(self):
+        """
+        Generate expense invoices for sales agents.
+        """ (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_line:[33:41]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[123:131]
+        required=True,
+        help="The portion of the selling price that this line's commission calculations are based on.",
+    )
+    commission_percentage = fields.Float(
+        string="Commission Percentage (%)",
+        required=True,
+        help="Commission percentage for this portion of the selling price.",
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite:[187:210]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[137:151]
+    )
+
+    # Constraints
+    @api.constrains(
+        "portion_of_selling_price", "commission_percentage", "commission_category"
+    )
+    def _check_line_values(self):
+        for record in self:
+            if record.portion_of_selling_price <= 0:
+                raise ValidationError(
+                    _("Portion of Selling Price must be greater than 0.")
+                )
+            if not (0 <= record.commission_percentage <= 100):
+                raise ValidationError( (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite:[29:37]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[23:31]
+    )
+    commission_category = fields.Selection(
+        [
+            ("total_commission", "Total Commission"),
+            ("buyer_side_commission", "Buyer Side Commission"),
+        ],
+        string="Commission Category",
+        required=True, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.listings.listing_records:[49:61]
+==agentlink_transaction_manager.models.shared_resources.shared_fields_mixin:[13:21]
+        tracking=True,
+    )
+    currency_id = fields.Many2one(
+        "res.currency",
+        related="company_id.currency_id",
+        string="Currency",
+        readonly=True,
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_excess_funds:[36:43]
+==agentlink_transaction_manager.models.financial.trust_receipt:[38:49]
+    )
+
+    # =====================
+    # Date Fields
+    # =====================
+    date_received = fields.Date(
+        string="Date Received",
+        default=fields.Date.today,
+        required=True,
+        tracking=True,
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_receipt:[278:286]
+==agentlink_transaction_manager.models.financial.trust_refund:[344:351]
+        product = brokerage_prefs.trust_deposit_product_id
+        if not product:
+            raise UserError(
+                _("The 'Trust Deposits' product is not configured in Brokerage Preferences.")
+            )
+        invoice_line = {
+            "product_id": product.id, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_receipt:[51:62]
+==agentlink_transaction_manager.models.financial.trust_refund:[50:61]
+        tracking=True,
+    )
+    date_posted = fields.Date(
+        string="Date Posted",
+        tracking=True,
+        readonly=True,
+    )
+
+    # =====================
+    # Additional Fields
+    # ===================== (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite:[211:218]
+==agentlink_transaction_manager.models.shared_resources.commission_line:[117:124]
+                )
+            if (
+                record.commission_category in ["total_selling_price", "remainder"]
+                and record.portion_of_selling_price <= 0
+            ):
+                raise ValidationError(
+                    _( (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite:[179:186]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[130:137]
+    )
+    currency_id = fields.Many2one(
+        "res.currency",
+        string="Currency",
+        required=True,
+        default=lambda self: self.env.company.currency_id,
+        help="Currency for the commission.", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite:[79:86]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[61:68]
+    )
+    currency_id = fields.Many2one(
+        "res.currency",
+        string="Currency",
+        required=True,
+        default=lambda self: self.env.company.currency_id,
+        help="Currency for the commission.", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.buyers_sellers.buyers_sellers:[15:22]
+==agentlink_transaction_manager.models.listings.listing_records:[170:177]
+    for_sale_or_lease = fields.Selection(
+        [
+            ("for_sale", "For Sale"),
+            ("for_lease", "For Lease"),
+        ],
+        string="For Sale or Lease",
+        required=True, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_records:[216:227]
+==agentlink_transaction_manager.models.listings.listing_records:[147:154]
+    deal_class_id = fields.Many2one(
+        "deal.class",
+        string="Class",
+        domain="[('is_active','=',True)]",
+        tracking=True,
+        index=True,
+    )
+
+    # =====================
+    # Buyers/Sellers
+    # ===================== (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.listings.listing_records:[132:139]
+==agentlink_transaction_manager.models.listings.listing_wizard:[50:57]
+        help="List price of the property",
+    )
+    sell_price = fields.Monetary(
+        string="Sell Price",
+        currency_field="currency_id",
+        help="Selling price of the property",
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.listings.listing_records:[50:61]
+==agentlink_transaction_manager.models.listings.listing_wizard:[18:27]
+    )
+    currency_id = fields.Many2one(
+        "res.currency",
+        related="company_id.currency_id",
+        string="Currency",
+        readonly=True,
+    )
+
+    # =====================
+    # Address & Legal Description
+    # ===================== (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.buyers_sellers.buyer_seller_wizard:[155:162]
+==agentlink_transaction_manager.models.documents.documents:[144:151]
+        ondelete="cascade",
+    )
+    listing_id = fields.Many2one(
+        "listing.records",
+        string="Listing",
+        ondelete="cascade",
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.law_firms.law_firm:[53:62]
+==agentlink_transaction_manager.models.other_brokers.other_broker:[85:96]
+    )
+
+    # Basic Fields
+    end_id = fields.Many2one(
+        "deal.end",
+        string="End",
+        required=True,
+        tracking=True,
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.agent_portal.commission_plan:[171:177]
+==agentlink_transaction_manager.models.agent_portal.graduated_commission:[71:79]
+                if not (0 <= record.commission_percentage <= 100):
+                    raise ValidationError(
+                        _("Commission percentage must be between 0 and 100.")
+                    )
+                if record.flat_fee < 0:
+                    raise ValidationError(_("Flat fee cannot be negative.")) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.commission_receipt:[250:256]
+==agentlink_transaction_manager.models.financial.trust_receipt:[311:317]
+        payment_vals = {
+            "payment_date": self.date_received or fields.Date.today(),
+            "amount": amount,
+            "payment_type": "inbound",
+            "partner_type": "customer",  # 'customer' since it's an 'out_invoice'
+            "partner_id": invoice.partner_id.id, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.commission_receipt:[60:70]
+==agentlink_transaction_manager.models.financial.trust_receipt:[25:31]
+        tracking=True,
+    )
+    amount = fields.Monetary(
+        string="Amount",
+        currency_field="currency_id",
+        required=True, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_receipt:[331:337]
+==agentlink_transaction_manager.models.financial.trust_refund:[396:402]
+            "date_received": self.date_received,
+            "date_posted": fields.Date.today(),
+            "journal_type": "trust",
+            "held_by": self.held_by,
+            "payment_method": self.payment_method,
+            "reference_number": self.reference_number, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_receipt:[296:304]
+==agentlink_transaction_manager.models.financial.trust_refund:[361:369]
+            "invoice_line_ids": [(0, 0, invoice_line)],
+            "deal_id": self.deal_id.id,
+            "journal_id": brokerage_prefs.trust_journal.id,
+        }
+        return self.env["account.move"].create(invoice_vals)
+
+    def _register_payment(self, brokerage_prefs, invoice, amount):
+        payment_method = self.env.ref( (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_receipt:[24:30]
+==agentlink_transaction_manager.models.financial.trust_refund:[25:31]
+        required=True,
+        tracking=True,
+    )
+    amount = fields.Monetary(
+        string="Amount",
+        currency_field="currency_id", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_records:[473:479]
+==agentlink_transaction_manager.models.financial.commission_calculation:[32:38]
+        string="+ Flat Fee",
+        currency_field="currency_id",
+        help="Additional flat fee to add for total commission.",
+        tracking=True,
+        default=0.0,
+    ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite:[21:27]
+==agentlink_transaction_manager.models.shared_resources.commission_favourite_wizard:[42:48]
+    )
+    company_id = fields.Many2one(
+        "res.company",
+        string="Company",
+        required=True,
+        default=lambda self: self.env.company, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.agent_portal.commission_plan:[47:53]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[130:136]
+    )
+    currency_id = fields.Many2one(
+        "res.currency",
+        string="Currency",
+        required=True,
+        default=lambda self: self.env.company.currency_id, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_line:[61:67]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[61:67]
+    )
+    currency_id = fields.Many2one(
+        "res.currency",
+        string="Currency",
+        required=True,
+        default=lambda self: self.env.company.currency_id, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_refund:[413:419]
+==agentlink_transaction_manager.models.shared_resources.notification_mixin:[9:15]
+        return {
+            "type": "ir.actions.client",
+            "tag": "display_notification",
+            "params": {
+                "title": title,
+                "message": message, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite_mixin:[150:168]
+==agentlink_transaction_manager.models.shared_resources.commission_setup_mixin:[144:162]
+            )
+
+    def _clear_commission_lines(
+        self,
+        line_ids_field,
+        commission_type_field,
+        percentage_total_field,
+        flat_fee_plus_field,
+        flat_fee_less_field,
+    ):
+        """
+        Clear commission lines and reset related fields.
+        """
+        self[line_ids_field] = [(5, 0, 0)]
+        self[commission_type_field] = False
+        self[percentage_total_field] = 0.0
+        self[flat_fee_plus_field] = 0.0
+        self[flat_fee_less_field] = 0.0 (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite_mixin:[56:62]
+==agentlink_transaction_manager.models.shared_resources.commission_setup_mixin:[74:80]
+                    line_ids_field="buyer_side_commission_line_ids",
+                    commission_type_field="buyer_side_commission_type",
+                    percentage_total_field="buyer_side_commission_percentage",
+                    flat_fee_plus_field="buyer_side_plus_flat_fee",
+                    flat_fee_less_field="buyer_side_less_flat_fee",
+                ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_favourite_mixin:[48:54]
+==agentlink_transaction_manager.models.shared_resources.commission_setup_mixin:[55:61]
+                    line_ids_field="total_commission_line_ids",
+                    commission_type_field="total_commission_type",
+                    percentage_total_field="total_commission_percentage",
+                    flat_fee_plus_field="aggregate_flat_fee_plus",
+                    flat_fee_less_field="aggregate_flat_fee_less",
+                ) (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.shared_resources.commission_setup_mixin:[29:35]
+==agentlink_transaction_manager.models.shared_resources.commission_template:[16:22]
+    )
+    company_id = fields.Many2one(
+        "res.company",
+        string="Company",
+        required=True,
+        default=lambda self: self.env.company, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.commission_calculation:[99:109]
+==agentlink_transaction_manager.models.sales_agents.sales_agents_and_referrals:[125:131]
+        store=True,
+        currency_field="currency_id",
+        tracking=True,
+    )
+    buyer_side_commission = fields.Monetary(
+        string="Buyer Side Commission", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_records:[13:19]
+==agentlink_transaction_manager.models.listings.listing_records:[13:19]
+    _inherit = [
+        "mail.thread",
+        "mail.activity.mixin",
+        "address.compute.mixin",
+        "commission.setup.mixin",
+        "commission.favourite.mixin", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.listings.listing_records:[35:41]
+==agentlink_transaction_manager.models.shared_resources.shared_fields_mixin:[8:14]
+    company_id = fields.Many2one(
+        "res.company",
+        string="Company",
+        default=lambda self: self.env.company,
+        required=True,
+        tracking=True, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.listings.listing_records:[519:525]
+==agentlink_transaction_manager.models.listings.listing_wizard:[184:190]
+            "deal_class_id": self.deal_class_id.id,
+            "property_type_id": self.property_type_id.id,
+            "size": self.size,
+            "ml_number": self.ml_number,
+            "business_source_id": self.business_source_id.id,
+            "for_sale_or_lease": self.for_sale_or_lease, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.other_brokers.other_broker:[84:94]
+==agentlink_transaction_manager.models.sales_agents.sales_agents_and_referrals:[36:42]
+        tracking=True,
+    )
+
+    # =====================
+    # Broker-specific Fields
+    # =====================
+    end_id = fields.Many2one(
+        "deal.end",
+        string="End",
+        required=True, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.financial.trust_receipt:[338:343]
+==agentlink_transaction_manager.models.financial.trust_refund:[403:408]
+            "notes": self.notes,
+            "invoice_id": self.invoice_id.id,
+            "payment_id": payment.id,
+            "bank_account_id": brokerage_prefs.trust_bank_account.id,
+            "partner_id": partner.id, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.deals.deal_records:[46:51]
+==agentlink_transaction_manager.models.law_firms.law_firm:[22:27]
+    partner_id = fields.Many2one(
+        "res.partner",
+        string="Partner",
+        required=True,
+        ondelete="cascade", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.listings.listing_records:[43:48]
+==agentlink_transaction_manager.models.sales_agents.sales_agents_and_referrals:[18:23]
+    partner_id = fields.Many2one(
+        "res.partner",
+        string="Partner",
+        required=True,
+        ondelete="cascade", (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.listings.listing_records:[35:40]
+==agentlink_transaction_manager.models.listings.listing_wizard:[13:18]
+    company_id = fields.Many2one(
+        "res.company",
+        string="Company",
+        default=lambda self: self.env.company,
+        required=True, (duplicate-code)
+models/buyers_sellers/buyer_seller_wizard.py:1:0: R0801: Similar lines in 2 files
+==agentlink_transaction_manager.models.other_brokers.other_broker:[20:29]
+==agentlink_transaction_manager.models.other_brokers.other_broker_agent:[20:29]
+    _inherits = {'res.partner': 'partner_id'}
+    _inherit = ["mail.thread", "mail.activity.mixin", "notification.mixin", "shared.fields.mixin"]
+    _rec_name = "partner_id"
+
+    # =====================
+    # Partner Information
+    # =====================
+    partner_id = fields.Many2one(
+        'res.partner', (duplicate-code)
+
+------------------------------------------------------------------
+Your code has been rated at 6.69/10 (previous run: 6.69/10, +0.00)
+
