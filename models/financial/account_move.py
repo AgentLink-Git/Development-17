@@ -226,9 +226,11 @@ class AccountMoveLineExtension(models.Model):
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
-            if 'deal_id' not in vals and 'move_id' in vals:
-                move = self.env['account.move'].browse(vals['move_id'])
-                vals['deal_id'] = move.deal_id.id if move.deal_id else False
+            if 'deal_id' not in vals:
+                move_id = vals.get('move_id')
+                if move_id:
+                    move = self.env['account.move'].browse(move_id)
+                    vals['deal_id'] = move.deal_id.id if move.deal_id else False
         return super(AccountMoveLineExtension, self).create(vals_list)
 
     def write(self, vals):

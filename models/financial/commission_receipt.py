@@ -25,12 +25,12 @@ class CommissionReceipt(models.Model):
     # =====================
     transaction_line_ids = fields.One2many(
         "transaction.line",
-        "related_transaction_form_id",
+        "commission_receipt_id",
         string="Transaction Lines",
     )
     commission_line_ids = fields.One2many(
         "commission.line",
-        "related_commission_form_id",
+        "commission_receipt_id",
         string="Commission Lines",
     )
     transaction_type = fields.Selection(
@@ -318,7 +318,7 @@ class CommissionReceipt(models.Model):
             "payment_id": payment.id,
             "bank_account_id": brokerage_prefs.commission_journal.bank_account_id.id,
             "partner_id": partner_id,
-            "related_transaction_form_id": self.id,
+            "commission_receipt_id": self.id,
         }
         transaction_line = self.env["transaction.line"].create(transaction_line_vals)
         _logger.debug(f"Commission Receipt ID {self.id}: Created Transaction Line ID {transaction_line.id} with amount {amount}")

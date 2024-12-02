@@ -68,12 +68,6 @@ class DealRecords(models.Model):
         string="Currency",
         readonly=True,
     )
-    account_move_ids = fields.One2many(
-        "account.move",
-        "deal_id",
-        string="Journal Entries",
-        help="Journal entries related to this deal.",
-    )
     account_move_line_ids = fields.One2many(
         'account.move.line',
         'deal_id',
@@ -244,12 +238,6 @@ class DealRecords(models.Model):
         string="Buyers/Sellers",
         tracking=True
     )
-    buyers_sellers_wizard_ids = fields.One2many(
-        "buyers.sellers.wizard",
-        "deal_id",
-        string="Buyers/Sellers",
-        tracking=True
-    )
     buyer_names = fields.Char(
         string="Buyer Names",
         compute="_compute_buyer_seller_names",
@@ -316,12 +304,6 @@ class DealRecords(models.Model):
         string="Sales Agent Mentorship Line",
         help="Mentorship records for sales agents.",
     )
-    sales_agent_mentorship_wizard_ids = fields.One2many(
-        'sales.agent.mentorship.wizard',
-        'deal_id',
-        string="Sales Agent Mentorship Wizard",
-        help="Mentorship records for sales agents.",
-    )
     commission_advance_ids = fields.One2many(
         'commission.advance',
         'deal_id',
@@ -354,13 +336,6 @@ class DealRecords(models.Model):
         tracking=True,
         help="Other brokerage agents associated with the deal.",
     )
-    select_broker_wizard_ids = fields.One2many(
-        "select.broker.wizard",
-        "deal_id",
-        string="Other Brokers",
-        tracking=True,
-        help="Other brokerage associated with the deal.",
-    )
 
     # =====================
     # Law Firms and Lawyers
@@ -378,13 +353,6 @@ class DealRecords(models.Model):
         string="Lawyers",
         tracking=True,
         help="Lawyers associated with the deal.",
-    )
-    law_firm_wizard_ids = fields.One2many(
-        "law.firm.wizard",
-        "deal_id",
-        string="Law Firm Wizard",
-        tracking=True,
-        help="Law firms associated with the deal.",
     )
     # =====================
     # Conditions

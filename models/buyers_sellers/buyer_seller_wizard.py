@@ -222,19 +222,6 @@ class BuyersSellersWizardLine(models.TransientModel):
         required=True,
         help="Role of the contact in the deal (Buyer, Seller, Tenant, Landlord)."
     )
-    deal_id = fields.Many2one(
-        "deal.records",
-        string="Deal",
-        required=True,
-        ondelete="cascade",
-        help="Associated deal record."
-    )
-    listing_id = fields.Many2one(
-        "listing.records",
-        string="Listing",
-        ondelete="cascade",
-        help="Associated listing record."
-    )
     for_sale_or_lease = fields.Selection(
         [("for_sale", "For Sale"), ("for_lease", "For Lease")],
         string="For Sale or Lease",

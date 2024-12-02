@@ -24,10 +24,10 @@ class SalesAgentMentorshipWizard(models.TransientModel):
         help="Select an active mentorship to apply."
     )
     deal_id = fields.Many2one(
-        "deal.records",
-        string="Deal",
+        'deal.records',
+        string='Deal',
         required=True,
-        help="Select the deal to which the mentorship will be applied."
+        help='The deal to which the mentorship will be applied.',
     )
     end_id = fields.Many2one(
         "deal.end",

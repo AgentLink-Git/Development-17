@@ -210,7 +210,6 @@ class TransactionLine(models.Model):
         ondelete="cascade",
         help="Commission receipt related to the transaction.",
     )
-
     bank_account_id = fields.Many2one(
         "account.journal",
         string="Bank Account",

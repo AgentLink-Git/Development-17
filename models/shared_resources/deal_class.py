@@ -82,12 +82,6 @@ class DealClass(models.Model):
         tracking=True,
         help="Specify whether the deal class is for sale or for lease."
     )
-    deal_class_id = fields.Many2one(
-        'trade.class',
-        string="Trade Class",
-        tracking=True,
-        help="Associated trade class for this deal class."
-    )
     listing_id = fields.Many2one(
         'listing.record',
         string="Listing",
